@@ -1,0 +1,45 @@
+body {
+    background: #F1F1EC;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*HEADER*/
+#headerContainer {
+    border-bottom: 1px solid #c0c0c0;
+}
+
+/*LOGO*/
+#logoText {
+    font-family: Verdana, serif;
+    font-variant: small-caps;
+    font-size: 2em;
+    color: #808080;
+    margin: 5px;
+    padding: 0px;
+}
+
+#logoText span {
+    color: #4c8052;
+}
+
+#logoTextContainer {
+    border-right: 1px solid #c0c0c0;
+}
+
+/*VIDEO*/
+#videoOuterContainer {
+    background-color: #dfdfdf;
+    margin-top: 20px;
+    padding: 0px 50px;
+}
+#videoInnerContainer {
+    background-color: #4c8052;
+    width: 600px;
+    height: 600px;
+}
+
+#videoInfoContainer {
+
+}
+
