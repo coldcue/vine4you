@@ -40,6 +40,16 @@ body {
 }
 
 #videoInfoContainer {
+   margin: 8px 50px;
+}
 
+#videoInfo div.title {
+    font-family: Verdana, serif;
+    font-size: 1em;
+    color: #585858;
+}
+
+#horizontalAdContainer {
+    margin: 0px 116px;
 }
 

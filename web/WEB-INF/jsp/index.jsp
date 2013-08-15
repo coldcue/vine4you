@@ -27,15 +27,13 @@
         <div class="grid_12">
             <div id="videoOuterContainer">
                 <div id="videoInnerContainer">
-                    <video id="currentVideo" autoplay loop width="600" height="600"
+                    <video id="currentVideo" style="display: block;" loop width="600" height="600" preload="auto"
                            poster="https://v.cdn.vine.co/r/thumbs/F2D698FDD5977818925133959168_1e3236340f5.3.1.mp4_MRm_81WWWjc5jdVDKohg0pdn18PvawK1llPzzxSsYfEtYMkjd6ds99JE5SjPXtwL.jpg?versionId=a6_nI90sotUuWOG6EdV3o70bjxl3tg2z"
-                           preload="auto"
                            src="https://mtc.cdn.vine.co/r/videos/0CECB5C22D977818923066089472_19ef4834695.3.1_NCp.f586ONi8_MomyWoU86G4YGVXLjyYXkz4wC8aL7X602eA3k0ulIBs0I3vsLa..mp4?versionId=z3eBunAiiWs9k.Lr3TuF83QuzAW3IEKZ">
 
                     </video>
-                    <video id="nextVideo" style="display: none;" loop width="600" height="600"
+                    <video id="nextVideo" style="display: none;" loop width="600" height="600" preload="auto"
                            poster="https://v.cdn.vine.co/r/thumbs/F2D698FDD5977818925133959168_1e3236340f5.3.1.mp4_MRm_81WWWjc5jdVDKohg0pdn18PvawK1llPzzxSsYfEtYMkjd6ds99JE5SjPXtwL.jpg?versionId=a6_nI90sotUuWOG6EdV3o70bjxl3tg2z"
-                           preload="auto"
                            src="https://mtc.cdn.vine.co/r/videos/0CECB5C22D977818923066089472_19ef4834695.3.1_NCp.f586ONi8_MomyWoU86G4YGVXLjyYXkz4wC8aL7X602eA3k0ulIBs0I3vsLa..mp4?versionId=z3eBunAiiWs9k.Lr3TuF83QuzAW3IEKZ">
 
                     </video>
@@ -43,8 +41,11 @@
             </div>
             <div id="videoInfoContainer">
                 <div id="videoInfo">
-                    <div class="title">Black Girls vs Black Girls</div>
+                    <div class="title">White Girls vs Black Girls</div>
                 </div>
+            </div>
+            <div id="horizontalAdContainer">
+                <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922338_en_v1" width="468" height="60">
             </div>
         </div>
     </div>
