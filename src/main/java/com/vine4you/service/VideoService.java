@@ -21,6 +21,7 @@ import com.vine4you.entity.VideoEntity;
  */
 public class VideoService {
 
+    public static final String hashSalt = "hkUwauV4812E0bus71A9UIVl651eW47T";
     private static DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
     public static VideoEntity getVideoEntity(long id) throws EntityNotFoundException {

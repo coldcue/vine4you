@@ -8,6 +8,20 @@
     <artifactId>vine4you</artifactId>
     <version>1-0-0</version>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>google-snapshots</id>
+            <name>Google Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencies>
         <!--AppEngine-->
         <dependency>
@@ -17,6 +31,12 @@
         </dependency>
 
         <!--Javax-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
@@ -53,14 +73,22 @@
                     <webResources>
                         <!-- in order to interpolate version from pom into appengine-web.xml -->
                         <resource>
-                            <directory>${basedir}/web/WEB-INF</directory>
+                            <directory>${basedir}/web/</directory>
                             <filtering>false</filtering>
-                            <targetPath>WEB-INF</targetPath>
+                            <targetPath>/</targetPath>
                         </resource>
                     </webResources>
                 </configuration>
             </plugin>
+
+            <!--AppEngine-->
+            <plugin>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>1.8.2</version>
+            </plugin>
         </plugins>
     </build>
+
 
 </project>
