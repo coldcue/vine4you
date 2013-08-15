@@ -89,6 +89,10 @@ body {
     margin: 20px 10px 10px 10px;
 }
 
+#verticalAdContainer {
+    margin: 20px 30px;
+}
+
 /*FEATURED BAR*/
 #featuredVideos {
     list-style: none;
