@@ -101,14 +101,16 @@ public class VideoService {
      */
     public static List<VideoEntity> getFeaturedVideos(VideoEntity from) {
         Query query = new Query(VideoEntity.kind);
-        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
+
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
+
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.LESS_THAN, from.getPublishedDate()));
 
-        //TODO projection
-        /*query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
-        query.addProjection(new PropertyProjection(VideoEntity.TITLE, String.class));
-        query.addProjection(new PropertyProjection(VideoEntity.IMAGE_URL, String.class)); */
+        //TODO Add projections
+        /*query.addProjection(new PropertyProjection(VideoEntity.TITLE, null));
+        query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, null));
+        query.addProjection(new PropertyProjection(VideoEntity.IMAGE_URL, null));*/
 
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(FeaturedListSize);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
@@ -117,12 +119,12 @@ public class VideoService {
         List<Entity> entities = preparedQuery.asList(fetchOptions);
 
         for (Entity entity : entities) {
-            if (from.getKey() == entity.getKey()) continue;
+            if (from.getKey().getId() == entity.getKey().getId()) continue;
             videoEntities.add(new VideoEntity(entity));
         }
 
          /*If the featured list is smaller than it has to be, then use the defualt list*/
-        if (videoEntities.size() < FeaturedListSize && from.getKey() != getFirstVideo().getKey()) {
+        if (videoEntities.size() < FeaturedListSize && from.getKey().getId() != getFirstVideo().getKey().getId()) {
             return getFeaturedVideos(getFirstVideo());
         }
 
@@ -131,8 +133,10 @@ public class VideoService {
 
     public static VideoEntity getPreviousVideo(VideoEntity from) {
         Query query = new Query(VideoEntity.kind);
-        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
+
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
+
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.GREATER_THAN, from.getPublishedDate()));
 
         //TODO projection

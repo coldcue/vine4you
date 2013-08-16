@@ -95,7 +95,7 @@
 
                 <div id="videoInnerContainer"
                      style="background-image: url(${video.imageURL});">
-                    <video id="videoElement" style="display: none;" oncanplaythrough="OnVideoLoaded(this);"
+                    <video id="videoElement" style="display: none;" oncanplay="OnVideoLoaded(this);"
                            onclick="ToggleVideo();"
                            onplay="OnVideoPlay();"
                            onpause="OnVideoPause();" loop width="600" height="600" preload="auto"
