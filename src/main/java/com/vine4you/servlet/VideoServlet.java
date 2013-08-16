@@ -9,6 +9,9 @@
 
 package com.vine4you.servlet;
 
+import com.vine4you.entity.VideoEntity;
+import com.vine4you.service.VideoService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +28,17 @@ import java.io.IOException;
 public class VideoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.getWriter().println("Hi from video servlet! "+request.getPathInfo());
+        String[] split = request.getPathInfo().split("/", 2);
+
+        VideoEntity video = null;
+        try {
+            video = VideoService.getVideoEntity(Long.parseLong(split[1]));
+        } catch (Exception e) {
+            video = VideoService.getFirstVideo();
+        }
+        request.setAttribute("video", video);
+        request.setAttribute("featured", VideoService.getFeaturedVideos(video));
+
+        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
     }
 }

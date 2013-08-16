@@ -1,7 +1,8 @@
 package com.vine4you.servlet;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.vine4you.entity.VideoEntity;
+import com.vine4you.service.VideoService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +17,12 @@ import java.io.IOException;
  */
 public class IndexServlet extends HttpServlet {
 
-    public static DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(request, response);
+
+        VideoEntity firstVideo = VideoService.getFirstVideo();
+        request.setAttribute("video", firstVideo);
+        request.setAttribute("featured", VideoService.getFeaturedVideos(firstVideo));
+
+        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
     }
 }
