@@ -18,7 +18,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Vine4You</title>
+    <c:choose>
+        <c:when test="${showVideoTitleInTitle}">
+            <title>${video.title} - Vine4You</title>
+        </c:when>
+        <c:otherwise>
+            <title>Vine4You - Best Vines</title>
+        </c:otherwise>
+    </c:choose>
+    <meta name="description" content="Vine4You is a collection of the best Vine videos you can find on the internet.">
+    <meta name="keywords" content="vine,videos,funny,vine4you,collection">
+    <meta name="author" content="${video.author}">
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>

@@ -36,6 +36,7 @@ public class VideoServlet extends HttpServlet {
         } catch (Exception e) {
             video = VideoService.getFirstVideo();
         }
+        request.setAttribute("showVideoTitleInTitle", true);
         request.setAttribute("video", video);
         request.setAttribute("featured", VideoService.getFeaturedVideos(video));
 
