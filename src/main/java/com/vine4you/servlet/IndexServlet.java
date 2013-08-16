@@ -20,9 +20,9 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         VideoEntity firstVideo = VideoService.getFirstVideo();
-        request.setAttribute("video", firstVideo);
+        request.setAttribute("videoElement", firstVideo);
         request.setAttribute("featured", VideoService.getFeaturedVideos(firstVideo));
 
-        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/videoElement.jsp").forward(request, response);
     }
 }

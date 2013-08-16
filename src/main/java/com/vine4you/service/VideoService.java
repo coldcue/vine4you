@@ -24,10 +24,10 @@ import java.util.List;
 public class VideoService {
 
     /**
-     * Gets a single video entity from the database or from cache
+     * Gets a single videoElement entity from the database or from cache
      *
      * @param id the id
-     * @return the video
+     * @return the videoElement
      * @throws EntityNotFoundException
      */
     public static VideoEntity getVideoEntity(long id) throws EntityNotFoundException {
@@ -58,12 +58,13 @@ public class VideoService {
     }
 
     /**
-     * Returns the first video to show to the user
+     * Returns the first videoElement to show to the user
      *
-     * @return the video
+     * @return the videoElement
      */
     public static VideoEntity getFirstVideo() {
         Query query = new Query(VideoEntity.kind);
+        query.setFilter(new Query.FilterPredicate("published", Query.FilterOperator.EQUAL, true));
         query.addSort("publishedDate", Query.SortDirection.DESCENDING);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
 
@@ -71,14 +72,15 @@ public class VideoService {
     }
 
     /**
-     * Returns the featured video list from a given video
+     * Returns the featured videoElement list from a given videoElement
      *
-     * @param from the video
+     * @param from the videoElement
      * @return the list
      */
     public static Collection<VideoEntity> getFeaturedVideos(VideoEntity from) {
         //TODO Projections
         Query query = new Query(VideoEntity.kind);
+        query.setFilter(new Query.FilterPredicate("published", Query.FilterOperator.EQUAL, true));
         query.addSort("publishedDate", Query.SortDirection.DESCENDING);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(15);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
@@ -86,6 +88,7 @@ public class VideoService {
         List<VideoEntity> videoEntities = new ArrayList<>();
 
         for (Entity entity : preparedQuery.asIterable(fetchOptions)) {
+            if (from.getKey().equals(entity.getKey())) continue;
             videoEntities.add(new VideoEntity(entity));
         }
 

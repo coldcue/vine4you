@@ -1,31 +1,20 @@
-var Video = new VideoImpl();
+var videoElement = undefined;
+var videoState = false;
 
-$(document).ready(function () {
-    Video.initt();
-    Video.toggle();
-
-    $("#video").click(function () {
-        Video.toggle();
-    });
-});
-
-function VideoImpl() {
-    this.videoElement = undefined;
-    this.started = false;
-
-    this.initt = function () {
-        Video.videoElement = $("#video").get(0);
-    };
-
-    this.toggle = function () {
-        if (Video.started) {
-            Video.videoElement.pause();
-            Video.started = false;
-        }
-        else {
-            Video.videoElement.play();
-            Video.started = true;
-        }
-    };
+function OnVideoLoaded(e) {
+    videoElement = e;
+    ToggleVideo();
 }
 
+function ToggleVideo() {
+    if (videoState) videoElement.pause();
+    else videoElement.play();
+}
+
+function OnVideoPlay() {
+    videoState = true;
+}
+
+function OnVideoPause() {
+    videoState = false;
+}

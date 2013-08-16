@@ -19,10 +19,20 @@
 <html>
 <head>
     <title>Vine4You</title>
-    <link rel="stylesheet" href="/static/design/style.css"/>
-    <link rel="stylesheet" href="/static/design/960.css"/>
-    <script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="/static/js/video.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
+
+    <meta property="fb:app_id" content="593953400627542"/>
+    <meta property="og:type" content="video"/>
+    <meta property="og:url" content="http://www.vine4you/v/${video.key.id}"/>
+    <meta property="og:title" content="${video.title}"/>
+    <meta property="og:image"
+          content="${video.imageURL}"/>
+    <meta property="og:video" content="${video.videoURL}">
+    <meta property="og:video:type" content="video/mp4">
+    <meta property="og:video:width" content="600">
+    <meta property="og:video:height" content="600">
 </head>
 <body>
 <div id="fb-root"></div>
@@ -50,11 +60,15 @@
 </div>
 <div id="mainContainer">
     <div class="container_16">
-        <div class="grid_12">
+        <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject" class="grid_12">
+            <meta itemprop="duration" content="7S"/>
+            <meta itemprop="thumbnail" content="${video.imageURL}"/>
             <div id="videoOuterContainer">
                 <div id="videoLeftContainer"></div>
                 <div id="videoInnerContainer">
-                    <video id="video" loop width="600" height="600" preload="auto"
+                    <video id="videoElement" oncanplaythrough="OnVideoLoaded(this);" onclick="ToggleVideo();"
+                           onplay="OnVideoPlay();"
+                           onpause="OnVideoPause();" loop width="600" height="600" preload="auto"
                            poster="${video.imageURL}"
                            src="${video.videoURL}">
                     </video>
@@ -88,15 +102,15 @@
             </div>
             <div id="videoInfoContainer">
                 <div id="videoInfo">
-                    <div id="videoInfoTitle">${video.title}</div>
-                    <div id="videoInfoAuthor">by <a href="#">${video.author}</a></div>
+                    <div id="videoInfoTitle" itemprop="name">${video.title}</div>
+                    <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
                 </div>
             </div>
             <div id="horizontalAdContainer">
                 <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922339_en_v1" width="468" height="60">
             </div>
             <div id="commentsContainer">
-                <div class="fb-comments" data-href="http://example.com" data-width="600"></div>
+                <div class="fb-comments" data-href="http://www.vine4you/v/${video.key.id}" data-width="600"></div>
             </div>
         </div>
         <div class="grid_4">
@@ -105,7 +119,7 @@
             </div>
             <ul id="featuredVideos">
                 <c:forEach var="item" items="${featured}">
-                    <li><a href="/v/${item.key.id}">
+                    <li><a href="${pageContext.request.contextPath}/v/${item.key.id}">
                         <div class="container"><img width="60" height="60"
                                                     src="${item.imageURL}"
                                                     alt="${item.title}"/>
@@ -133,6 +147,23 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(po, s);
     })();
+</script>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-43247982-1', 'vine4you.com');
+    ga('send', 'pageview');
+
 </script>
 </body>
 </html>
