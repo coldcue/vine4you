@@ -4,20 +4,38 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
-    
+
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
 
     <!--IndexServlet-->
     <servlet>
-        <servlet-name>indexServlet</servlet-name>
+        <servlet-name>IndexServlet</servlet-name>
         <servlet-class>com.vine4you.servlet.IndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>indexServlet</servlet-name>
+        <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
+    <!--VideoServlet-->
+    <servlet>
+        <servlet-name>VideoServlet</servlet-name>
+        <servlet-class>com.vine4you.servlet.VideoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VideoServlet</servlet-name>
+        <url-pattern>/v/*</url-pattern>
+    </servlet-mapping>
 
+    <!--ImportServlet-->
+    <servlet>
+        <servlet-name>ImportServlet</servlet-name>
+        <servlet-class>com.vine4you.servlet.ImportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImportServlet</servlet-name>
+        <url-pattern>/import/do</url-pattern>
+    </servlet-mapping>
 </web-app>

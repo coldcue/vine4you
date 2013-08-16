@@ -47,6 +47,13 @@
             <artifactId>jsr107cache</artifactId>
             <version>1.1</version>
         </dependency>
+
+        <!--OpenCSV-->
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>2.3</version>
+        </dependency>
     </dependencies>
 
     <build>
