@@ -1,9 +1,24 @@
 var videoElement = undefined;
 var videoState = false;
+var videoLoaded = false;
+var pageLoaded = false;
+
+document.addEventListener('DOMContentLoaded', function () {
+    pageLoaded = true;
+    StartVideo();
+});
 
 function OnVideoLoaded(e) {
     videoElement = e;
-    ToggleVideo();
+    videoLoaded = true;
+    StartVideo();
+}
+
+function StartVideo() {
+    if (videoLoaded && pageLoaded) {
+        videoElement.removeAttribute("style");
+        ToggleVideo();
+    }
 }
 
 function ToggleVideo() {

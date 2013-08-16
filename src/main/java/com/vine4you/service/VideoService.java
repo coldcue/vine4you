@@ -23,6 +23,8 @@ import java.util.List;
  */
 public class VideoService {
 
+    public static final int FeaturedListSize = 15;
+
     /**
      * Gets a single videoElement entity from the database or from cache
      *
@@ -82,7 +84,8 @@ public class VideoService {
         Query query = new Query(VideoEntity.kind);
         query.setFilter(new Query.FilterPredicate("published", Query.FilterOperator.EQUAL, true));
         query.addSort("publishedDate", Query.SortDirection.DESCENDING);
-        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(15);
+        query.setFilter(new Query.FilterPredicate("publishedDate", Query.FilterOperator.LESS_THAN, from.getPublishedDate()));
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(FeaturedListSize);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
 
         List<VideoEntity> videoEntities = new ArrayList<>();
@@ -90,6 +93,11 @@ public class VideoService {
         for (Entity entity : preparedQuery.asIterable(fetchOptions)) {
             if (from.getKey().equals(entity.getKey())) continue;
             videoEntities.add(new VideoEntity(entity));
+        }
+
+         /*If the featured list is smaller than it has to be, then use the defualt list*/
+        if (videoEntities.size() < FeaturedListSize && from.getKey() != getFirstVideo().getKey()) {
+            return getFeaturedVideos(getFirstVideo());
         }
 
         return videoEntities;

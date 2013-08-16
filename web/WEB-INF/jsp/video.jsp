@@ -28,7 +28,9 @@
     </c:choose>
     <meta name="description" content="Vine4You is a collection of the best Vine videos you can find on the internet.">
     <meta name="keywords" content="vine,videos,funny,vine4you,collection">
-    <meta name="author" content="${video.author}">
+    <c:if test="${showVideoTitleInTitle}">
+        <meta name="author" content="${video.author}">
+    </c:if>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
@@ -55,7 +57,7 @@
     <div class="container_16">
         <div class="grid_4">
             <div id="logoTextContainer">
-                <h1 id="logoText">Vine<span>4</span>You</h1>
+                <a href="${pageContext.request.contextPath}/" id="logoText">Vine<span>4</span>You</a>
             </div>
         </div>
         <div class="grid_12">
@@ -74,10 +76,10 @@
                 <div id="videoLeftContainer"></div>
                 <div id="videoInnerContainer"
                      style="background-image: url(${video.imageURL});">
-                    <video id="videoElement" oncanplaythrough="OnVideoLoaded(this);" onclick="ToggleVideo();"
+                    <video id="videoElement" style="display: none;" oncanplaythrough="OnVideoLoaded(this);"
+                           onclick="ToggleVideo();"
                            onplay="OnVideoPlay();"
                            onpause="OnVideoPause();" loop width="600" height="600" preload="auto"
-                           poster="${video.imageURL}"
                            src="${video.videoURL}">
                     </video>
                 </div>
