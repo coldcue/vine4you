@@ -52,6 +52,7 @@ body {
 #videoInnerContainer {
     width: 600px;
     height: 600px;
+    background-size: 100% auto;
 }
 
 #videoSocial {

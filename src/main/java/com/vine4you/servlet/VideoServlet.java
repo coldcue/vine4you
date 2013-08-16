@@ -36,9 +36,9 @@ public class VideoServlet extends HttpServlet {
         } catch (Exception e) {
             video = VideoService.getFirstVideo();
         }
-        request.setAttribute("videoElement", video);
+        request.setAttribute("video", video);
         request.setAttribute("featured", VideoService.getFeaturedVideos(video));
 
-        request.getRequestDispatcher("/WEB-INF/jsp/videoElement.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
     }
 }

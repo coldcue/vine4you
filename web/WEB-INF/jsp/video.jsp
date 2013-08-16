@@ -25,14 +25,10 @@
 
     <meta property="fb:app_id" content="593953400627542"/>
     <meta property="og:type" content="video"/>
-    <meta property="og:url" content="http://www.vine4you/v/${video.key.id}"/>
+    <meta property="og:url" content="http://www.vine4you.com/v/${video.key.id}"/>
     <meta property="og:title" content="${video.title}"/>
     <meta property="og:image"
           content="${video.imageURL}"/>
-    <meta property="og:video" content="${video.videoURL}">
-    <meta property="og:video:type" content="video/mp4">
-    <meta property="og:video:width" content="600">
-    <meta property="og:video:height" content="600">
 </head>
 <body>
 <div id="fb-root"></div>
@@ -65,7 +61,8 @@
             <meta itemprop="thumbnail" content="${video.imageURL}"/>
             <div id="videoOuterContainer">
                 <div id="videoLeftContainer"></div>
-                <div id="videoInnerContainer">
+                <div id="videoInnerContainer"
+                     style="background-image: url(${video.imageURL});">
                     <video id="videoElement" oncanplaythrough="OnVideoLoaded(this);" onclick="ToggleVideo();"
                            onplay="OnVideoPlay();"
                            onpause="OnVideoPause();" loop width="600" height="600" preload="auto"
@@ -79,7 +76,7 @@
             <div id="videoSocial">
                 <div class="twitter">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-size="large"
-                       data-url="http://www.vine4you/v/${video.key.id}"
+                       data-url="http://www.vine4you.com/v/${video.key.id}"
                        data-count="none">Tweet</a>
                     <script>!function (d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
@@ -92,10 +89,10 @@
                     }(document, 'script', 'twitter-wjs');</script>
                 </div>
                 <div class="google">
-                    <div class="g-plusone" data-href="http://www.vine4you/v/${video.key.id}"></div>
+                    <div class="g-plusone" data-href="http://www.vine4you.com/v/${video.key.id}"></div>
                 </div>
                 <div class="facebook">
-                    <div class="fb-like" data-href="http://www.vine4you/v/${video.key.id}"
+                    <div class="fb-like" data-href="http://www.vine4you.com/v/${video.key.id}"
                          data-width="250" data-show-faces="false" data-send="true"></div>
                 </div>
 
@@ -107,15 +104,35 @@
                 </div>
             </div>
             <div id="horizontalAdContainer">
-                <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922339_en_v1" width="468" height="60">
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-6335041482514787";
+                /* HorizontalAd */
+                google_ad_slot = "2078553275";
+                google_ad_width = 468;
+                google_ad_height = 60;
+                //-->
+                </script>
+                <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
             </div>
             <div id="commentsContainer">
-                <div class="fb-comments" data-href="http://www.vine4you/v/${video.key.id}" data-width="600"></div>
+                <div class="fb-comments" data-href="http://www.vine4you.com/v/${video.key.id}" data-width="600"></div>
             </div>
         </div>
         <div class="grid_4">
             <div id="squareAdContainer">
-                <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922332_en_v0" width="200" height="200">
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-6335041482514787";
+                /* SquareAd */
+                google_ad_slot = "8125086870";
+                google_ad_width = 200;
+                google_ad_height = 200;
+                //-->
+                </script>
+                <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
             </div>
             <ul id="featuredVideos">
                 <c:forEach var="item" items="${featured}">
@@ -130,8 +147,17 @@
                 </c:forEach>
             </ul>
             <div id="verticalAdContainer">
-                <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922277_en_v0" alt="ad" width="160"
-                     height="600"/>
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-6335041482514787";
+                /* VerticalAd */
+                google_ad_slot = "9601820071";
+                google_ad_width = 160;
+                google_ad_height = 600;
+                //-->
+                </script>
+                <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
             </div>
         </div>
 
