@@ -13,8 +13,8 @@ import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * User: Andrew
@@ -23,7 +23,8 @@ import java.util.List;
  */
 public class VideoService {
 
-    public static final int FeaturedListSize = 15;
+    public static final int FeaturedListSize = 12;
+    private static final Logger log = Logger.getLogger(VideoService.class.getName());
 
     /**
      * Gets a single videoElement entity from the database or from cache
@@ -37,6 +38,13 @@ public class VideoService {
         return new VideoEntity(video);
     }
 
+    /**
+     * Inserts or updates an entity
+     *
+     * @param videoEntity
+     * @return
+     * @throws Exception
+     */
     public static Key addVideoEntity(VideoEntity videoEntity) throws Exception {
 
         //Vine URL check
@@ -45,18 +53,29 @@ public class VideoService {
         query.setFilter(filter);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
 
-        //TODO Better checking
-        boolean unique = true;
+        List<Entity> entities = preparedQuery.asList(FetchOptions.Builder.withDefaults());
+        //If there`s more then one entity
+        if (entities.size() > 1) {
+            String msg = "Multiple vine videos! ID:" + videoEntity.getVineURL();
+            log.severe(msg);
+            throw new Exception(msg);
+            //if there`s only one entity
+        } else if (entities.size() == 1) {
+            Entity entity = entities.get(0);
+            boolean published = (boolean) entity.getProperty(VideoEntity.PUBLISHED);
 
-        //noinspection LoopStatementThatDoesntLoop
-        for (Entity result : preparedQuery.asIterable()) {
-            unique = false;
-            break;
+            entity.setPropertiesFrom(videoEntity.generateEntity());
+
+            //If it was published before
+            if (published)
+                entity.setProperty(VideoEntity.PUBLISHED, true);
+
+            DatastoreServiceFactory.getDatastoreService().put(entity);
+            return entity.getKey();
+            //otherwise
+        } else {
+            return DatastoreServiceFactory.getDatastoreService().put(videoEntity.generateEntity());
         }
-
-        if (!unique) throw new Exception("This vine has already been added");
-
-        return DatastoreServiceFactory.getDatastoreService().put(videoEntity.generateEntity());
     }
 
     /**
@@ -65,9 +84,10 @@ public class VideoService {
      * @return the videoElement
      */
     public static VideoEntity getFirstVideo() {
+        //TODO save into the memory
         Query query = new Query(VideoEntity.kind);
-        query.setFilter(new Query.FilterPredicate("published", Query.FilterOperator.EQUAL, true));
-        query.addSort("publishedDate", Query.SortDirection.DESCENDING);
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
+        query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
 
         return new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
@@ -79,19 +99,25 @@ public class VideoService {
      * @param from the videoElement
      * @return the list
      */
-    public static Collection<VideoEntity> getFeaturedVideos(VideoEntity from) {
-        //TODO Projections
+    public static List<VideoEntity> getFeaturedVideos(VideoEntity from) {
         Query query = new Query(VideoEntity.kind);
-        query.setFilter(new Query.FilterPredicate("published", Query.FilterOperator.EQUAL, true));
-        query.addSort("publishedDate", Query.SortDirection.DESCENDING);
-        query.setFilter(new Query.FilterPredicate("publishedDate", Query.FilterOperator.LESS_THAN, from.getPublishedDate()));
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
+        query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.LESS_THAN, from.getPublishedDate()));
+
+        //TODO projection
+        /*query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
+        query.addProjection(new PropertyProjection(VideoEntity.TITLE, String.class));
+        query.addProjection(new PropertyProjection(VideoEntity.IMAGE_URL, String.class)); */
+
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(FeaturedListSize);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
 
         List<VideoEntity> videoEntities = new ArrayList<>();
+        List<Entity> entities = preparedQuery.asList(fetchOptions);
 
-        for (Entity entity : preparedQuery.asIterable(fetchOptions)) {
-            if (from.getKey().equals(entity.getKey())) continue;
+        for (Entity entity : entities) {
+            if (from.getKey() == entity.getKey()) continue;
             videoEntities.add(new VideoEntity(entity));
         }
 
@@ -101,5 +127,26 @@ public class VideoService {
         }
 
         return videoEntities;
+    }
+
+    public static VideoEntity getPreviousVideo(VideoEntity from) {
+        Query query = new Query(VideoEntity.kind);
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
+        query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.GREATER_THAN, from.getPublishedDate()));
+
+        //TODO projection
+        /*query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
+        query.addProjection(new PropertyProjection(VideoEntity.TITLE, String.class));
+        query.addProjection(new PropertyProjection(VideoEntity.IMAGE_URL, String.class)); */
+
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
+        PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
+
+        List<VideoEntity> videoEntities = new ArrayList<>();
+        List<Entity> entities = preparedQuery.asList(fetchOptions);
+        if (entities.size() > 0)
+            return new VideoEntity(entities.get(0));
+        else return null;
     }
 }

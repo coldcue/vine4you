@@ -51,13 +51,43 @@ body {
 #videoOuterContainer {
     background-color: #dfdfdf;
     margin-top: 20px;
-    padding: 0 50px;
+    padding: 0;
+    width: 700px;
+    height: 600px;
+}
+
+#videoLeftContainer, #videoRightContainer, #videoLeftSpace {
+    width: 50px;
+    height: 600px;
+    color: #4c8052;
+    font-family: Verdana, serif;
+    font-weight: bold;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+#videoLeftContainer div, #videoRightContainer div {
+    padding-top: 290px;
+}
+
+#videoLeftContainer, #videoLeftSpace {
+    float: left;
+}
+
+#videoRightContainer {
+    float: right;
+}
+
+#videoLeftLink:hover #videoLeftContainer, #videoRightLink:hover #videoRightContainer {
+    background-color: #4c8052;
+    color: #fff;
 }
 
 #videoInnerContainer {
     width: 600px;
     height: 600px;
     background-size: 100% auto;
+    float: left;
 }
 
 #videoSocial {
@@ -171,6 +201,7 @@ body {
 #commentsContainer {
     margin: 20px 50px;
 }
+
 
 
 

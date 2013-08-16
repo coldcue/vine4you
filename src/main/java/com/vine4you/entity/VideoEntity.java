@@ -18,6 +18,13 @@ import java.util.Date;
 public class VideoEntity implements EntityInterface {
 
     public final static String kind = "Video";
+    public static final String TITLE = "title";
+    public static final String AUTHOR = "author";
+    public static final String VINE_URL = "vineURL";
+    public static final String VIDEO_URL = "videoURL";
+    public static final String IMAGE_URL = "imageURL";
+    public static final String PUBLISHED_DATE = "publishedDate";
+    public static final String PUBLISHED = "published";
     private Key key;
     private String title;
     private String author;
@@ -29,13 +36,20 @@ public class VideoEntity implements EntityInterface {
 
     public VideoEntity(Entity entity) {
         key = entity.getKey();
-        title = (String) entity.getProperty("title");
-        author = (String) entity.getProperty("author");
-        vineURL = (String) entity.getProperty("vineURL");
-        videoURL = (String) entity.getProperty("videoURL");
-        imageURL = (String) entity.getProperty("imageURL");
-        publishedDate = (Date) entity.getProperty("publishedDate");
-        published = (boolean) entity.getProperty("published");
+        if (entity.hasProperty(TITLE))
+            title = (String) entity.getProperty(TITLE);
+        if (entity.hasProperty(AUTHOR))
+            author = (String) entity.getProperty(AUTHOR);
+        if (entity.hasProperty(VINE_URL))
+            vineURL = (String) entity.getProperty(VINE_URL);
+        if (entity.hasProperty(VIDEO_URL))
+            videoURL = (String) entity.getProperty(VIDEO_URL);
+        if (entity.hasProperty(IMAGE_URL))
+            imageURL = (String) entity.getProperty(IMAGE_URL);
+        if (entity.hasProperty(PUBLISHED_DATE))
+            publishedDate = (Date) entity.getProperty(PUBLISHED_DATE);
+        if (entity.hasProperty(PUBLISHED))
+            published = (boolean) entity.getProperty(PUBLISHED);
     }
 
     public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published) {
@@ -116,17 +130,22 @@ public class VideoEntity implements EntityInterface {
         this.published = published;
     }
 
+    /**
+     * Only use it with fully loaded entity!!!
+     *
+     * @return the Entity
+     */
     @Override
     public Entity generateEntity() {
         Entity entity = new Entity(kind);
 
-        entity.setProperty("title", title);
-        entity.setProperty("author", author);
-        entity.setProperty("vineURL", vineURL);
-        entity.setProperty("videoURL", videoURL);
-        entity.setProperty("imageURL", imageURL);
-        entity.setProperty("publishedDate", publishedDate);
-        entity.setProperty("published", published);
+        entity.setProperty(TITLE, title);
+        entity.setProperty(AUTHOR, author);
+        entity.setProperty(VINE_URL, vineURL);
+        entity.setProperty(VIDEO_URL, videoURL);
+        entity.setProperty(IMAGE_URL, imageURL);
+        entity.setProperty(PUBLISHED_DATE, publishedDate);
+        entity.setProperty(PUBLISHED, published);
 
         return entity;
     }

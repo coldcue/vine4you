@@ -17,15 +17,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Andrew
  * Date: 8/16/13
  * Time: 11:24 AM
- * To change this template use File | Settings | File Templates.
  */
 public class ImportService {
+    private static final Logger log = Logger.getLogger(ImportService.class.getName());
+
     public static void letsdoit() {
         try {
             URL url = new URL("http://www.galaxyhosting.eu/import.csv");
@@ -34,13 +35,13 @@ public class ImportService {
 
             //title,author,vine_url,video_url,image_url
             while ((line = reader.readNext()) != null) {
-                if (line[0].equals("title")) continue;
+                if (line[0].equals(VideoEntity.TITLE)) continue;
                 VideoEntity videoEntity = new VideoEntity(line[0], line[1], line[2], line[3], line[4], Calendar.getInstance().getTime(), true);
 
                 try {
                     VideoService.addVideoEntity(videoEntity);
                 } catch (Exception e) {
-                    //do nothing
+                    log.severe("Can`t import video: " + line[0] + " " + line[1] + " " + line[2]);
                 }
             }
 

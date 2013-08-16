@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,9 +37,12 @@ public class VideoServlet extends HttpServlet {
         } catch (Exception e) {
             video = VideoService.getFirstVideo();
         }
+        List<VideoEntity> featuredVideos = VideoService.getFeaturedVideos(video);
         request.setAttribute("showVideoTitleInTitle", true);
         request.setAttribute("video", video);
-        request.setAttribute("featured", VideoService.getFeaturedVideos(video));
+        request.setAttribute("prevVideo", VideoService.getPreviousVideo(video));
+        request.setAttribute("nextVideo", featuredVideos.get(0));
+        request.setAttribute("featured", featuredVideos);
 
         request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
     }

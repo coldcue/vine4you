@@ -73,7 +73,26 @@
             <meta itemprop="duration" content="7S"/>
             <meta itemprop="thumbnail" content="${video.imageURL}"/>
             <div id="videoOuterContainer">
-                <div id="videoLeftContainer"></div>
+                <c:choose>
+                    <c:when test="${prevVideo eq null}">
+                        <div id="videoLeftSpace">
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <a id="videoLeftLink" href="/v/${prevVideo.key.id}">
+                            <div id="videoLeftContainer">
+                                <div>Prev</div>
+                            </div>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+
+                <a id="videoRightLink" href="/v/${nextVideo.key.id}">
+                    <div id="videoRightContainer">
+                        <div>Next</div>
+                    </div>
+                </a>
+
                 <div id="videoInnerContainer"
                      style="background-image: url(${video.imageURL});">
                     <video id="videoElement" style="display: none;" oncanplaythrough="OnVideoLoaded(this);"
@@ -83,8 +102,8 @@
                            src="${video.videoURL}">
                     </video>
                 </div>
-                <div id="videoRightContainer">
-                </div>
+
+
             </div>
             <div id="videoSocial">
                 <div class="twitter">
