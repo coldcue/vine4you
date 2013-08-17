@@ -28,7 +28,9 @@ import java.util.logging.Logger;
 public class ImportService {
     private static final Logger log = Logger.getLogger(ImportService.class.getName());
 
-    public static void letsdoit() {
+    public static int letsdoit(boolean asNew) {
+        int count = 0;
+
         try {
             URL url = new URL("http://www.galaxyhosting.eu/vine4you/import.csv");
             CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8"))));
@@ -44,7 +46,8 @@ public class ImportService {
                 VideoEntity videoEntity = new VideoEntity(line[0], line[1], line[2], videoURL, imageURL, Calendar.getInstance().getTime(), true);
 
                 try {
-                    VideoService.addVideoEntity(videoEntity);
+                    VideoService.addVideoEntity(videoEntity, asNew);
+                    count++;
                 } catch (Exception e) {
                     log.severe("Can`t import video: " + line[0] + " " + line[1] + " " + line[2]);
                 }
@@ -55,5 +58,7 @@ public class ImportService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return count;
     }
 }

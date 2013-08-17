@@ -13,6 +13,7 @@ import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -45,7 +46,7 @@ public class VideoService {
      * @return
      * @throws Exception
      */
-    public static Key addVideoEntity(VideoEntity videoEntity) throws Exception {
+    public static Key addVideoEntity(VideoEntity videoEntity, boolean asNew) throws Exception {
 
         //Vine URL check
         Query query = new Query(VideoEntity.kind);
@@ -63,18 +64,31 @@ public class VideoService {
         } else if (entities.size() == 1) {
             Entity entity = entities.get(0);
             boolean published = (boolean) entity.getProperty(VideoEntity.PUBLISHED);
+            Date publishedDate = (Date) entity.getProperty(VideoEntity.PUBLISHED_DATE);
 
             entity.setPropertiesFrom(videoEntity.generateEntity());
 
+            //If import as new
+            if (asNew) {
+                entity.setProperty(VideoEntity.PUBLISHED, false);
+            }
             //If it was published before
-            if (published)
+            else if (published) {
                 entity.setProperty(VideoEntity.PUBLISHED, true);
+                entity.setProperty(VideoEntity.PUBLISHED_DATE, publishedDate);
+            } else {
+                entity.setProperty(VideoEntity.PUBLISHED, false);
+            }
+
 
             DatastoreServiceFactory.getDatastoreService().put(entity);
+            log.info("A video is refreshed! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
             return entity.getKey();
             //otherwise
         } else {
-            return DatastoreServiceFactory.getDatastoreService().put(videoEntity.generateEntity());
+            Entity entity = videoEntity.generateEntity();
+            log.info("A new video is added! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
+            return DatastoreServiceFactory.getDatastoreService().put(entity);
         }
     }
 

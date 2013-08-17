@@ -14,9 +14,10 @@ var Video = {
 
         /*Check if Mobile Device*/
         console.log(BrowserDetect.OS)
-        if (BrowserDetect.OS == "Windows" || BrowserDetect.OS == "Mac" || BrowserDetect.OS == "Linux") {
+        if (BrowserDetect.OS == "Windows" || BrowserDetect.OS == "Mac") {
             this.mobile = false;
         }
+
         else {
             this.mobile = true;
             this.videoElement.controls = true;

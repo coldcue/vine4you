@@ -9,37 +9,33 @@
 
 package com.vine4you.servlet;
 
-import com.vine4you.enums.ImportTasks;
-import com.vine4you.service.ImportService;
+import com.vine4you.cron.CronTasks;
+import com.vine4you.service.CronService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Andrew
- * Date: 8/16/13
- * Time: 11:21 AM
+ * Date: 8/17/13
+ * Time: 2:52 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ImportServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class CronServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+
         String[] split = request.getPathInfo().split("/", 2);
-        ImportTasks task = ImportTasks.valueOf(split[1].toUpperCase());
+        CronTasks task = CronTasks.valueOf(split[1].toUpperCase());
 
         switch (task) {
 
-            case REFRESH:
-                int count = ImportService.letsdoit(false);
-                response.getWriter().println(count + " videos refreshed!");
-                break;
-            case NEW:
-                int count2 = ImportService.letsdoit(true);
-                response.getWriter().println(count2 + " videos refreshed!");
+            case PUBLISHVIDEO:
+                CronService.publishVideo();
                 break;
         }
+
+
     }
 }
