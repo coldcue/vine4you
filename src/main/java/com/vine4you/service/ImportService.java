@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Calendar;
 import java.util.logging.Logger;
 
@@ -29,8 +30,8 @@ public class ImportService {
 
     public static void letsdoit() {
         try {
-            URL url = new URL("http://www.galaxyhosting.eu/import.csv");
-            CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(url.openStream())));
+            URL url = new URL("http://www.galaxyhosting.eu/vine4you/import.csv");
+            CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8"))));
             String[] line;
 
             //title,author,vine_url,video_url,image_url
