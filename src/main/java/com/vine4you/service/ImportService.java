@@ -37,7 +37,11 @@ public class ImportService {
             //title,author,vine_url,video_url,image_url
             while ((line = reader.readNext()) != null) {
                 if (line[0].equals(VideoEntity.TITLE)) continue;
-                VideoEntity videoEntity = new VideoEntity(line[0], line[1], line[2], line[3], line[4], Calendar.getInstance().getTime(), true);
+
+                String videoURL = (line[3].contains("?")) ? line[3].substring(0, line[3].indexOf("?")) : line[3];
+                String imageURL = (line[4].contains("?")) ? line[4].substring(0, line[4].indexOf("?")) : line[4];
+
+                VideoEntity videoEntity = new VideoEntity(line[0], line[1], line[2], videoURL, imageURL, Calendar.getInstance().getTime(), true);
 
                 try {
                     VideoService.addVideoEntity(videoEntity);
