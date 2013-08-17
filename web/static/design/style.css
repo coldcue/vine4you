@@ -78,6 +78,10 @@ body {
     float: right;
 }
 
+#videoLeftLink, #videoRightLink {
+    text-decoration: none;
+}
+
 #videoLeftLink:hover #videoLeftContainer, #videoRightLink:hover #videoRightContainer {
     background-color: #4c8052;
     color: #fff;
