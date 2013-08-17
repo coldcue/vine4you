@@ -11,7 +11,7 @@
 <cronentries>
     <cron>
         <url>/cron/publishvideo</url>
-        <description>Publishes a new video every 4 hours </description>
-        <schedule>every 10 seconds synchronized</schedule>
+        <description>Publishes a new video every 4 hours</description>
+        <schedule>every 4 hours synchronized</schedule>
     </cron>
 </cronentries>

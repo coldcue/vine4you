@@ -118,8 +118,10 @@ public class VideoService {
 
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
 
-        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
-        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.LESS_THAN, from.getPublishedDate()));
+        Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
+        Query.FilterPredicate publishedDateFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.LESS_THAN, from.getPublishedDate());
+
+        query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, publishedDateFilter));
 
         //TODO Add projections
         /*query.addProjection(new PropertyProjection(VideoEntity.TITLE, null));
