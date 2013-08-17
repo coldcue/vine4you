@@ -42,8 +42,8 @@ public class VideoService {
     /**
      * Inserts or updates an entity
      *
-     * @param videoEntity
-     * @return
+     * @param videoEntity the entity
+     * @return the key
      * @throws Exception
      */
     public static Key addVideoEntity(VideoEntity videoEntity, boolean asNew) throws Exception {
@@ -87,8 +87,12 @@ public class VideoService {
             //otherwise
         } else {
             Entity entity = videoEntity.generateEntity();
-            log.info("A new video is added! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
-            return DatastoreServiceFactory.getDatastoreService().put(entity);
+            if (asNew) {
+                entity.setProperty(VideoEntity.PUBLISHED, false);
+            }
+            Key key = DatastoreServiceFactory.getDatastoreService().put(entity);
+            log.info("A new video is added! ID: " + key.getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
+            return key;
         }
     }
 
@@ -132,9 +136,8 @@ public class VideoService {
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
 
         List<VideoEntity> videoEntities = new ArrayList<>();
-        List<Entity> entities = preparedQuery.asList(fetchOptions);
 
-        for (Entity entity : entities) {
+        for (Entity entity : preparedQuery.asIterable(fetchOptions)) {
             if (from.getKey().getId() == entity.getKey().getId()) continue;
             videoEntities.add(new VideoEntity(entity));
         }
@@ -152,8 +155,10 @@ public class VideoService {
 
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
 
-        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
-        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.GREATER_THAN, from.getPublishedDate()));
+        Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
+        Query.FilterPredicate publishedDateFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.GREATER_THAN, from.getPublishedDate());
+
+        query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, publishedDateFilter));
 
         //TODO projection
         /*query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
@@ -163,7 +168,6 @@ public class VideoService {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
 
-        List<VideoEntity> videoEntities = new ArrayList<>();
         List<Entity> entities = preparedQuery.asList(fetchOptions);
         if (entities.size() > 0)
             return new VideoEntity(entities.get(0));

@@ -26,7 +26,8 @@
             <title>Vine4You - Best Vines</title>
         </c:otherwise>
     </c:choose>
-    <meta name="description" content="Vine4You is a collection of the best Vine videos you can find on the internet.">
+    <meta name="description"
+          content="Vine4You.com is a collection of the best Vine videos you can find on the internet.">
     <meta name="keywords" content="vine,videos,funny,vine4you,collection">
     <c:if test="${showVideoTitleInTitle}">
         <meta name="author" content="${video.author}">
@@ -40,6 +41,9 @@
     <meta property="og:type" content="video"/>
     <meta property="og:url" content="http://www.vine4you.com/v/${video.key.id}"/>
     <meta property="og:title" content="${video.title}"/>
+    <meta property="og:description"
+          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
+    <meta property="og:site_name" content="Vine4You.com"/>
     <meta property="og:image"
           content="${video.imageURL}"/>
 </head>
@@ -68,8 +72,8 @@
         </div>
         <div class="grid_4">
             <div id="pageLikeBox">
-                <div class="fb-like" data-href="http://www.vine4you.com/" data-width="450" data-layout="button_count"
-                     data-show-faces="true" data-send="false"></div>
+                <div class="fb-like" data-href="https://www.facebook.com/vine4you" data-width="450"
+                     data-layout="button_count" data-show-faces="false" data-send="false"></div>
             </div>
         </div>
     </div>
