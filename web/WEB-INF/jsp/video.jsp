@@ -116,7 +116,7 @@
                      style="background-image: url(${video.imageURL});">
                     <video id="videoElement" style="display: none;" autoplay loop width="600" height="600"
                            preload="auto"
-                           src="${video.videoURL}">
+                           src="${video.videoURL}" type="video/mp4">
                     </video>
                     <script type="text/javascript">
                         Video.init();
