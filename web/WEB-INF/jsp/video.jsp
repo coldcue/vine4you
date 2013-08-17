@@ -176,10 +176,10 @@
             <div id="squareAdContainer">
                 <script type="text/javascript"><!--
                 google_ad_client = "ca-pub-6335041482514787";
-                /* SquareAd */
-                google_ad_slot = "8125086870";
-                google_ad_width = 200;
-                google_ad_height = 200;
+                /* SquareAdBig */
+                google_ad_slot = "8014008870";
+                google_ad_width = 250;
+                google_ad_height = 250;
                 //-->
                 </script>
                 <script type="text/javascript"
