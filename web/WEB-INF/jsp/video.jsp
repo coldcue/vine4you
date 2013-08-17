@@ -60,9 +60,16 @@
                 <a href="${pageContext.request.contextPath}/" id="logoText">Vine<span>4</span>You</a>
             </div>
         </div>
-        <div class="grid_12">
+        <div class="grid_8">
             <div id="sloganTextContainer">
                 <h1 id="sloganText">The best vines every <span>4</span> hours</h1>
+            </div>
+
+        </div>
+        <div class="grid_4">
+            <div id="pageLikeBox">
+                <div class="fb-like" data-href="http://www.vine4you.com/" data-width="450" data-layout="button_count"
+                     data-show-faces="true" data-send="false"></div>
             </div>
         </div>
     </div>
@@ -95,12 +102,13 @@
 
                 <div id="videoInnerContainer"
                      style="background-image: url(${video.imageURL});">
-                    <video id="videoElement" style="display: none;" oncanplay="OnVideoLoaded(this);"
-                           onclick="ToggleVideo();"
-                           onplay="OnVideoPlay();"
-                           onpause="OnVideoPause();" loop width="600" height="600" preload="auto"
+                    <video id="videoElement" style="display: none;" autoplay loop width="600" height="600"
+                           preload="auto"
                            src="${video.videoURL}">
                     </video>
+                    <script type="text/javascript">
+                        Video.init();
+                    </script>
                 </div>
 
 

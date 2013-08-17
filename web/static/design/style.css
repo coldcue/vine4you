@@ -47,6 +47,10 @@ body {
     color: #4c8052;
 }
 
+#pageLikeBox {
+    padding: 12px 0;
+}
+
 /*VIDEO*/
 #videoOuterContainer {
     background-color: #dfdfdf;
