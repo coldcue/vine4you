@@ -28,7 +28,7 @@
     </c:choose>
     <meta name="description"
           content="Vine4You.com is a collection of the best Vine videos you can find on the internet.">
-    <meta name="keywords" content="vine,videos,funny,vine4you,collection">
+    <meta name="keywords" content="vine,videos,funny,vine4you,collection,best vines,funniest vines">
     <c:if test="${showVideoTitleInTitle}">
         <meta name="author" content="${video.author}">
     </c:if>
@@ -72,16 +72,16 @@
                 <a href="${pageContext.request.contextPath}/" id="logoText">Vine<span>4</span>You</a>
             </div>
         </div>
-        <div class="grid_8">
+        <div class="grid_7">
             <div id="sloganTextContainer">
                 <h1 id="sloganText">The best vines every <span>4</span> hours</h1>
             </div>
 
         </div>
-        <div class="grid_4">
+        <div class="grid_5">
             <div id="pageLikeBox">
-                <div class="fb-like" data-href="https://www.facebook.com/vine4you" data-width="450"
-                     data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                <div class="fb-follow" data-href="https://www.facebook.com/vine4you" data-width="270"
+                     data-show-faces="false"></div>
             </div>
         </div>
     </div>
