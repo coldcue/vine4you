@@ -81,8 +81,8 @@
         </div>
         <div class="grid_5">
             <div id="pageLikeBox">
-                <div class="fb-follow" data-href="https://www.facebook.com/vine4you" data-width="270"
-                     data-show-faces="false"></div>
+                <div class="fb-like" data-href="https://www.facebook.com/vine4you" data-width="270"
+                     data-show-faces="false" data-send="false"></div>
             </div>
         </div>
     </div>
