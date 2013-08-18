@@ -44,7 +44,9 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-001.js"></script>
+
 
     <meta property="fb:app_id" content="593953400627542"/>
     <meta property="og:type" content="video"/>
@@ -115,13 +117,10 @@
 
                 <div id="videoInnerContainer"
                      style="background-image: url(${video.imageURL});">
-                    <video id="videoElement" autoplay loop width="600" height="600"
-                           preload="auto"
-                           src="${video.videoURL}" type="video/mp4">
-                    </video>
-                    <script type="text/javascript">
-                        Video.init();
-                    </script>
+                    <%--<video id="videoElement" style="display: none;" loop preload width="600" height="600">
+                        <source src="${video.videoURL}" type="video/mp4"/>
+                    </video>--%>
+                    <input id="vineURL" type="hidden" value="${video.vineURL}">
                 </div>
 
 
