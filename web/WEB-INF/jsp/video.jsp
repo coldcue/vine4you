@@ -42,10 +42,12 @@
     <link rel="apple-touch-icon" sizes="144x144"
           href="${pageContext.request.contextPath}/static/icons/touch-icon-ipad-retina.png"/>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-2-002.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
+
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-001.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
 
 
     <meta property="fb:app_id" content="593953400627542"/>
@@ -115,12 +117,14 @@
                     </div>
                 </a>
 
-                <div id="videoInnerContainer"
-                     style="background-image: url(${video.imageURL});">
-                    <%--<video id="videoElement" style="display: none;" loop preload width="600" height="600">
+                <div id="videoInnerContainer">
+                    <video id="vineVideo" class="video-js" data-setup="{'controls':false}" autoplay
+                           loop preload="auto"
+                           width="600"
+                           height="600"
+                           poster="${video.imageURL}">
                         <source src="${video.videoURL}" type="video/mp4"/>
-                    </video>--%>
-                    <input id="vineURL" type="hidden" value="${video.vineURL}">
+                    </video>
                 </div>
 
 
@@ -243,5 +247,6 @@
     ga('send', 'pageview');
 
 </script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
 </body>
 </html>

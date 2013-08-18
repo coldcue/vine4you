@@ -49,6 +49,9 @@ body {
 
 #pageLikeBox {
     padding: 12px 0;
+    height: 30px;
+    width: 270px;
+    overflow: hidden;
 }
 
 /*VIDEO*/
