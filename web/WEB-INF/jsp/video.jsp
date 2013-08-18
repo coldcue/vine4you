@@ -28,7 +28,8 @@
     </c:choose>
     <meta name="description"
           content="Vine4You.com is a collection of the best Vine videos you can find on the internet.">
-    <meta name="keywords" content="vine,videos,funny,vine4you,collection,best vines,funniest vines">
+    <meta name="keywords"
+          content="vine,vine4you,best vines,funny vines,girls vines,sexy vine,twerking vine,vine videos,best vine videos,best of vine,vine twerk,7 second videos,new vines,latest vines">
     <c:if test="${showVideoTitleInTitle}">
         <meta name="author" content="${video.author}">
     </c:if>
