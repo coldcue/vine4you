@@ -102,7 +102,9 @@ public class VideoService {
      * @return the videoElement
      */
     public static VideoEntity getFirstVideo() {
+
         //TODO save into the memory
+
         Query query = new Query(VideoEntity.kind);
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
@@ -120,6 +122,9 @@ public class VideoService {
     public static List<VideoEntity> getFeaturedVideos(VideoEntity from) {
         Query query = new Query(VideoEntity.kind);
 
+        query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
+        query.addProjection(new PropertyProjection(VideoEntity.TITLE, String.class));
+
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
 
         Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
@@ -127,17 +132,13 @@ public class VideoService {
 
         query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, publishedDateFilter));
 
-        //TODO Add projections
-        /*query.addProjection(new PropertyProjection(VideoEntity.TITLE, null));
-        query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, null));
-        query.addProjection(new PropertyProjection(VideoEntity.IMAGE_URL, null));*/
-
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(FeaturedListSize);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
 
+        List<Entity> entities = preparedQuery.asList(fetchOptions);
         List<VideoEntity> videoEntities = new ArrayList<>();
 
-        for (Entity entity : preparedQuery.asIterable(fetchOptions)) {
+        for (Entity entity : entities) {
             if (from.getKey().getId() == entity.getKey().getId()) continue;
             videoEntities.add(new VideoEntity(entity));
         }
@@ -159,11 +160,6 @@ public class VideoService {
         Query.FilterPredicate publishedDateFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.GREATER_THAN, from.getPublishedDate());
 
         query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, publishedDateFilter));
-
-        //TODO projection
-        /*query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
-        query.addProjection(new PropertyProjection(VideoEntity.TITLE, String.class));
-        query.addProjection(new PropertyProjection(VideoEntity.IMAGE_URL, String.class)); */
 
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
         PreparedQuery preparedQuery = DatastoreServiceFactory.getDatastoreService().prepare(query);
