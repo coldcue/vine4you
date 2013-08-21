@@ -32,8 +32,9 @@ public class ImportService {
         int count = 0;
 
         try {
-            URL url = new URL("http://www.galaxyhosting.eu/vine4you/import.csv");
-            CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8"))));
+            URL url = new URL("http://import.vine4you.com/import.csv");
+            InputStreamReader inputStreamReader = new InputStreamReader(url.openStream(), Charset.forName("UTF-8"));
+            CSVReader reader = new CSVReader(new BufferedReader(inputStreamReader));
             String[] line;
 
             //title,author,vine_url,video_url,image_url
@@ -53,6 +54,7 @@ public class ImportService {
                 }
             }
 
+            inputStreamReader.close();
             reader.close();
 
         } catch (IOException e) {
