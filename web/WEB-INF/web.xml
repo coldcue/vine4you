@@ -13,6 +13,7 @@
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>com.vine4you.servlet.IndexServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
@@ -23,6 +24,7 @@
     <servlet>
         <servlet-name>VideoServlet</servlet-name>
         <servlet-class>com.vine4you.servlet.VideoServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>VideoServlet</servlet-name>

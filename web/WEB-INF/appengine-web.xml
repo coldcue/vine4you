@@ -9,6 +9,9 @@
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
 
+    <!--Warmup requests-->
+    <warmup-requests-enabled>true</warmup-requests-enabled>
+
     <!-- Static files -->
     <static-files>
         <include path="/*.ico"/>
