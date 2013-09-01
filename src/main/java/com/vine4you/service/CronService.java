@@ -12,6 +12,7 @@ package com.vine4you.service;
 import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
@@ -43,7 +44,14 @@ public class CronService {
             entity.setProperty(VideoEntity.PUBLISHED, true);
             entity.setProperty(VideoEntity.PUBLISHED_DATE, Calendar.getInstance().getTime());
 
-            datastoreService.put(entity);
+            Key key = datastoreService.put(entity);
+
+            /*Publish on facebook*/
+            try {
+                FacebookService.publishVideo(key.getId());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             log.info("A new video is published! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
         }
