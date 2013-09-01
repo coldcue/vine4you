@@ -61,6 +61,8 @@
           content="${video.imageURL}"/>
 </head>
 <body>
+
+<%--Facebook JS--%>
 <div id="fb-root"></div>
 <script>(function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -70,6 +72,8 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=593953400627542";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+
 <div id="headerContainer">
     <div class="container_16">
         <div class="grid_4">
@@ -126,54 +130,55 @@
                         <source src="${video.videoURL}" type="video/mp4"/>
                     </video>
                 </div>
+            </div>
+            <div id="videoBottom">
+                <div id="videoInfoContainer">
+                    <div id="videoInfo">
+                        <div id="videoInfoTitle" itemprop="name">${video.title}</div>
+                        <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
+                    </div>
+                </div>
+                <div id="videoSocial">
+                    <div class="twitter">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-size="large"
+                           data-url="http://www.vine4you.com/v/${video.key.id}"
+                           data-count="none">Tweet</a>
+                        <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = p + '://platform.twitter.com/widgets.js';
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                    <div class="google">
+                        <div class="g-plusone" data-href="http://www.vine4you.com/v/${video.key.id}"></div>
+                    </div>
+                    <div class="facebook">
+                        <div class="fb-like" data-href="http://www.vine4you.com/v/${video.key.id}"
+                             data-width="250" data-show-faces="false" data-send="true"></div>
+                    </div>
 
-
-            </div>
-            <div id="videoSocial">
-                <div class="twitter">
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large"
-                       data-url="http://www.vine4you.com/v/${video.key.id}"
-                       data-count="none">Tweet</a>
-                    <script>!function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = p + '://platform.twitter.com/widgets.js';
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, 'script', 'twitter-wjs');</script>
                 </div>
-                <div class="google">
-                    <div class="g-plusone" data-href="http://www.vine4you.com/v/${video.key.id}"></div>
+                <div id="horizontalAdContainer">
+                    <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-6335041482514787";
+                    /* HorizontalAd */
+                    google_ad_slot = "2078553275";
+                    google_ad_width = 468;
+                    google_ad_height = 60;
+                    //-->
+                    </script>
+                    <script type="text/javascript"
+                            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
                 </div>
-                <div class="facebook">
-                    <div class="fb-like" data-href="http://www.vine4you.com/v/${video.key.id}"
-                         data-width="250" data-show-faces="false" data-send="true"></div>
+                <div id="commentsContainer">
+                    <div class="fb-comments" data-href="http://www.vine4you.com/v/${video.key.id}"
+                         data-width="600"></div>
                 </div>
-
-            </div>
-            <div id="videoInfoContainer">
-                <div id="videoInfo">
-                    <div id="videoInfoTitle" itemprop="name">${video.title}</div>
-                    <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
-                </div>
-            </div>
-            <div id="horizontalAdContainer">
-                <script type="text/javascript"><!--
-                google_ad_client = "ca-pub-6335041482514787";
-                /* HorizontalAd */
-                google_ad_slot = "2078553275";
-                google_ad_width = 468;
-                google_ad_height = 60;
-                //-->
-                </script>
-                <script type="text/javascript"
-                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
-            </div>
-            <div id="commentsContainer">
-                <div class="fb-comments" data-href="http://www.vine4you.com/v/${video.key.id}" data-width="600"></div>
             </div>
         </div>
         <div class="grid_4">
@@ -193,7 +198,7 @@
             <ul id="featuredVideos">
                 <c:forEach var="item" items="${featured}">
                     <li><a href="${pageContext.request.contextPath}/v/${item.key.id}">
-                        <div class="container"><img width="60" height="60"
+                        <div class="container"><img width="72" height="72"
                                                     src="${item.imageURL}"
                                                     alt="${item.title}"/>
                             <span class="title">${item.title}</span>
