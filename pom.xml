@@ -17,7 +17,7 @@
                 <enabled>true</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </pluginRepository>
     </pluginRepositories>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>1.8.2</version>
+            <version>1.8.3</version>
         </dependency>
 
         <!--Javax-->
@@ -92,7 +92,7 @@
             <plugin>
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
-                <version>1.8.2</version>
+                <version>1.8.3</version>
             </plugin>
         </plugins>
     </build>

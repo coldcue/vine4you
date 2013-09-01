@@ -16,7 +16,7 @@
       </configuration>
       <facet type="google-app-engine" name="Google App Engine">
         <configuration>
-          <sdk-home-path>$MODULE_DIR$/../../sdks/appengine-java-sdk-1.8.2</sdk-home-path>
+          <sdk-home-path>$MODULE_DIR$/../../sdks/appengine-java-sdk-1.8.3</sdk-home-path>
           <files-to-enhance>
             <file path="$MODULE_DIR$/src/main/java" />
             <file path="$MODULE_DIR$/src/main/resources" />
@@ -38,7 +38,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="AppEngine Dev" level="application_server_libraries" />
     <orderEntry type="library" name="AppEngine API" level="project" />
-    <orderEntry type="library" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.8.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.8.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: net.sf.jsr107cache:jsr107cache:1.1" level="project" />
