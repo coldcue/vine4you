@@ -37,15 +37,19 @@ body {
 #sloganText {
     font-family: Verdana, serif;
     font-variant: small-caps;
-    font-size: 1.5em;
+    font-size: 1.1em;
     color: #666;
-    margin: 9px 0 0 0;
+    margin: 13px 0 0 0;
     padding: 0;
 }
 
-#sloganText span {
+#sloganText span.four {
     font-size: 1em;
     color: #4c8052;
+}
+
+#sloganText span.facebook {
+    color: #3b5a9b;
 }
 
 #pageLikeBox {
