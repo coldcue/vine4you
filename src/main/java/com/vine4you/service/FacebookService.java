@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class FacebookService {
     private static final Logger log = Logger.getLogger(FacebookService.class.getName());
     private static final String graphURL = "https://graph.facebook.com/me/feed";
-    private static final String accessToken = "CAACEdEose0cBABg9Qk27ZCDIGca44NisIf5CZCsnWZCwnEZBkPJZBcveKa2DyBfvkS0uuSMGR2AZCAX6WkxfPGE1HRZAS1maXVgqZAtQfG2EHOxbZA4UGZBkMAAOHBkKKnXoiqiwlteFaC2DiLTnhZB1J6obOZA7qXYecKIZCpi9fm0xRoIMxcPwvGuEzmEW5SslnUAMynUCgrNIx0wZDZD";
+    private static final String accessToken = "CAAIcMo11IVYBABZCf275WhfbaBmBLST1kinmJV9cv7GqMvDwam9V1bS9ovVbF5ecXxW5w9TxsBFj5P2HmB8lHD4b2tONWneQiQYMDVF9p9PsbHDxPh0pHaTIJfVHdEZBxe9ic2Crlr5X8KjPp7Mii41XpfdohKmWFsxqABrVsB13PciZCBDl5EndWGbI0UZD";
 
     public static void publishVideo(long id) throws IOException {
         URL url = new URL(graphURL);
