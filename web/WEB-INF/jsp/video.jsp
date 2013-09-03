@@ -83,8 +83,8 @@
         </div>
         <div class="grid_7">
             <div id="sloganTextContainer">
-                <h1 id="sloganText"><span class="facebook">LIKE</span> for the best vines every <span
-                        class="four">4</span> hours</h1>
+                <h1 id="sloganText"><span class="facebook">like</span> for the best vines every <span
+                        class="four">4</span> hours -></h1>
             </div>
 
         </div>
