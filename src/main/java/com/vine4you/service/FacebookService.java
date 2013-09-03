@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class FacebookService {
     private static final Logger log = Logger.getLogger(FacebookService.class.getName());
     private static final String graphURL = "https://graph.facebook.com/me/feed";
-    private static final String accessToken = "CAAIcMo11IVYBACTNXTl4eJoXi01Gw407aDPGUoZAh3RDigCwOv9ZCWKydZB9iCZAwSXEi89cNL9xc1thpUr2HSOOqxDOPpx14mpM1lKj5HaRMURZBRik7u8GZBBhWHOUn1DN8R0BnReSHMxB52V4B1NL2lWYqgFMzhThp9ZCi61UORJ92dLxHJ2weS2IvtEKfUZD";
+    private static final String accessToken = "CAAIcMo11IVYBANVW4kJ22xWqwkUaevoZChOkeaNuT6x3yy61U50UcZC748hDgu3VyjaQ93ny55esTvFALNmmDjUR7uAltMQgH7givrod6lvW7PMY69eERbD2Ic7Hwvgr3IsBuUZBeJuOrITIcsP3opWbu1t1ZBhGZAnpFIl2H0nw2pmzE3zKXAzyxATCYkcoZD";
 
     public static void publishVideo(long id) throws IOException {
         URL url = new URL(graphURL);
@@ -42,7 +42,7 @@ public class FacebookService {
         if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
             log.info("Video " + id + " is published on facebook!");
         } else {
-            log.severe("Video " + id + " cannot be published on facebook!");
+            log.severe("Video " + id + " cannot be published on facebook! " + connection.getResponseMessage());
         }
     }
 }
