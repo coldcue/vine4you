@@ -207,19 +207,7 @@
                 </script>
             </div>
             <div id="search">
-                <script>
-                    (function () {
-                        var cx = '000271302565310508204:WMX510812725';
-                        var gcse = document.createElement('script');
-                        gcse.type = 'text/javascript';
-                        gcse.async = true;
-                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                                '//www.google.com/cse/cse.js?cx=' + cx;
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(gcse, s);
-                    })();
-                </script>
-                <gcse:search></gcse:search>
+                <gcse:searchbox-only></gcse:searchbox-only>
             </div>
             <ul id="featuredVideos">
                 <c:forEach var="item" items="${featured}">
@@ -277,6 +265,21 @@
     ga('create', 'UA-43247982-1', 'vine4you.com');
     ga('send', 'pageview');
 
+</script>
+
+<!-- Put the following javascript before the closing </head> tag. -->
+
+<script>
+    (function () {
+        var cx = '000271302565310508204:WMX510812725';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+    })();
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
 </body>
