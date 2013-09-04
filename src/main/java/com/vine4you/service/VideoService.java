@@ -13,6 +13,7 @@ import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -37,6 +38,23 @@ public class VideoService {
     public static VideoEntity getVideoEntity(long id) throws EntityNotFoundException {
         Entity video = DatastoreServiceFactory.getDatastoreService().get(KeyFactory.createKey(VideoEntity.kind, id));
         return new VideoEntity(video);
+    }
+
+    public static Collection<VideoEntity> getAllPublishedVideoEntity() {
+        Query query = new Query(VideoEntity.kind);
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
+        query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(50000);
+
+        List<Entity> entities = DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions);
+
+        List<VideoEntity> videoEntities = new ArrayList<>(entities.size());
+
+        for (Entity entity : entities) {
+            videoEntities.add(new VideoEntity(entity));
+        }
+
+        return videoEntities;
     }
 
     /**

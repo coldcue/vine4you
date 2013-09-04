@@ -31,6 +31,16 @@
         <url-pattern>/v/*</url-pattern>
     </servlet-mapping>
 
+    <!--SiteMapServlet-->
+    <servlet>
+        <servlet-name>SiteMapServlet</servlet-name>
+        <servlet-class>com.vine4you.servlet.SiteMapServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SiteMapServlet</servlet-name>
+        <url-pattern>/sitemap.xml</url-pattern>
+    </servlet-mapping>
+
     <!--ImportServlet-->
     <servlet>
         <servlet-name>ImportServlet</servlet-name>
