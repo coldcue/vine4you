@@ -211,14 +211,23 @@
             </div>
             <ul id="featuredVideos">
                 <c:forEach var="item" items="${featured}">
-                    <li><a href="${pageContext.request.contextPath}/v/${item.key.id}">
-                        <div class="container"><img width="72" height="72"
-                                                    src="${item.imageURL}"
-                                                    alt="${item.title}"/>
-                            <span class="title">${item.title}</span>
-                            <span class="author">by ${item.author}</span>
-                        </div>
-                    </a></li>
+                    <li itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+                        <meta itemprop="duration" content="7S"/>
+                        <meta itemprop="thumbnail" content="${item.imageURL}"/>
+                        <meta itemprop="image" content="${item.imageURL}"/>
+                        <meta itemprop="width" content="600"/>
+                        <meta itemprop="height" content="600"/>
+                        <meta itemprop="caption" content="${item.title}"/>
+                        <meta itemprop="sameAs" content="https://www.vine4you.com/v/${item.key.id}"/>
+                        <a title="${item.title} by ${item.author}"
+                           href="${pageContext.request.contextPath}/v/${item.key.id}">
+                            <div class="container"><img width="72" height="72"
+                                                        src="${item.imageURL}"
+                                                        alt="${item.title}"/>
+                                <span itemprop="name" class="title">${item.title}</span>
+                                <span itemprop="creator" class="author">by ${item.author}</span>
+                            </div>
+                        </a></li>
                 </c:forEach>
             </ul>
             <div id="verticalAdContainer">
