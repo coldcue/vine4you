@@ -18,6 +18,7 @@
                 <video:player_loc allow_embed="yes" autoplay="ap=1">${video.videoURL}</video:player_loc>
                 <video:description>Vine4You.com is a collection of the best Vine videos you can find on the internet
                 </video:description>
+                <video:uploader>${video.author}</video:uploader>
             </video:video>
         </url>
     </c:forEach>
