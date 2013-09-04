@@ -148,92 +148,106 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="videoSocial">
-                <div class="twitter">
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large"
-                       data-url="http://www.vine4you.com/v/${video.key.id}"
-                       data-count="none">Tweet</a>
-                    <script>!function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = p + '://platform.twitter.com/widgets.js';
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, 'script', 'twitter-wjs');</script>
-                </div>
-                <div class="google">
-                    <div class="g-plusone" data-href="http://www.vine4you.com/v/${video.key.id}"></div>
-                </div>
-                <div class="facebook">
-                    <div class="fb-like" data-href="http://www.vine4you.com/v/${video.key.id}"
-                         data-width="250" data-show-faces="false" data-send="true"></div>
-                </div>
+                <div id="videoSocial">
+                    <div class="twitter">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-size="large"
+                           data-url="http://www.vine4you.com/v/${video.key.id}"
+                           data-count="none">Tweet</a>
+                        <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = p + '://platform.twitter.com/widgets.js';
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                    <div class="google">
+                        <div class="g-plusone" data-href="http://www.vine4you.com/v/${video.key.id}"></div>
+                    </div>
+                    <div class="facebook">
+                        <div class="fb-like" data-href="http://www.vine4you.com/v/${video.key.id}"
+                             data-width="250" data-show-faces="false" data-send="true"></div>
+                    </div>
 
+                </div>
+                <div id="horizontalAdContainer">
+                    <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-6335041482514787";
+                    /* HorizontalAd */
+                    google_ad_slot = "2078553275";
+                    google_ad_width = 468;
+                    google_ad_height = 60;
+                    //-->
+                    </script>
+                    <script type="text/javascript"
+                            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
+                </div>
+                <div id="commentsContainer">
+                    <div class="fb-comments" data-href="http://www.vine4you.com/v/${video.key.id}"
+                         data-width="600"></div>
+                </div>
             </div>
-            <div id="horizontalAdContainer">
+        </div>
+        <div class="grid_4">
+            <div id="squareAdContainer">
                 <script type="text/javascript"><!--
                 google_ad_client = "ca-pub-6335041482514787";
-                /* HorizontalAd */
-                google_ad_slot = "2078553275";
-                google_ad_width = 468;
-                google_ad_height = 60;
+                /* SquareAdBig */
+                google_ad_slot = "8014008870";
+                google_ad_width = 250;
+                google_ad_height = 250;
                 //-->
                 </script>
                 <script type="text/javascript"
                         src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                 </script>
             </div>
-            <div id="commentsContainer">
-                <div class="fb-comments" data-href="http://www.vine4you.com/v/${video.key.id}"
-                     data-width="600"></div>
+            <div id="search">
+                <script>
+                    (function () {
+                        var cx = '000271302565310508204:WMX510812725';
+                        var gcse = document.createElement('script');
+                        gcse.type = 'text/javascript';
+                        gcse.async = true;
+                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                '//www.google.com/cse/cse.js?cx=' + cx;
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(gcse, s);
+                    })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+            <ul id="featuredVideos">
+                <c:forEach var="item" items="${featured}">
+                    <li><a href="${pageContext.request.contextPath}/v/${item.key.id}">
+                        <div class="container"><img width="72" height="72"
+                                                    src="${item.imageURL}"
+                                                    alt="${item.title}"/>
+                            <span class="title">${item.title}</span>
+                            <span class="author">by ${item.author}</span>
+                        </div>
+                    </a></li>
+                </c:forEach>
+            </ul>
+            <div id="verticalAdContainer">
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-6335041482514787";
+                /* VerticalAd */
+                google_ad_slot = "9601820071";
+                google_ad_width = 160;
+                google_ad_height = 600;
+                //-->
+                </script>
+                <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
             </div>
         </div>
-    </div>
-    <div class="grid_4">
-        <div id="squareAdContainer">
-            <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-6335041482514787";
-            /* SquareAdBig */
-            google_ad_slot = "8014008870";
-            google_ad_width = 250;
-            google_ad_height = 250;
-            //-->
-            </script>
-            <script type="text/javascript"
-                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-            </script>
-        </div>
-        <ul id="featuredVideos">
-            <c:forEach var="item" items="${featured}">
-                <li><a href="${pageContext.request.contextPath}/v/${item.key.id}">
-                    <div class="container"><img width="72" height="72"
-                                                src="${item.imageURL}"
-                                                alt="${item.title}"/>
-                        <span class="title">${item.title}</span>
-                        <span class="author">by ${item.author}</span>
-                    </div>
-                </a></li>
-            </c:forEach>
-        </ul>
-        <div id="verticalAdContainer">
-            <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-6335041482514787";
-            /* VerticalAd */
-            google_ad_slot = "9601820071";
-            google_ad_width = 160;
-            google_ad_height = 600;
-            //-->
-            </script>
-            <script type="text/javascript"
-                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-            </script>
-        </div>
-    </div>
 
-</div>
+    </div>
 </div>
 <!-- Place this tag after the last +1 button tag. -->
 <script type="text/javascript">
