@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--@elvariable id="video" type="com.vine4you.entity.VideoEntity"--%>
 <%--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ~ Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                   ~
   ~                                                                          ~
@@ -140,12 +141,12 @@
                         </video>
                     </div>
                 </div>
-                <div id="videoBottom">
-                    <div id="videoInfoContainer">
-                        <div id="videoInfo">
-                            <div id="videoInfoTitle" itemprop="name">${video.title}</div>
-                            <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
-                        </div>
+            </div>
+            <div id="videoBottom">
+                <div id="videoInfoContainer">
+                    <div id="videoInfo">
+                        <div id="videoInfoTitle" itemprop="name">${video.title}</div>
+                        <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
                     </div>
                 </div>
                 <div id="videoSocial">
