@@ -34,6 +34,7 @@
     <c:if test="${showVideoTitleInTitle}">
         <meta name="author" content="${video.author}">
     </c:if>
+    <meta name="msvalidate.01" content="C585C5610CF6C5DE6ECCA7E20B528C21"/>
 
     <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/static/icons/touch-icon-iphone.png"/>
     <link rel="apple-touch-icon" sizes="72x72"
