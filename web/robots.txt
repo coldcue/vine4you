@@ -1,2 +1,3 @@
+Sitemap: http://www.vine4you.com/sitemap.xml
 User-agent: *
 Disallow: 
