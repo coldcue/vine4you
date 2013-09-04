@@ -100,7 +100,7 @@
 <div id="mainContainer">
     <div class="container_16">
         <div class="grid_12">
-            <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+            <div itemscope itemtype="http://schema.org/VideoObject">
 
                 <meta itemprop="duration" content="7S"/>
                 <meta itemprop="thumbnail" content="${video.imageURL}"/>
@@ -109,6 +109,8 @@
                 <meta itemprop="height" content="600"/>
                 <meta itemprop="caption" content="${video.title}"/>
                 <meta itemprop="sameAs" content="https://vine.co/v/${video.vineURL}"/>
+                <meta itemprop="description"
+                      content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
 
                 <div id="videoOuterContainer">
                     <c:choose>
@@ -211,21 +213,14 @@
             </div>
             <ul id="featuredVideos">
                 <c:forEach var="item" items="${featured}">
-                    <li itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
-                        <meta itemprop="duration" content="7S"/>
-                        <meta itemprop="thumbnail" content="${item.imageURL}"/>
-                        <meta itemprop="image" content="${item.imageURL}"/>
-                        <meta itemprop="width" content="600"/>
-                        <meta itemprop="height" content="600"/>
-                        <meta itemprop="caption" content="${item.title}"/>
-                        <meta itemprop="sameAs" content="https://www.vine4you.com/v/${item.key.id}"/>
-                        <a title="${item.title} by ${item.author}"
+                    <li itemscope itemtype="http://schema.org/VideoObject">
+                        <a itemprop="url" title="${item.title} by ${item.author}"
                            href="${pageContext.request.contextPath}/v/${item.key.id}">
                             <div class="container"><img width="72" height="72"
                                                         src="${item.imageURL}"
                                                         alt="${item.title}"/>
-                                <span itemprop="name" class="title">${item.title}</span>
-                                <span itemprop="creator" class="author">by ${item.author}</span>
+                                <span class="title">${item.title}</span>
+                                <span class="author">by ${item.author}</span>
                             </div>
                         </a></li>
                 </c:forEach>
