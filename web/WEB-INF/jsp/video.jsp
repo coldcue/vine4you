@@ -98,132 +98,142 @@
 </div>
 <div id="mainContainer">
     <div class="container_16">
-        <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject" class="grid_12">
-            <meta itemprop="duration" content="7S"/>
-            <meta itemprop="thumbnail" content="${video.imageURL}"/>
-            <div id="videoOuterContainer">
-                <c:choose>
-                    <c:when test="${prevVideo eq null}">
-                        <div id="videoLeftSpace">
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <a id="videoLeftLink" href="/v/${prevVideo.key.id}">
-                            <div id="videoLeftContainer">
-                                <div>Prev</div>
+        <div class="grid_12">
+            <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+
+                <meta itemprop="duration" content="7S"/>
+                <meta itemprop="thumbnail" content="${video.imageURL}"/>
+                <meta itemprop="image" content="${video.imageURL}"/>
+                <meta itemprop="width" content="600"/>
+                <meta itemprop="height" content="600"/>
+                <meta itemprop="caption" content="${video.title}"/>
+                <meta itemprop="sameAs" content="https://vine.co/v/${video.vineURL}"/>
+
+                <div id="videoOuterContainer">
+                    <c:choose>
+                        <c:when test="${prevVideo eq null}">
+                            <div id="videoLeftSpace">
                             </div>
-                        </a>
-                    </c:otherwise>
-                </c:choose>
+                        </c:when>
+                        <c:otherwise>
+                            <a id="videoLeftLink" href="/v/${prevVideo.key.id}">
+                                <div id="videoLeftContainer">
+                                    <div>Prev</div>
+                                </div>
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
 
-                <a id="videoRightLink" href="/v/${nextVideo.key.id}">
-                    <div id="videoRightContainer">
-                        <div>Next</div>
-                    </div>
-                </a>
-
-                <div id="videoInnerContainer">
-                    <video id="vineVideo" class="video-js" data-setup="{'controls':false}" autoplay
-                           loop preload="auto"
-                           width="600"
-                           height="600"
-                           poster="${video.imageURL}">
-                        <source src="${video.videoURL}" type="video/mp4"/>
-                    </video>
-                </div>
-            </div>
-            <div id="videoBottom">
-                <div id="videoInfoContainer">
-                    <div id="videoInfo">
-                        <div id="videoInfoTitle" itemprop="name">${video.title}</div>
-                        <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
-                    </div>
-                </div>
-                <div id="videoSocial">
-                    <div class="twitter">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-size="large"
-                           data-url="http://www.vine4you.com/v/${video.key.id}"
-                           data-count="none">Tweet</a>
-                        <script>!function (d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                            if (!d.getElementById(id)) {
-                                js = d.createElement(s);
-                                js.id = id;
-                                js.src = p + '://platform.twitter.com/widgets.js';
-                                fjs.parentNode.insertBefore(js, fjs);
-                            }
-                        }(document, 'script', 'twitter-wjs');</script>
-                    </div>
-                    <div class="google">
-                        <div class="g-plusone" data-href="http://www.vine4you.com/v/${video.key.id}"></div>
-                    </div>
-                    <div class="facebook">
-                        <div class="fb-like" data-href="http://www.vine4you.com/v/${video.key.id}"
-                             data-width="250" data-show-faces="false" data-send="true"></div>
-                    </div>
-
-                </div>
-                <div id="horizontalAdContainer">
-                    <script type="text/javascript"><!--
-                    google_ad_client = "ca-pub-6335041482514787";
-                    /* HorizontalAd */
-                    google_ad_slot = "2078553275";
-                    google_ad_width = 468;
-                    google_ad_height = 60;
-                    //-->
-                    </script>
-                    <script type="text/javascript"
-                            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                    </script>
-                </div>
-                <div id="commentsContainer">
-                    <div class="fb-comments" data-href="http://www.vine4you.com/v/${video.key.id}"
-                         data-width="600"></div>
-                </div>
-            </div>
-        </div>
-        <div class="grid_4">
-            <div id="squareAdContainer">
-                <script type="text/javascript"><!--
-                google_ad_client = "ca-pub-6335041482514787";
-                /* SquareAdBig */
-                google_ad_slot = "8014008870";
-                google_ad_width = 250;
-                google_ad_height = 250;
-                //-->
-                </script>
-                <script type="text/javascript"
-                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
-            </div>
-            <ul id="featuredVideos">
-                <c:forEach var="item" items="${featured}">
-                    <li><a href="${pageContext.request.contextPath}/v/${item.key.id}">
-                        <div class="container"><img width="72" height="72"
-                                                    src="${item.imageURL}"
-                                                    alt="${item.title}"/>
-                            <span class="title">${item.title}</span>
-                            <span class="author">by ${item.author}</span>
+                    <a id="videoRightLink" href="/v/${nextVideo.key.id}">
+                        <div id="videoRightContainer">
+                            <div>Next</div>
                         </div>
-                    </a></li>
-                </c:forEach>
-            </ul>
-            <div id="verticalAdContainer">
+                    </a>
+
+                    <div id="videoInnerContainer">
+                        <video itemprop="video" id="vineVideo" class="video-js" data-setup="{'controls':false}" autoplay
+                               loop preload="auto"
+                               width="600"
+                               height="600"
+                               poster="${video.imageURL}">
+                            <source src="${video.videoURL}" type="video/mp4"/>
+                        </video>
+                    </div>
+                </div>
+                <div id="videoBottom">
+                    <div id="videoInfoContainer">
+                        <div id="videoInfo">
+                            <div id="videoInfoTitle" itemprop="name">${video.title}</div>
+                            <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="videoSocial">
+                <div class="twitter">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large"
+                       data-url="http://www.vine4you.com/v/${video.key.id}"
+                       data-count="none">Tweet</a>
+                    <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = p + '://platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, 'script', 'twitter-wjs');</script>
+                </div>
+                <div class="google">
+                    <div class="g-plusone" data-href="http://www.vine4you.com/v/${video.key.id}"></div>
+                </div>
+                <div class="facebook">
+                    <div class="fb-like" data-href="http://www.vine4you.com/v/${video.key.id}"
+                         data-width="250" data-show-faces="false" data-send="true"></div>
+                </div>
+
+            </div>
+            <div id="horizontalAdContainer">
                 <script type="text/javascript"><!--
                 google_ad_client = "ca-pub-6335041482514787";
-                /* VerticalAd */
-                google_ad_slot = "9601820071";
-                google_ad_width = 160;
-                google_ad_height = 600;
+                /* HorizontalAd */
+                google_ad_slot = "2078553275";
+                google_ad_width = 468;
+                google_ad_height = 60;
                 //-->
                 </script>
                 <script type="text/javascript"
                         src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                 </script>
             </div>
+            <div id="commentsContainer">
+                <div class="fb-comments" data-href="http://www.vine4you.com/v/${video.key.id}"
+                     data-width="600"></div>
+            </div>
         </div>
-
     </div>
+    <div class="grid_4">
+        <div id="squareAdContainer">
+            <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-6335041482514787";
+            /* SquareAdBig */
+            google_ad_slot = "8014008870";
+            google_ad_width = 250;
+            google_ad_height = 250;
+            //-->
+            </script>
+            <script type="text/javascript"
+                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+        </div>
+        <ul id="featuredVideos">
+            <c:forEach var="item" items="${featured}">
+                <li><a href="${pageContext.request.contextPath}/v/${item.key.id}">
+                    <div class="container"><img width="72" height="72"
+                                                src="${item.imageURL}"
+                                                alt="${item.title}"/>
+                        <span class="title">${item.title}</span>
+                        <span class="author">by ${item.author}</span>
+                    </div>
+                </a></li>
+            </c:forEach>
+        </ul>
+        <div id="verticalAdContainer">
+            <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-6335041482514787";
+            /* VerticalAd */
+            google_ad_slot = "9601820071";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+        </div>
+    </div>
+
+</div>
 </div>
 <!-- Place this tag after the last +1 button tag. -->
 <script type="text/javascript">
