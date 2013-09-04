@@ -17,6 +17,7 @@
   Time: 2:41 PM
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE HTML>
 <html>
 <head>
     <c:choose>
