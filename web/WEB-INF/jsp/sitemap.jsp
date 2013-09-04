@@ -15,8 +15,7 @@
                 <video:thumbnail_loc>${video.imageURL}</video:thumbnail_loc>
                 <video:title>${video.title}</video:title>
                 <video:duration>7</video:duration>
-                <video:player_loc allow_embed="yes" autoplay="ap=1">
-                    http://www.vine4you.com/v/${video.key.id}</video:player_loc>
+                <video:player_loc allow_embed="yes" autoplay="ap=1">${video.videoURL}</video:player_loc>
                 <video:description>Vine4You.com is a collection of the best Vine videos you can find on the internet
                 </video:description>
             </video:video>
