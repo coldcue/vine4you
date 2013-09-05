@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--@elvariable id="video" type="com.vine4you.entity.VideoEntity"--%>
@@ -17,7 +18,6 @@
   Time: 2:41 PM
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE HTML>
 <html>
 <head>
     <c:choose>
