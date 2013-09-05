@@ -62,6 +62,20 @@
     <meta property="og:site_name" content="Vine4You.com"/>
     <meta property="og:image"
           content="${video.imageURL}"/>
+
+    <%-- Google Costum Search - Put the following javascript before the closing </head> tag. --%>
+    <script>
+        (function () {
+            var cx = '000271302565310508204:WMX510812725';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
 </head>
 <body>
 
@@ -244,7 +258,8 @@
 
     </div>
 </div>
-<!-- Place this tag after the last +1 button tag. -->
+
+<%--Place this tag after the last +1 button tag.--%>
 <script type="text/javascript">
     (function () {
         var po = document.createElement('script');
@@ -271,21 +286,6 @@
     ga('create', 'UA-43247982-1', 'vine4you.com');
     ga('send', 'pageview');
 
-</script>
-
-<!-- Put the following javascript before the closing </head> tag. -->
-
-<script>
-    (function () {
-        var cx = '000271302565310508204:WMX510812725';
-        var gcse = document.createElement('script');
-        gcse.type = 'text/javascript';
-        gcse.async = true;
-        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                '//www.google.com/cse/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(gcse, s);
-    })();
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
 </body>
