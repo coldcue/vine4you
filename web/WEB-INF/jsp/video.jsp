@@ -224,6 +224,8 @@
                         src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                 </script>
             </div>
+            <div class="fb-like-box" data-href="https://www.facebook.com/vine4you" data-width="220"
+                 data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
             <div id="search">
                 <gcse:searchbox-only></gcse:searchbox-only>
             </div>
