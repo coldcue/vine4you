@@ -47,6 +47,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-2-002.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/jquery-impromptu.css"/>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
@@ -94,8 +95,9 @@
 
         FB.Event.subscribe('edge.create',
                 function (response) {
-                    if (response == "https://www.facebook.com/vine4you") {
+                    if (response == "https://www.facebook.com/vine4you" || response == "https://facebook.com/vine4you") {
                         FacebookLikeStuff.setLiked(true);
+                        FacebookLikeStuff.closeDialog();
                     }
                 }
         );
