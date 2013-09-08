@@ -28,7 +28,7 @@ var FacebookLikeStuff = {
                     title: "Please like us!",
                     buttons: { "Cancel": false, "I've already liked it!": true},
                     focus: 1,
-                    submit: function (e, v, m, f) {
+                    submit: function (e, v) {
                         if (v)
                             FacebookLikeStuff.setLiked(true);
                         else
@@ -50,7 +50,7 @@ var FacebookLikeStuff = {
 
     setLiked: function (val) {
         $.cookie("liked", val, { expires: 3650, path: '/' });
-        if (true) $.removeCookie("watches", { path: '/' })
+        if (val) $.removeCookie("watches", { path: '/' })
     },
 
     getWatches: function () {
