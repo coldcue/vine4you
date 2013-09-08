@@ -6,7 +6,6 @@ $(document).ready(function () {
     FacebookLikeStuff.checkLike();
 });
 
-
 var App = {
     video: null,
 
@@ -24,12 +23,16 @@ var FacebookLikeStuff = {
     checkLike: function () {
         if (!this.hasLiked()) {
             if (this.incrementWatches() >= this.watchThreshold)
-                console.log("show dialog")
+                alert("show dialog");
         }
     },
 
     hasLiked: function () {
-        return false;
+        return !!(($.cookie("liked") === "true"));
+    },
+
+    setLiked: function (val) {
+        $.cookie('liked', val, { expires: 3650, path: '/' });
     },
 
     getWatches: function () {

@@ -83,14 +83,35 @@
 
 <%--Facebook JS--%>
 <div id="fb-root"></div>
-<script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=593953400627542";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '593953400627542',
+            channelUrl: 'http://www.vine4you.com/static/channel.html',
+            status: true,
+            xfbml: true
+        });
+
+        FB.Event.subscribe('edge.create',
+                function (response) {
+                    if (response == "https://www.facebook.com/vine4you") {
+                        FacebookLikeStuff.setLiked(true);
+                    }
+                }
+        );
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 
 <div id="headerContainer">
