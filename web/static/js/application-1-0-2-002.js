@@ -18,7 +18,7 @@ var App = {
 };
 
 var FacebookLikeStuff = {
-    watchThreshold: 50,
+    watchThreshold: 30,
     dialog: undefined,
 
     checkLike: function () {
