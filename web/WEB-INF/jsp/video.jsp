@@ -123,17 +123,17 @@
                 <a href="${pageContext.request.contextPath}/" id="logoText">Vine<span>4</span>You</a>
             </div>
         </div>
-        <div class="grid_7">
+        <div class="grid_8">
             <div id="sloganTextContainer">
-                <h1 id="sloganText"><span class="facebook">like</span> for the best vines every <span
-                        class="four">4</span> hours -></h1>
+                <h1 id="sloganText">The best vines every <span
+                        class="four">4</span> hours</h1>
             </div>
 
         </div>
-        <div class="grid_5">
+        <div class="grid_4">
             <div id="pageLikeBox">
-                <div class="fb-like" data-href="https://www.facebook.com/vine4you" data-width="270"
-                     data-show-faces="false" data-send="false"></div>
+                <div class="fb-like" data-href="https://www.facebook.com/vine4you" data-width="450"
+                     data-layout="button_count" data-show-faces="true" data-send="false"></div>
             </div>
         </div>
     </div>
@@ -251,10 +251,6 @@
             </div>
             <div id="search">
                 <gcse:searchbox-only></gcse:searchbox-only>
-            </div>
-            <div id="pageLikeBoxBig">
-                <div class="fb-like-box" data-href="https://www.facebook.com/vine4you" data-width="220"
-                     data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
             </div>
             <ul id="featuredVideos">
                 <c:forEach var="item" items="${featured}">
