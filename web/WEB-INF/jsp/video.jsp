@@ -51,6 +51,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-impromptu.js"></script>
 
 
     <meta property="fb:app_id" content="593953400627542"/>
