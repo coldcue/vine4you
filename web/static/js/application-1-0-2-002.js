@@ -26,7 +26,7 @@ var FacebookLikeStuff = {
             if (this.incrementWatches() >= this.watchThreshold) {
                 this.dialog = $.prompt("<div style='min-height: 300px; text-align: center;'><div class=\"fb-like-box\" data-href=\"https://www.facebook.com/vine4you\" data-width=\"300\" data-height=\"300\" data-show-faces=\"true\" data-header=\"false\" data-stream=\"false\" data-show-border=\"false\"></div></div>", {
                     title: "Please like us!",
-                    buttons: { "Cancel": false, "I've already liked it!": true},
+                    buttons: {  "I've already liked it!": true, "Cancel": false},
                     focus: 1,
                     submit: function (e, v) {
                         if (v)
