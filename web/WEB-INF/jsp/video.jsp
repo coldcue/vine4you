@@ -47,14 +47,11 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-2-002.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/jquery-impromptu.css"/>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-impromptu.js"></script>
 
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
 
     <meta property="fb:app_id" content="593953400627542"/>
     <meta property="og:type" content="video"/>
@@ -295,6 +292,7 @@
         s.parentNode.insertBefore(po, s);
     })();
 </script>
+<%--Google Analytics--%>
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -312,6 +310,12 @@
     ga('send', 'pageview');
 
 </script>
+
+<%--Async loading stuff--%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/jquery-impromptu.css"/>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-impromptu.js"></script>
 </body>
 </html>
