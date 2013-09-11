@@ -73,6 +73,9 @@
     <meta name="video_height" content="600"/>
     <meta name="video_width" content="600"/>
 
+    <%--Google Webmaster verification--%>
+    <meta name="google-site-verification" content="2XonEj136GchZCXal2J5flsNfv6AjRsZQDTmpiymDMY"/>
+
     <%-- Google Costum Search - Put the following javascript before the closing </head> tag. --%>
     <script>
         (function () {
