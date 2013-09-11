@@ -147,7 +147,7 @@
 </div>
 <div id="mainContainer">
     <div class="container_16">
-        <div class="grid_12">
+        <div class="grid_12" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
             <div id="videoOuterContainer">
                 <c:choose>
                     <c:when test="${prevVideo eq null}">
@@ -169,31 +169,28 @@
                     </div>
                 </a>
 
-                <div id="videoInnerContainer" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+                <div id="videoInnerContainer">
                     <%--Required properties--%>
-                    <meta itemprop="name" content="${video.title} by ${video.author}"/>
                     <meta itemprop="description"
                           content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
                     <meta itemprop="thumbnailUrl" content="${video.imageURL}"/>
 
                     <%--Recommended properties--%>
                     <meta itemprop="duration" content="7S"/>
-                    <meta itemprop="contentURL" content="${video.videoURL}"/>
                     <meta itemprop="embedURL" content="${video.videoURL}"/>
-                    <meta itemprop="uploadDate" content="${video.publishedDate}"/>
 
                     <video id="vineVideo" class="video-js" data-setup="{'controls':false}" autoplay
                            loop preload="auto"
                            width="600"
                            height="600"
                            poster="${video.imageURL}">
-                        <source src="${video.videoURL}" type="video/mp4"/>
+                        <source itemprop="contentURL" src="${video.videoURL}" type="video/mp4"/>
                     </video>
                 </div>
             </div>
             <div id="videoBottom">
                 <div id="videoInfoContainer">
-                    <div id="videoInfo">
+                    <div id="videoInfo" itemprop="name">
                         <div id="videoInfoTitle">${video.title}</div>
                         <div id="videoInfoAuthor">by <a href="#">${video.author}</a></div>
                     </div>
