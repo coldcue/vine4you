@@ -53,6 +53,7 @@
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
 
+    <%--Facebook OpenGraph--%>
     <meta property="fb:app_id" content="593953400627542"/>
     <meta property="og:type" content="video"/>
     <meta property="og:url" content="http://www.vine4you.com/v/${video.key.id}"/>
@@ -62,6 +63,15 @@
     <meta property="og:site_name" content="Vine4You.com"/>
     <meta property="og:image"
           content="${video.imageURL}"/>
+
+    <%--Microdata--%>
+    <meta name="title" content="${video.title} by ${video.author}"/>
+    <meta name="description"
+          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
+    <link rel="image_src" href="${video.imageURL}"/>
+    <link rel="video_src" href="${video.videoURL}"/>
+    <meta name="video_height" content="600"/>
+    <meta name="video_width" content="600"/>
 
     <%-- Google Costum Search - Put the following javascript before the closing </head> tag. --%>
     <script>
@@ -138,55 +148,54 @@
 <div id="mainContainer">
     <div class="container_16">
         <div class="grid_12">
-            <div itemscope itemtype="http://schema.org/VideoObject">
-
-                <meta itemprop="duration" content="7S"/>
-                <meta itemprop="thumbnail" content="${video.imageURL}"/>
-                <meta itemprop="image" content="${video.imageURL}"/>
-                <meta itemprop="width" content="600"/>
-                <meta itemprop="height" content="600"/>
-                <meta itemprop="caption" content="${video.title}"/>
-                <meta itemprop="sameAs" content="https://vine.co/v/${video.vineURL}"/>
-                <meta itemprop="description"
-                      content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
-
-                <div id="videoOuterContainer">
-                    <c:choose>
-                        <c:when test="${prevVideo eq null}">
-                            <div id="videoLeftSpace">
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <a id="videoLeftLink" href="/v/${prevVideo.key.id}">
-                                <div id="videoLeftContainer">
-                                    <div>Prev</div>
-                                </div>
-                            </a>
-                        </c:otherwise>
-                    </c:choose>
-
-                    <a id="videoRightLink" href="/v/${nextVideo.key.id}">
-                        <div id="videoRightContainer">
-                            <div>Next</div>
+            <div id="videoOuterContainer">
+                <c:choose>
+                    <c:when test="${prevVideo eq null}">
+                        <div id="videoLeftSpace">
                         </div>
-                    </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a id="videoLeftLink" href="/v/${prevVideo.key.id}">
+                            <div id="videoLeftContainer">
+                                <div>Prev</div>
+                            </div>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
 
-                    <div id="videoInnerContainer">
-                        <video itemprop="video" id="vineVideo" class="video-js" data-setup="{'controls':false}" autoplay
-                               loop preload="auto"
-                               width="600"
-                               height="600"
-                               poster="${video.imageURL}">
-                            <source src="${video.videoURL}" type="video/mp4"/>
-                        </video>
+                <a id="videoRightLink" href="/v/${nextVideo.key.id}">
+                    <div id="videoRightContainer">
+                        <div>Next</div>
                     </div>
+                </a>
+
+                <div id="videoInnerContainer" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+                    <%--Required properties--%>
+                    <meta itemprop="name" content="${video.title} by ${video.author}"/>
+                    <meta itemprop="description"
+                          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
+                    <meta itemprop="thumbnailUrl" content="${video.imageURL}"/>
+
+                    <%--Recommended properties--%>
+                    <meta itemprop="duration" content="7S"/>
+                    <meta itemprop="contentURL" content="${video.videoURL}"/>
+                    <meta itemprop="embedURL" content="${video.videoURL}"/>
+                    <meta itemprop="uploadDate" content="${video.publishedDate}"/>
+
+                    <video id="vineVideo" class="video-js" data-setup="{'controls':false}" autoplay
+                           loop preload="auto"
+                           width="600"
+                           height="600"
+                           poster="${video.imageURL}">
+                        <source src="${video.videoURL}" type="video/mp4"/>
+                    </video>
                 </div>
             </div>
             <div id="videoBottom">
                 <div id="videoInfoContainer">
                     <div id="videoInfo">
-                        <div id="videoInfoTitle" itemprop="name">${video.title}</div>
-                        <div id="videoInfoAuthor">by <a href="#" itemprop="creator">${video.author}</a></div>
+                        <div id="videoInfoTitle">${video.title}</div>
+                        <div id="videoInfoAuthor">by <a href="#">${video.author}</a></div>
                     </div>
                 </div>
                 <div id="videoSocial">
