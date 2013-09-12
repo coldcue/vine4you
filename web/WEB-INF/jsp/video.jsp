@@ -69,9 +69,6 @@
     <meta name="description"
           content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
     <link rel="image_src" href="${video.imageURL}"/>
-    <link rel="video_src" href="${video.videoURL}"/>
-    <meta name="video_height" content="600"/>
-    <meta name="video_width" content="600"/>
 
     <%--Google Webmaster verification--%>
     <meta name="google-site-verification" content="2XonEj136GchZCXal2J5flsNfv6AjRsZQDTmpiymDMY"/>
