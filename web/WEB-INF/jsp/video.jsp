@@ -22,7 +22,7 @@
 <head>
     <c:choose>
         <c:when test="${showVideoTitleInTitle}">
-            <title>${video.title} - Vine4You</title>
+            <title>${video.title} by ${video.author} - Vine4You</title>
         </c:when>
         <c:otherwise>
             <title>Vine4You - Best Vines</title>
