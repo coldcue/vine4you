@@ -9,8 +9,14 @@
 
 package com.vine4you.service;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -44,5 +50,25 @@ public class FacebookService {
         } else {
             log.severe("Video " + id + " cannot be published on facebook! " + connection.getResponseMessage());
         }
+    }
+
+    public static long getLikes(long videoId) throws IOException, JSONException {
+        URL url = new URL("https://graph.facebook.com/?ids=" + URLEncoder.encode("http://www.vine4you.com/v/" + videoId, "UTF-8"));
+
+        Reader reader = new InputStreamReader(url.openStream());
+
+        JSONTokener jsonTokener = new JSONTokener(reader);
+        JSONObject jsonObject = new JSONObject(jsonTokener);
+
+        //Get the link object
+        String key = jsonObject.keys().next().toString();
+        JSONObject linkObject = jsonObject.getJSONObject(key);
+
+        //Get the shares
+        long shares = linkObject.getLong("shares");
+
+        reader.close();
+
+        return shares;
     }
 }

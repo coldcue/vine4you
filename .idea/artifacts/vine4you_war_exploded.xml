@@ -12,6 +12,7 @@
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: net.sf.jsr107cache:jsr107cache:1.1" />
           <element id="library" level="project" name="Maven: net.sf.opencsv:opencsv:2.3" />
+          <element id="library" level="project" name="Maven: org.json:json:20090211" />
         </element>
       </element>
     </root>

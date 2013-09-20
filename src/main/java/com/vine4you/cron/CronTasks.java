@@ -17,5 +17,5 @@ package com.vine4you.cron;
  * To change this template use File | Settings | File Templates.
  */
 public enum CronTasks {
-    PUBLISHVIDEO
+    PUBLISHVIDEO, REFRESHLIKES
 }

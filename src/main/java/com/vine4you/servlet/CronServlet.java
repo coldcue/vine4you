@@ -34,6 +34,10 @@ public class CronServlet extends HttpServlet {
             case PUBLISHVIDEO:
                 CronService.publishVideo();
                 break;
+
+            case REFRESHLIKES:
+                CronService.refreshLikes();
+                break;
         }
 
 

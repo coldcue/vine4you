@@ -56,4 +56,23 @@ public class CronService {
             log.info("A new video is published! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
         }
     }
+
+    public static void refreshLikes() {
+        Query query = new Query(VideoEntity.kind);
+
+        Iterable<Entity> entities = datastoreService.prepare(query).asIterable();
+
+        for (Entity entity : entities) {
+            try {
+                long likes = FacebookService.getLikes(entity.getKey().getId());
+
+                if (likes != entity.getProperty(VideoEntity.LIKES)) {
+                    entity.setProperty(VideoEntity.LIKES, likes);
+                    datastoreService.put(entity);
+                }
+            } catch (Exception ignored) {
+
+            }
+        }
+    }
 }
