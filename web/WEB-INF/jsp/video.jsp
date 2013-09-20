@@ -1,7 +1,3 @@
-<!DOCTYPE HTML>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--@elvariable id="video" type="com.vine4you.entity.VideoEntity"--%>
 <%--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ~ Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                   ~
   ~                                                                          ~
@@ -11,6 +7,10 @@
   ~ written permission of the owner.                                         ~
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--%>
 
+<!DOCTYPE HTML>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--@elvariable id="video" type="com.vine4you.entity.VideoEntity"--%>
 <%--
   Created by IntelliJ IDEA.
   User: Andrew
@@ -155,7 +155,8 @@
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <a id="videoLeftLink" href="/v/${prevVideo.key.id}">
+                        <a id="videoLeftLink"
+                           href="/v/${prevVideo.key.id}<c:if test="${sortby != null}">?sortby=${sortby}</c:if>">
                             <div id="videoLeftContainer">
                                 <div>Prev</div>
                             </div>
@@ -163,7 +164,8 @@
                     </c:otherwise>
                 </c:choose>
 
-                <a id="videoRightLink" href="/v/${nextVideo.key.id}">
+                <a id="videoRightLink"
+                   href="/v/${nextVideo.key.id}<c:if test="${sortby != null}">?sortby=${sortby}</c:if>">
                     <div id="videoRightContainer">
                         <div>Next</div>
                     </div>
@@ -259,7 +261,7 @@
                 <c:forEach var="item" items="${featured}">
                     <li itemscope itemtype="http://schema.org/VideoObject">
                         <a itemprop="url" title="${item.title} by ${item.author}"
-                           href="${pageContext.request.contextPath}/v/${item.key.id}">
+                           href="${pageContext.request.contextPath}/v/${item.key.id}<c:if test="${sortby != null}">?sortby=${sortby}</c:if>">
                             <div class="container"><img width="72" height="72"
                                                         src="${item.imageURL}"
                                                         alt="${item.title}"/>

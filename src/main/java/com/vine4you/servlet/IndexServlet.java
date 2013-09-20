@@ -29,17 +29,19 @@ public class IndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String sortby = "";
+        VideoServletSorting sorting;
         try {
-            sortby = request.getParameter("sortby").toUpperCase();
+            sorting = VideoServletSorting.valueOf(request.getParameter("sortby").toUpperCase());
         } catch (Exception ignored) {
+            sorting = VideoServletSorting.DEFAULT;
         }
 
-        switch (VideoServletSorting.valueOf(sortby)) {
+        switch (sorting) {
             case LIKES:
                 likeSorted(request);
                 break;
 
+            case DEFAULT:
             default:
                 dateSorted(request);
                 break;
@@ -66,5 +68,6 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("prevVideo", VideoService.getPreviousMostLikedVideo(video));
         request.setAttribute("nextVideo", featuredVideos.get(0));
         request.setAttribute("featured", featuredVideos);
+        request.setAttribute("sortby", "likes");
     }
 }

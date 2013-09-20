@@ -38,15 +38,24 @@ public class VideoServlet extends HttpServlet {
         } catch (Exception ignored) {
         }
 
-        switch (VideoServletSorting.valueOf(request.getParameter("sortby").toUpperCase())) {
+        VideoServletSorting sorting;
+        try {
+            sorting = VideoServletSorting.valueOf(request.getParameter("sortby").toUpperCase());
+        } catch (Exception ignored) {
+            sorting = VideoServletSorting.DEFAULT;
+        }
+
+        switch (sorting) {
             case LIKES:
                 likeSorted(request, video);
                 break;
 
+            case DEFAULT:
             default:
                 dateSorted(request, video);
                 break;
         }
+
         request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
     }
 
@@ -72,6 +81,7 @@ public class VideoServlet extends HttpServlet {
         request.setAttribute("prevVideo", VideoService.getPreviousMostLikedVideo(video));
         request.setAttribute("nextVideo", featuredVideos.get(0));
         request.setAttribute("featured", featuredVideos);
+        request.setAttribute("sortby", "likes");
     }
 
 }

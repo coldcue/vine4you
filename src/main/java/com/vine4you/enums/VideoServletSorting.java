@@ -17,5 +17,5 @@ package com.vine4you.enums;
  * To change this template use File | Settings | File Templates.
  */
 public enum VideoServletSorting {
-    LIKES
+    DEFAULT, LIKES
 }
