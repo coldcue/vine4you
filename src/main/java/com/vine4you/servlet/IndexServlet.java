@@ -1,6 +1,16 @@
+/******************************************************************************
+ * Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                     *
+ *                                                                            *
+ * All rights reserved. No part of this code may be reproduced, distributed,  *
+ * or transmitted in any form or by any means, including photocopying,        *
+ * recording, or other electronic or mechanical methods, without the prior    *
+ * written permission of the owner.                                           *
+ ******************************************************************************/
+
 package com.vine4you.servlet;
 
 import com.vine4you.entity.VideoEntity;
+import com.vine4you.enums.VideoServletSorting;
 import com.vine4you.service.VideoService;
 
 import javax.servlet.ServletException;
@@ -19,6 +29,26 @@ public class IndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String sortby = "";
+        try {
+            sortby = request.getParameter("sortby").toUpperCase();
+        } catch (Exception ignored) {
+        }
+
+        switch (VideoServletSorting.valueOf(sortby)) {
+            case LIKES:
+                likeSorted(request);
+                break;
+
+            default:
+                dateSorted(request);
+                break;
+        }
+
+        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
+    }
+
+    private void dateSorted(HttpServletRequest request) {
         VideoEntity video = VideoService.getFirstVideo();
         List<VideoEntity> featuredVideos = VideoService.getFeaturedVideos(video);
         request.setAttribute("showVideoTitleInTitle", false);
@@ -26,7 +56,15 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("prevVideo", VideoService.getPreviousVideo(video));
         request.setAttribute("nextVideo", featuredVideos.get(0));
         request.setAttribute("featured", featuredVideos);
+    }
 
-        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
+    private void likeSorted(HttpServletRequest request) {
+        VideoEntity video = VideoService.getFirstMostLikedVideo();
+        List<VideoEntity> featuredVideos = VideoService.getMostLikedVideos(video);
+        request.setAttribute("showVideoTitleInTitle", false);
+        request.setAttribute("video", video);
+        request.setAttribute("prevVideo", VideoService.getPreviousMostLikedVideo(video));
+        request.setAttribute("nextVideo", featuredVideos.get(0));
+        request.setAttribute("featured", featuredVideos);
     }
 }

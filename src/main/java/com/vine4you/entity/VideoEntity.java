@@ -34,7 +34,7 @@ public class VideoEntity implements EntityInterface {
     private String imageURL;
     private Date publishedDate;
     private boolean published;
-    private int likes;
+    private long likes;
 
     public VideoEntity(Entity entity) {
         key = entity.getKey();
@@ -53,10 +53,10 @@ public class VideoEntity implements EntityInterface {
         if (entity.hasProperty(PUBLISHED))
             published = (boolean) entity.getProperty(PUBLISHED);
         if (entity.hasProperty(LIKES))
-            likes = (int) entity.getProperty(LIKES);
+            likes = (long) entity.getProperty(LIKES);
     }
 
-    public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published, int likes) {
+    public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published, long likes) {
         this.title = title;
         this.author = author;
         this.vineURL = vineURL;
@@ -71,11 +71,11 @@ public class VideoEntity implements EntityInterface {
         return kind;
     }
 
-    public int getLikes() {
+    public long getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(long likes) {
         this.likes = likes;
     }
 

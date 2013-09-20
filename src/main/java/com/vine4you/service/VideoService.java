@@ -132,6 +132,22 @@ public class VideoService {
     }
 
     /**
+     * Returns the first videoElement to show to the user
+     *
+     * @return the videoElement
+     */
+    public static VideoEntity getFirstMostLikedVideo() {
+        //TODO save into the memory
+        Query query = new Query(VideoEntity.kind);
+        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
+        query.addSort(VideoEntity.LIKES, Query.SortDirection.DESCENDING);
+
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
+
+        return new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
+    }
+
+    /**
      * Returns the featured videoElement list from a given videoElement
      *
      * @param from the videoElement
@@ -146,6 +162,37 @@ public class VideoService {
         Query.FilterPredicate publishedDateFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.LESS_THAN, from.getPublishedDate());
 
         query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, publishedDateFilter));
+
+        return getFeaturedVideoEntitiesFromQuery(from, query);
+    }
+
+    /**
+     * Returns the most liked videoElement list from a given videoElement
+     *
+     * @param from the videoElement
+     * @return the list
+     */
+    public static List<VideoEntity> getMostLikedVideos(VideoEntity from) {
+        Query query = new Query(VideoEntity.kind);
+
+        query.addSort(VideoEntity.LIKES, Query.SortDirection.DESCENDING);
+
+        Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
+        Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKES, Query.FilterOperator.LESS_THAN, from.getLikes());
+
+        query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, likesFilter));
+
+        return getFeaturedVideoEntitiesFromQuery(from, query);
+    }
+
+    /**
+     * Prepares the VideoEntities from a query
+     *
+     * @param from
+     * @param query
+     * @return
+     */
+    private static List<VideoEntity> getFeaturedVideoEntitiesFromQuery(VideoEntity from, Query query) {
 
         //TODO Add projections
         /*query.addProjection(new PropertyProjection(VideoEntity.TITLE, null));
@@ -179,7 +226,22 @@ public class VideoService {
         Query.FilterPredicate publishedDateFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED_DATE, Query.FilterOperator.GREATER_THAN, from.getPublishedDate());
 
         query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, publishedDateFilter));
+        return getVideoEntityFromQuery(query);
+    }
 
+    public static VideoEntity getPreviousMostLikedVideo(VideoEntity from) {
+        Query query = new Query(VideoEntity.kind);
+
+        query.addSort(VideoEntity.LIKES, Query.SortDirection.ASCENDING);
+
+        Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
+        Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKES, Query.FilterOperator.GREATER_THAN, from.getLikes());
+
+        query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, likesFilter));
+        return getVideoEntityFromQuery(query);
+    }
+
+    private static VideoEntity getVideoEntityFromQuery(Query query) {
         //TODO projection
         /*query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
         query.addProjection(new PropertyProjection(VideoEntity.TITLE, String.class));

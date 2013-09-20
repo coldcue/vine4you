@@ -44,7 +44,7 @@ public class ImportService {
                 String videoURL = (line[3].contains("?")) ? line[3].substring(0, line[3].indexOf("?")) : line[3];
                 String imageURL = (line[4].contains("?")) ? line[4].substring(0, line[4].indexOf("?")) : line[4];
 
-                VideoEntity videoEntity = new VideoEntity(line[0], line[1], line[2], videoURL, imageURL, Calendar.getInstance().getTime(), true);
+                VideoEntity videoEntity = new VideoEntity(line[0], line[1], line[2], videoURL, imageURL, Calendar.getInstance().getTime(), true, 0);
 
                 try {
                     VideoService.addVideoEntity(videoEntity, asNew);

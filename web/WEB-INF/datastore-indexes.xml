@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ~ Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                    ~
   ~                                                                           ~
@@ -9,14 +10,24 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <datastore-indexes autoGenerate="false">
 
-    <datastore-index kind="Video" ancestor="false">
+    <datastore-index kind="Video" ancestor="false" source="manual">>
         <property name="published" direction="asc"/>
         <property name="publishedDate" direction="desc"/>
     </datastore-index>
 
-    <datastore-index kind="Video" ancestor="false">
+    <datastore-index kind="Video" ancestor="false" source="manual">>
         <property name="published" direction="asc"/>
         <property name="publishedDate" direction="asc"/>
+    </datastore-index>
+
+    <datastore-index kind="Video" ancestor="false" source="manual">
+        <property name="published" direction="asc"/>
+        <property name="likes" direction="desc"/>
+    </datastore-index>
+
+    <datastore-index kind="Video" ancestor="false" source="manual">
+        <property name="published" direction="asc"/>
+        <property name="likes" direction="asc"/>
     </datastore-index>
 
 </datastore-indexes>
