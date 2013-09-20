@@ -176,6 +176,7 @@ public class VideoService {
         Query query = new Query(VideoEntity.kind);
 
         query.addSort(VideoEntity.LIKES, Query.SortDirection.DESCENDING);
+        query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
 
         Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
         Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKES, Query.FilterOperator.LESS_THAN, from.getLikes());
@@ -233,6 +234,7 @@ public class VideoService {
         Query query = new Query(VideoEntity.kind);
 
         query.addSort(VideoEntity.LIKES, Query.SortDirection.ASCENDING);
+        query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
 
         Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
         Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKES, Query.FilterOperator.GREATER_THAN, from.getLikes());
