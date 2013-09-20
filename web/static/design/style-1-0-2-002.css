@@ -1,3 +1,12 @@
+/******************************************************************************
+ * Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                     *
+ *                                                                            *
+ * All rights reserved. No part of this code may be reproduced, distributed,  *
+ * or transmitted in any form or by any means, including photocopying,        *
+ * recording, or other electronic or mechanical methods, without the prior    *
+ * written permission of the owner.                                           *
+ ******************************************************************************/
+
 body {
     background: #e5e5e5 url("bg.png");
     padding: 0;
@@ -228,6 +237,30 @@ body {
     width: 220px;
     height: 70px;
 }
+
+#mostLikedContainer {
+    margin: 6px 0;
+    float: right;
+}
+
+#mostLikedContainer a {
+    text-decoration: none;
+}
+
+#mostLikedButton {
+    background-color: #676767;
+    color: #ffffff;
+    font-family: Verdana, serif;
+    font-size: .9em;
+    padding: 6px 12px;
+    border: 1px solid #ffffff;
+    text-shadow: #555 1px 1px;
+}
+
+#mostLikedContainer a:hover #mostLikedButton, #mostLikedButton.active {
+    background-color: #4c8052;
+}
+
 
 
 
