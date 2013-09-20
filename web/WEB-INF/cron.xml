@@ -14,4 +14,9 @@
         <description>Publishes a new video every 4 hours</description>
         <schedule>every 4 hours synchronized</schedule>
     </cron>
+    <cron>
+        <url>/cron/refreshlikes</url>
+        <description>Refreshes likes every hour</description>
+        <schedule>every 1 hours</schedule>
+    </cron>
 </cronentries>

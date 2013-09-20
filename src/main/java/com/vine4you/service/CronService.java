@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * To change this template use File | Settings | File Templates.
  */
 public class CronService {
-    private static final Logger log = Logger.getLogger(ImportService.class.getName());
+    private static final Logger log = Logger.getLogger(CronService.class.getName());
     private static DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
     public static void publishVideo() {
@@ -69,6 +69,7 @@ public class CronService {
                 if (likes != entity.getProperty(VideoEntity.LIKES)) {
                     entity.setProperty(VideoEntity.LIKES, likes);
                     datastoreService.put(entity);
+                    log.info("Likes refreshed (" + likes + ") on video ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
                 }
             } catch (Exception ignored) {
 
