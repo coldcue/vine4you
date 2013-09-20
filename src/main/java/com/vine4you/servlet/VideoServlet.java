@@ -31,7 +31,7 @@ public class VideoServlet extends HttpServlet {
 
         String[] split = request.getPathInfo().split("/", 2);
 
-        VideoEntity video = null;
+        VideoEntity video;
         try {
             video = VideoService.getVideoEntity(Long.parseLong(split[1]));
         } catch (Exception e) {

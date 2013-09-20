@@ -19,8 +19,8 @@ public class Hashids {
     private String salt_ = "";
     private String alphabet_ = "";
     private int minHashLength_;
-    private ArrayList<Character> seps_ = new ArrayList<Character>();
-    private ArrayList<Character> guards_ = new ArrayList<Character>();
+    private ArrayList<Character> seps_ = new ArrayList<>();
+    private ArrayList<Character> guards_ = new ArrayList<>();
 
     public Hashids() {
         this("");
@@ -47,7 +47,7 @@ public class Hashids {
             minHashLength_ = minHashLength;
         }
 
-        alphabet_ = join(new LinkedHashSet<String>(Arrays.asList(alphabet.split(""))), "");
+        alphabet_ = join(new LinkedHashSet<>(Arrays.asList(alphabet.split(""))), "");
 
         if (alphabet_.length() < 4) {
             throw new IllegalArgumentException("Alphabet must contain at least 4 unique characters.");
@@ -246,7 +246,7 @@ public class Hashids {
     }
 
     private long[] decode(String hash) {
-        List<Long> ret = new ArrayList<Long>();
+        List<Long> ret = new ArrayList<>();
         String originalHash = hash;
 
         if (hash != null && !hash.isEmpty()) {
