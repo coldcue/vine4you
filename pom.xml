@@ -77,12 +77,10 @@
                 <version>2.4</version>
                 <configuration>
                     <archiveClasses>true</archiveClasses>
-                    <excludes>**/*.jsp,**/*.html,**/*.css</excludes>
                     <webResources>
                         <!-- in order to interpolate version from pom into appengine-web.xml -->
                         <resource>
                             <directory>${basedir}/web/</directory>
-                            <filtering>false</filtering>
                             <targetPath>/</targetPath>
                         </resource>
                     </webResources>
@@ -94,6 +92,9 @@
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
                 <version>1.8.3</version>
+                <configuration>
+                    <version>${version}</version>
+                </configuration>
             </plugin>
         </plugins>
     </build>
