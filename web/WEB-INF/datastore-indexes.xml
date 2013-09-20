@@ -23,11 +23,6 @@
 
     <datastore-index kind="Video" ancestor="false" source="manual">
         <property name="published" direction="asc"/>
-        <property name="likes" direction="asc"/>
-    </datastore-index>
-
-    <datastore-index kind="Video" ancestor="false" source="manual">
-        <property name="published" direction="asc"/>
         <property name="likes" direction="desc"/>
     </datastore-index>
 

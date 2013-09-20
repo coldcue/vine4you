@@ -75,5 +75,59 @@ public class CronService {
 
             }
         }
+
+        refreshLikeOrder();
+    }
+
+    public static void refreshLikeOrder() {
+        //Get all likeOrdered videos
+        List<Entity> toRemove = getLikeOrderedEntities();
+        //Get the most liked videos
+        List<Entity> mostLiked = getMostLikedEntities();
+
+        //Delete all entities from toRemove which is in mostLiked
+        toRemove.removeAll(mostLiked);
+        try {
+
+            long likeOrder = 0;
+            for (Entity entity : mostLiked) {
+                //Update entity if its likeOrder is changed
+                if (!entity.hasProperty(VideoEntity.LIKEORDER)) {
+                    entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
+                    datastoreService.put(entity);
+                } else if (entity.getProperty(VideoEntity.LIKEORDER) != likeOrder) {
+                    entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
+                    datastoreService.put(entity);
+                }
+                likeOrder++;
+            }
+
+            //Set likeOrder to max for every entity in toRemove
+            for (Entity entity : toRemove) {
+                entity.removeProperty(VideoEntity.LIKEORDER);
+                datastoreService.put(entity);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static List<Entity> getMostLikedEntities() {
+        Query query = new Query(VideoEntity.kind);
+        query.addSort(VideoEntity.LIKES, Query.SortDirection.DESCENDING);
+        Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
+        query.setFilter(publishedFilter);
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(VideoService.MostLikedListSize);
+
+        return datastoreService.prepare(query).asList(fetchOptions);
+    }
+
+    private static List<Entity> getLikeOrderedEntities() {
+        Query query = new Query(VideoEntity.kind);
+        query.addSort(VideoEntity.LIKEORDER);
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(500);
+
+        return datastoreService.prepare(query).asList(fetchOptions);
     }
 }

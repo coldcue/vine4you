@@ -26,6 +26,7 @@ public class VideoEntity implements EntityInterface {
     public static final String PUBLISHED_DATE = "publishedDate";
     public static final String PUBLISHED = "published";
     public static final String LIKES = "likes";
+    public static final String LIKEORDER = "likeOrder";
     private Key key;
     private String title;
     private String author;
@@ -35,6 +36,7 @@ public class VideoEntity implements EntityInterface {
     private Date publishedDate;
     private boolean published;
     private long likes;
+    private long likeOrder;
 
     public VideoEntity(Entity entity) {
         key = entity.getKey();
@@ -54,9 +56,11 @@ public class VideoEntity implements EntityInterface {
             published = (boolean) entity.getProperty(PUBLISHED);
         if (entity.hasProperty(LIKES))
             likes = (long) entity.getProperty(LIKES);
+        if (entity.hasProperty(LIKEORDER))
+            likeOrder = (long) entity.getProperty(LIKEORDER);
     }
 
-    public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published, long likes) {
+    public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published) {
         this.title = title;
         this.author = author;
         this.vineURL = vineURL;
@@ -64,7 +68,8 @@ public class VideoEntity implements EntityInterface {
         this.imageURL = imageURL;
         this.publishedDate = publishedDate;
         this.published = published;
-        this.likes = likes;
+        this.likes = 0;
+        this.likeOrder = Long.MAX_VALUE;
     }
 
     public static String getKind() {
@@ -143,6 +148,14 @@ public class VideoEntity implements EntityInterface {
         this.published = published;
     }
 
+    public long getLikeOrder() {
+        return likeOrder;
+    }
+
+    public void setLikeOrder(long likeOrder) {
+        this.likeOrder = likeOrder;
+    }
+
     /**
      * Only use it with fully loaded entity!!!
      *
@@ -160,6 +173,7 @@ public class VideoEntity implements EntityInterface {
         entity.setProperty(PUBLISHED_DATE, publishedDate);
         entity.setProperty(PUBLISHED, published);
         entity.setProperty(LIKES, likes);
+        entity.setProperty(LIKEORDER, likeOrder);
 
         return entity;
     }
