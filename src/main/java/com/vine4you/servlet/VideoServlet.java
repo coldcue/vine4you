@@ -47,41 +47,27 @@ public class VideoServlet extends HttpServlet {
 
         switch (sorting) {
             case LIKES:
-                likeSorted(request, video);
+                if (video == null)
+                    video = VideoService.getFirstMostLikedVideo();
+                request.setAttribute("sortby", "likes");
                 break;
 
             case DEFAULT:
             default:
-                dateSorted(request, video);
+                if (video == null)
+                    video = VideoService.getFirstVideo();
                 break;
         }
-
-        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
-    }
-
-    private void dateSorted(HttpServletRequest request, VideoEntity video) {
-        if (video == null)
-            video = VideoService.getFirstVideo();
 
         List<VideoEntity> featuredVideos = VideoService.getFeaturedVideos(video);
         request.setAttribute("showVideoTitleInTitle", true);
         request.setAttribute("video", video);
         request.setAttribute("prevVideo", VideoService.getPreviousVideo(video));
-        request.setAttribute("nextVideo", featuredVideos.get(0));
+        if (featuredVideos.size() > 0)
+            request.setAttribute("nextVideo", featuredVideos.get(0));
         request.setAttribute("featured", featuredVideos);
-    }
 
-    private void likeSorted(HttpServletRequest request, VideoEntity video) {
-        if (video == null)
-            video = VideoService.getFirstMostLikedVideo();
-
-        List<VideoEntity> featuredVideos = VideoService.getMostLikedVideos(video);
-        request.setAttribute("showVideoTitleInTitle", true);
-        request.setAttribute("video", video);
-        request.setAttribute("prevVideo", VideoService.getPreviousMostLikedVideo(video));
-        request.setAttribute("nextVideo", featuredVideos.get(0));
-        request.setAttribute("featured", featuredVideos);
-        request.setAttribute("sortby", "likes");
+        request.getRequestDispatcher("/WEB-INF/jsp/video.jsp").forward(request, response);
     }
 
 }

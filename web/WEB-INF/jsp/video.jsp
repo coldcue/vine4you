@@ -171,12 +171,20 @@
                     </c:otherwise>
                 </c:choose>
 
-                <a id="videoRightLink"
-                   href="/v/${nextVideo.key.id}<c:if test="${sortby != null}">?sortby=${sortby}</c:if>">
-                    <div id="videoRightContainer">
-                        <div>Next</div>
-                    </div>
-                </a>
+                <c:choose>
+                    <c:when test="${nextVideo eq null}">
+                        <div id="videoRightSpace">
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <a id="videoLeftLink"
+                           href="/v/${nextVideo.key.id}<c:if test="${sortby != null}">?sortby=${sortby}</c:if>">
+                            <div id="videoRightContainer">
+                                <div>Next</div>
+                            </div>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
 
                 <div id="videoInnerContainer">
                     <%--Required properties--%>

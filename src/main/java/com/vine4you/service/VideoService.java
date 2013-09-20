@@ -202,11 +202,6 @@ public class VideoService {
             videoEntities.add(new VideoEntity(entity));
         }
 
-         /*If the featured list is smaller than it has to be, then use the defualt list*/
-        if (videoEntities.size() < FeaturedListSize && from.getKey().getId() != getFirstVideo().getKey().getId()) {
-            return getFeaturedVideos(getFirstVideo());
-        }
-
         return videoEntities;
     }
 

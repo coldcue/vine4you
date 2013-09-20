@@ -76,7 +76,7 @@ body {
     height: 600px;
 }
 
-#videoLeftContainer, #videoRightContainer, #videoLeftSpace {
+#videoLeftContainer, #videoRightContainer, #videoLeftSpace, #videoRightSpace {
     width: 50px;
     height: 600px;
     color: #4c8052;
@@ -94,7 +94,7 @@ body {
     float: left;
 }
 
-#videoRightContainer {
+#videoRightContainer, #videoRightSpace {
     float: right;
 }
 
@@ -260,7 +260,6 @@ body {
 #mostLikedContainer a:hover #mostLikedButton, #mostLikedButton.active {
     background-color: #4c8052;
 }
-
 
 
 
