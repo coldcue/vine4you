@@ -17,6 +17,6 @@
     <cron>
         <url>/cron/refreshlikes</url>
         <description>Refreshes likes every hour</description>
-        <schedule>every 1 hours</schedule>
+        <schedule>every 12 hours synchronized</schedule>
     </cron>
 </cronentries>
