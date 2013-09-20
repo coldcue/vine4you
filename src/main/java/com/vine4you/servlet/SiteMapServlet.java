@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class SiteMapServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("videos", VideoService.getAllPublishedVideoEntity());
+        request.setAttribute("videos", VideoService.getAllPublishedVideoEntityForSitemap());
         request.getRequestDispatcher("/WEB-INF/jsp/sitemap.jsp").forward(request, response);
     }
 }

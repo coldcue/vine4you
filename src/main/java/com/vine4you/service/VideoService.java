@@ -40,7 +40,7 @@ public class VideoService {
         return new VideoEntity(video);
     }
 
-    public static Collection<VideoEntity> getAllPublishedVideoEntity() {
+    public static Collection<VideoEntity> getAllPublishedVideoEntityForSitemap() {
         Query query = new Query(VideoEntity.kind);
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
@@ -51,7 +51,9 @@ public class VideoService {
         List<VideoEntity> videoEntities = new ArrayList<>(entities.size());
 
         for (Entity entity : entities) {
-            videoEntities.add(new VideoEntity(entity));
+            VideoEntity videoEntity = new VideoEntity(entity);
+            videoEntity.setTitle(videoEntity.getTitle().replaceAll("&", "and"));
+            videoEntities.add(videoEntity);
         }
 
         return videoEntities;
