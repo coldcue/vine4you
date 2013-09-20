@@ -25,6 +25,7 @@ public class VideoEntity implements EntityInterface {
     public static final String IMAGE_URL = "imageURL";
     public static final String PUBLISHED_DATE = "publishedDate";
     public static final String PUBLISHED = "published";
+    public static final String LIKES = "likes";
     private Key key;
     private String title;
     private String author;
@@ -33,6 +34,7 @@ public class VideoEntity implements EntityInterface {
     private String imageURL;
     private Date publishedDate;
     private boolean published;
+    private int likes;
 
     public VideoEntity(Entity entity) {
         key = entity.getKey();
@@ -50,9 +52,11 @@ public class VideoEntity implements EntityInterface {
             publishedDate = (Date) entity.getProperty(PUBLISHED_DATE);
         if (entity.hasProperty(PUBLISHED))
             published = (boolean) entity.getProperty(PUBLISHED);
+        if (entity.hasProperty(LIKES))
+            likes = (int) entity.getProperty(LIKES);
     }
 
-    public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published) {
+    public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published, int likes) {
         this.title = title;
         this.author = author;
         this.vineURL = vineURL;
@@ -60,10 +64,19 @@ public class VideoEntity implements EntityInterface {
         this.imageURL = imageURL;
         this.publishedDate = publishedDate;
         this.published = published;
+        this.likes = likes;
     }
 
     public static String getKind() {
         return kind;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public Key getKey() {
@@ -146,6 +159,7 @@ public class VideoEntity implements EntityInterface {
         entity.setProperty(IMAGE_URL, imageURL);
         entity.setProperty(PUBLISHED_DATE, publishedDate);
         entity.setProperty(PUBLISHED, published);
+        entity.setProperty(LIKES, likes);
 
         return entity;
     }
