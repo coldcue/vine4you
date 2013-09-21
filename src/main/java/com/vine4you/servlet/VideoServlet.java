@@ -46,11 +46,13 @@ public class VideoServlet extends HttpServlet {
         }
 
         List<VideoEntity> featuredVideos;
+        VideoEntity previousVideo;
         switch (sorting) {
             case LIKES:
                 if (video == null)
                     video = VideoService.getFirstMostLikedVideo();
                 featuredVideos = VideoService.getMostLikedVideos(video);
+                previousVideo = VideoService.getPreviousMostLikedVideo(video);
                 request.setAttribute("sortby", "likes");
                 break;
 
@@ -59,12 +61,13 @@ public class VideoServlet extends HttpServlet {
                 if (video == null)
                     video = VideoService.getFirstVideo();
                 featuredVideos = VideoService.getFeaturedVideos(video);
+                previousVideo = VideoService.getPreviousVideo(video);
                 break;
         }
 
         request.setAttribute("showVideoTitleInTitle", true);
         request.setAttribute("video", video);
-        request.setAttribute("prevVideo", VideoService.getPreviousVideo(video));
+        request.setAttribute("prevVideo", previousVideo);
         if (featuredVideos.size() > 0)
             request.setAttribute("nextVideo", featuredVideos.get(0));
         request.setAttribute("featured", featuredVideos);
