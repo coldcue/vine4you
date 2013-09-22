@@ -177,7 +177,7 @@
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <a id="videoLeftLink"
+                        <a id="videoRightLink"
                            href="/v/${nextVideo.key.id}<c:if test="${sortby != null}">?sortby=${sortby}</c:if>">
                             <div id="videoRightContainer">
                                 <div>Next</div>
