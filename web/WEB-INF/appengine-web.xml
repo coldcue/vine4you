@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                    ~
+  ~                                                                           ~
+  ~ All rights reserved. No part of this code may be reproduced, distributed, ~
+  ~ or transmitted in any form or by any means, including photocopying,       ~
+  ~ recording, or other electronic or mechanical methods, without the prior   ~
+  ~ written permission of the owner.                                          ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
     <application>vineforyou</application>
     <threadsafe>true</threadsafe>
@@ -13,8 +22,16 @@
 
     <!-- Static files -->
     <static-files>
-        <include path="/*.ico"/>
-        <include path="/robots.txt"/>
-        <include path="/static/**"/>
+        <include expiration="365d" path="/*.ico"/>
+        <include expiration="365d" path="/robots.txt"/>
+        <include expiration="365d" path="/static/**"/>
     </static-files>
+
+    <env-variables>
+        <env-var name="DEFAULT_ENCODING" value="UTF-8"/>
+    </env-variables>
+
+    <inbound-services>
+        <service>warmup</service>
+    </inbound-services>
 </appengine-web-app>
