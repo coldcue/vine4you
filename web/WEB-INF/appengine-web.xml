@@ -27,10 +27,6 @@
         <include expiration="365d" path="/static/**"/>
     </static-files>
 
-    <env-variables>
-        <env-var name="DEFAULT_ENCODING" value="UTF-8"/>
-    </env-variables>
-
     <inbound-services>
         <service>warmup</service>
     </inbound-services>

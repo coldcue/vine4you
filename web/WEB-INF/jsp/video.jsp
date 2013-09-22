@@ -35,6 +35,13 @@
     <c:if test="${showVideoTitleInTitle}">
         <meta name="author" content="${video.author}">
     </c:if>
+
+    <%--Styles--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-3-001.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/jquery-impromptu.css"/>
+
     <meta name="msvalidate.01" content="C585C5610CF6C5DE6ECCA7E20B528C21"/>
 
     <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/static/icons/touch-icon-iphone.png"/>
@@ -44,14 +51,6 @@
           href="${pageContext.request.contextPath}/static/icons/touch-icon-iphone-retina.png"/>
     <link rel="apple-touch-icon" sizes="144x144"
           href="${pageContext.request.contextPath}/static/icons/touch-icon-ipad-retina.png"/>
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-3-001.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
-
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
-
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
 
     <%--Facebook OpenGraph--%>
     <meta property="fb:app_id" content="593953400627542"/>
@@ -88,6 +87,9 @@
     </script>
 </head>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
 
 <%--Facebook JS--%>
 <div id="fb-root"></div>
@@ -342,9 +344,6 @@
 </script>
 
 <%--Async loading stuff--%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/jquery-impromptu.css"/>
-
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-impromptu.js"></script>
 </body>
