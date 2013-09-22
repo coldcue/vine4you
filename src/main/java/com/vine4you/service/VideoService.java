@@ -38,8 +38,14 @@ public class VideoService {
      * @throws EntityNotFoundException
      */
     public static VideoEntity getVideoEntity(long id) throws EntityNotFoundException {
+        //Check cache
+        VideoEntity videoEntity = CacheService.getVideoEntity(id);
+        if (videoEntity != null) return videoEntity;
+
         Entity video = DatastoreServiceFactory.getDatastoreService().get(KeyFactory.createKey(VideoEntity.kind, id));
-        return new VideoEntity(video);
+        //Add to cache
+        videoEntity = new VideoEntity(video);
+        return videoEntity;
     }
 
     public static Collection<VideoEntity> getAllPublishedVideoEntityForSitemap() {

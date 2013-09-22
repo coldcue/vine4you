@@ -16,6 +16,7 @@ import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,10 +37,6 @@ public class CacheService {
         } catch (CacheException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-    }
-
-    public static Cache getCache() {
-        return CacheService.cache;
     }
 
     /**
@@ -76,6 +73,7 @@ public class CacheService {
         try {
             return (VideoEntity) cache.get(type.toString());
         } catch (Exception ignored) {
+            cache.remove(type.toString());
             return null;
         }
     }
@@ -88,10 +86,25 @@ public class CacheService {
      * @param videoEntities the list
      */
     public static void addFeaturedList(CacheType type, VideoEntity videoEntity, List<VideoEntity> videoEntities) {
-        try {
-            cache.put(type.toString() + "_" + videoEntity.getKey().getId(), videoEntities);
-        } catch (Exception ignored) {
+        //The key in the cache
+        final String key = type.toString() + "_" + videoEntity.getKey().getId();
 
+        try {
+            List<Long> videoEntityIDList = new ArrayList<>(videoEntities.size());
+
+            for (VideoEntity entity : videoEntities) {
+                //Add the id
+                long id = entity.getKey().getId();
+                videoEntityIDList.add(id);
+
+                //Check the cache
+                if (!cache.containsKey(VideoEntity.getKind() + "_" + id))
+                    //Add if not contains
+                    addVideoEntity(entity);
+            }
+            cache.put(key, videoEntityIDList);
+
+        } catch (Exception ignored) {
         }
     }
 
@@ -102,10 +115,57 @@ public class CacheService {
      * @param videoEntity the video
      */
     public static List<VideoEntity> getFeaturedList(CacheType type, VideoEntity videoEntity) {
+        //The key in the cache
+        final String key = type.toString() + "_" + videoEntity.getKey().getId();
         try {
             //noinspection unchecked
-            return (List<VideoEntity>) cache.get(type.toString() + "_" + videoEntity.getKey().getId());
+            List<Long> videoEntityIDList = (List<Long>) cache.get(key);
+            List<VideoEntity> videoEntities = new ArrayList<>(videoEntityIDList.size());
+
+            for (Long id : videoEntityIDList) {
+                //Check cache
+                VideoEntity entity = getVideoEntity(id);
+                if (entity == null) {
+                    //Add to cache
+                    entity = VideoService.getVideoEntity(id);
+                    addVideoEntity(entity);
+                }
+                //Add to list
+                videoEntities.add(entity);
+            }
+
+            return videoEntities;
         } catch (Exception ignored) {
+            cache.remove(key);
+            return null;
+        }
+    }
+
+    /**
+     * Add a VideoEntity to the cache
+     *
+     * @param entity the VideoEntity
+     */
+    public static void addVideoEntity(VideoEntity entity) {
+        try {
+            cache.put(VideoEntity.getKind() + "_" + entity.getKey().getId(), entity);
+        } catch (Exception ignored) {
+
+        }
+    }
+
+    /**
+     * Get a VideoEntity from the cache
+     *
+     * @param id the id of the VideoEntity
+     * @return the videoEntity
+     */
+    public static VideoEntity getVideoEntity(long id) {
+        final String key = VideoEntity.getKind() + "_" + id;
+        try {
+            return (VideoEntity) cache.get(key);
+        } catch (Exception ignored) {
+            cache.remove(key);
             return null;
         }
     }
