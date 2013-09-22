@@ -196,7 +196,7 @@
                     <meta itemprop="duration" content="7S"/>
                     <meta itemprop="embedURL" content="${video.videoURL}"/>
 
-                    <video id="vineVideo" class="video-js" data-setup="{'controls':false}" autoplay
+                    <video id="vineVideo" class="video-js" data-setup="" autoplay
                            loop preload="auto"
                            width="600"
                            height="600"
