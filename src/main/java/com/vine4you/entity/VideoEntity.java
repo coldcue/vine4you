@@ -12,10 +12,11 @@ package com.vine4you.entity;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class VideoEntity implements EntityInterface {
+public class VideoEntity implements EntityInterface, Serializable {
 
     public final static String kind = "Video";
     public static final String TITLE = "title";

@@ -11,6 +11,7 @@ package com.vine4you.service;
 
 import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
+import com.vine4you.enums.CacheType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -123,13 +124,20 @@ public class VideoService {
      * @return the videoElement
      */
     public static VideoEntity getFirstVideo() {
-        //TODO save into the memory
+
+        //Check cache
+        VideoEntity videoEntity = CacheService.getVideoEntity(CacheType.FIRST_VIDEO);
+        if (videoEntity != null) return videoEntity;
+
         Query query = new Query(VideoEntity.kind);
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
 
-        return new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
+        //Add to cache
+        videoEntity = new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
+        CacheService.addVideoEntity(CacheType.FIRST_VIDEO, videoEntity);
+        return videoEntity;
     }
 
     /**
@@ -138,12 +146,19 @@ public class VideoService {
      * @return the videoElement
      */
     public static VideoEntity getFirstMostLikedVideo() {
-        //TODO save into the memory
+
+        //Check cache
+        VideoEntity videoEntity = CacheService.getVideoEntity(CacheType.FIRST_MOSTLIKED_VIDEO);
+        if (videoEntity != null) return videoEntity;
+
         Query query = new Query(VideoEntity.kind);
         query.addSort(VideoEntity.LIKEORDER);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
 
-        return new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
+        //Add to cache
+        videoEntity = new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
+        CacheService.addVideoEntity(CacheType.FIRST_MOSTLIKED_VIDEO, videoEntity);
+        return videoEntity;
     }
 
     /**
@@ -153,6 +168,10 @@ public class VideoService {
      * @return the list
      */
     public static List<VideoEntity> getFeaturedVideos(VideoEntity from) {
+        //Check cache
+        List<VideoEntity> videoEntities = CacheService.getFeaturedList(CacheType.FEATURED_LIST, from);
+        if (videoEntities != null) return videoEntities;
+
         Query query = new Query(VideoEntity.kind);
 
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
@@ -162,7 +181,10 @@ public class VideoService {
 
         query.setFilter(Query.CompositeFilterOperator.and(publishedFilter, publishedDateFilter));
 
-        return getFeaturedVideoEntitiesFromQuery(from, query);
+        videoEntities = getFeaturedVideoEntitiesFromQuery(from, query);
+        //Add to cache
+        CacheService.addFeaturedList(CacheType.FEATURED_LIST, from, videoEntities);
+        return videoEntities;
     }
 
     /**
@@ -172,6 +194,10 @@ public class VideoService {
      * @return the list
      */
     public static List<VideoEntity> getMostLikedVideos(VideoEntity from) {
+        //Check cache
+        List<VideoEntity> videoEntities = CacheService.getFeaturedList(CacheType.FEATURED_LIST, from);
+        if (videoEntities != null) return videoEntities;
+
         Query query = new Query(VideoEntity.kind);
 
         query.addSort(VideoEntity.LIKEORDER);
@@ -179,7 +205,10 @@ public class VideoService {
         Query.FilterPredicate sizeFilter = new Query.FilterPredicate(VideoEntity.LIKEORDER, Query.FilterOperator.LESS_THAN, MostLikedListSize);
         query.setFilter(Query.CompositeFilterOperator.and(likesFilter, sizeFilter));
 
-        return getFeaturedVideoEntitiesFromQuery(from, query);
+        videoEntities = getFeaturedVideoEntitiesFromQuery(from, query);
+        //Add to cache
+        CacheService.addFeaturedList(CacheType.MOSTLIKED_FEATURED_LIST, from, videoEntities);
+        return videoEntities;
     }
 
     /**

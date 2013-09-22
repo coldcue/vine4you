@@ -15,7 +15,7 @@
 
     <groupId>com.vine4you</groupId>
     <artifactId>vine4you</artifactId>
-    <version>1-0-3</version>
+    <version>1-0-4</version>
 
     <pluginRepositories>
         <pluginRepository>
@@ -37,6 +37,11 @@
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
             <version>1.8.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-jsr107cache</artifactId>
+            <version>1.8.2</version>
         </dependency>
 
         <!--Javax-->

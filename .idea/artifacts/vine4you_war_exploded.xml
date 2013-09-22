@@ -13,6 +13,7 @@
           <element id="library" level="project" name="Maven: net.sf.opencsv:opencsv:2.3" />
           <element id="library" level="project" name="Maven: org.json:json:20090211" />
           <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.8.4" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-jsr107cache:1.8.2" />
         </element>
       </element>
     </root>
