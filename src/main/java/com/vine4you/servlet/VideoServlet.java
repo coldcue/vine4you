@@ -11,6 +11,7 @@ package com.vine4you.servlet;
 
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.VideoServletSorting;
+import com.vine4you.service.CacheService;
 import com.vine4you.service.VideoService;
 
 import javax.servlet.ServletException;
@@ -34,7 +35,13 @@ public class VideoServlet extends HttpServlet {
 
         VideoEntity video = null;
         try {
-            video = VideoService.getVideoEntity(Long.parseLong(split[1]));
+            final long id = Long.parseLong(split[1]);
+            //Check cache
+            video = CacheService.getVideoEntity(id);
+
+            //If not in cache
+            if (video == null)
+                video = VideoService.getVideoEntity(id);
         } catch (Exception ignored) {
         }
 
