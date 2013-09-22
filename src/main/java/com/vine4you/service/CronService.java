@@ -53,6 +53,9 @@ public class CronService {
                 e.printStackTrace();
             }
 
+            //Clear cache
+            CacheService.clearCache();
+
             log.info("A new video is published! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
         }
     }
