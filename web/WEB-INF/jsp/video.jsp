@@ -257,19 +257,21 @@
         </div>
         <div class="grid_4">
             <div id="squareAdContainer">
-                <script type="text/javascript"><!--
-                google_ad_client = "ca-pub-6335041482514787";
-                /* SquareAdBig */
-                google_ad_slot = "8014008870";
-                google_ad_width = 250;
-                google_ad_height = 250;
-                //-->
-                </script>
-                <script type="text/javascript"
-                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
+                <div id="squareAd">
+                    <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-6335041482514787";
+                    /* Vine4YouLargeRectangle1 */
+                    google_ad_slot = "4315068874";
+                    google_ad_width = 336;
+                    google_ad_height = 280;
+                    //-->
+                    </script>
+                    <script type="text/javascript"
+                            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
+                </div>
             </div>
-            <div id="search">
+            <div id="searchContainer">
                 <gcse:searchbox-only></gcse:searchbox-only>
             </div>
             <ul id="featuredVideos">
@@ -286,21 +288,26 @@
                         </a></li>
                 </c:forEach>
             </ul>
-            <div id="verticalAdContainer">
-                <script type="text/javascript"><!--
-                google_ad_client = "ca-pub-6335041482514787";
-                /* VerticalAd */
-                google_ad_slot = "9601820071";
-                google_ad_width = 160;
-                google_ad_height = 600;
-                //-->
-                </script>
-                <script type="text/javascript"
-                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
-            </div>
         </div>
 
+    </div>
+</div>
+
+<div class="container_16">
+    <div class="grid_16">
+        <div id="footerAdContainer">
+            <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-6335041482514787";
+            /* Vine4YouLeaderboard1 */
+            google_ad_slot = "5791802071";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+            </script>
+            <script type="text/javascript"
+                    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+        </div>
     </div>
 </div>
 

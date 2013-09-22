@@ -261,5 +261,15 @@ body {
     background-color: #4c8052;
 }
 
+#footerAdContainer {
+    width: 728px;
+    height: 90px;
+    margin: 10px 106px;
+}
+
+#searchContainer {
+    height: 44px;
+}
+
 
 
