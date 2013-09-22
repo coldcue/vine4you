@@ -120,6 +120,8 @@ public class CacheService {
         try {
             //noinspection unchecked
             List<Long> videoEntityIDList = (List<Long>) cache.get(key);
+            //if its not cached
+            if (videoEntityIDList == null) return null;
             List<VideoEntity> videoEntities = new ArrayList<>(videoEntityIDList.size());
 
             for (Long id : videoEntityIDList) {
