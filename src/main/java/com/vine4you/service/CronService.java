@@ -91,21 +91,31 @@ public class CronService {
 
             long likeOrder = 0;
             for (Entity entity : mostLiked) {
-                //Update entity if its likeOrder is changed
-                if (!entity.hasProperty(VideoEntity.LIKEORDER)) {
-                    entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
-                    datastoreService.put(entity);
-                } else if (entity.getProperty(VideoEntity.LIKEORDER) != likeOrder) {
-                    entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
-                    datastoreService.put(entity);
+                try {
+                    //Update entity if its likeOrder is changed
+                    if (!entity.hasProperty(VideoEntity.LIKEORDER)) {
+                        entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
+                        datastoreService.put(entity);
+                    } else if (entity.getProperty(VideoEntity.LIKEORDER) != likeOrder) {
+                        entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
+                        datastoreService.put(entity);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    log.severe("Can't update likeorder: " + e.getMessage());
                 }
                 likeOrder++;
             }
 
             //Set likeOrder to max for every entity in toRemove
             for (Entity entity : toRemove) {
-                entity.removeProperty(VideoEntity.LIKEORDER);
-                datastoreService.put(entity);
+                try {
+                    entity.removeProperty(VideoEntity.LIKEORDER);
+                    datastoreService.put(entity);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    log.severe("Can't remove property: " + e.getMessage());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
