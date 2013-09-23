@@ -54,6 +54,7 @@ public class VideoServlet extends HttpServlet {
 
         List<VideoEntity> featuredVideos;
         VideoEntity previousVideo;
+
         switch (sorting) {
             case LIKES:
                 if (video == null)

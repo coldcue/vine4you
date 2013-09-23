@@ -98,7 +98,7 @@ public class CacheService {
                 videoEntityIDList.add(id);
 
                 //Check the cache
-                if (!cache.containsKey(VideoEntity.getKind() + "_" + id))
+                if (!isVideoEntityCached(id))
                     //Add if not contains
                     addVideoEntity(entity);
             }
@@ -106,6 +106,10 @@ public class CacheService {
 
         } catch (Exception ignored) {
         }
+    }
+
+    private static boolean isVideoEntityCached(long id) {
+        return cache.containsKey(VideoEntity.getKind() + "_" + id);
     }
 
     /**
@@ -127,12 +131,7 @@ public class CacheService {
 
             for (Long id : videoEntityIDList) {
                 //Check cache
-                VideoEntity entity = getVideoEntity(id);
-                if (entity == null) {
-                    //Add to cache
-                    entity = VideoService.getVideoEntity(id);
-                    addVideoEntity(entity);
-                }
+                VideoEntity entity = VideoService.getVideoEntityCached(id);
                 //Add to list
                 videoEntities.add(entity);
             }

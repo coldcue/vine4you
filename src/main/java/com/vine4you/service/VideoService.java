@@ -31,20 +31,32 @@ public class VideoService {
     private static final Logger log = Logger.getLogger(VideoService.class.getName());
 
     /**
-     * Gets a single videoElement entity from the database or from cache
+     * Gets a single videoElement entity from the database
      *
      * @param id the id
      * @return the videoElement
      * @throws EntityNotFoundException
      */
     public static VideoEntity getVideoEntity(long id) throws EntityNotFoundException {
+        Entity video = DatastoreServiceFactory.getDatastoreService().get(KeyFactory.createKey(VideoEntity.kind, id));
+        return new VideoEntity(video);
+    }
+
+    /**
+     * Gets a single videoElement entity from the database or from cache
+     *
+     * @param id the id
+     * @return the videoElement
+     * @throws EntityNotFoundException
+     */
+    public static VideoEntity getVideoEntityCached(long id) throws EntityNotFoundException {
         //Check cache
         VideoEntity videoEntity = CacheService.getVideoEntity(id);
         if (videoEntity != null) return videoEntity;
 
-        Entity video = DatastoreServiceFactory.getDatastoreService().get(KeyFactory.createKey(VideoEntity.kind, id));
         //Add to cache
-        videoEntity = new VideoEntity(video);
+        videoEntity = getVideoEntity(id);
+        CacheService.addVideoEntity(videoEntity);
         return videoEntity;
     }
 
