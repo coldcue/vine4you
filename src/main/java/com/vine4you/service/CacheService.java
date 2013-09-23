@@ -51,7 +51,7 @@ public class CacheService {
     }
 
     /**
-     * Add a video to the cache
+     * Add a unique video to the cache with CacheType. This is used for the first videos and etc.
      *
      * @param type  the CacheType
      * @param video the VideoEntity
@@ -65,7 +65,7 @@ public class CacheService {
     }
 
     /**
-     * Add a video to the cache
+     * Get an unique video from the cache. This is used for the first videos and etc.
      *
      * @param type the CacheType
      */
@@ -87,7 +87,7 @@ public class CacheService {
      */
     public static void addFeaturedList(CacheType type, VideoEntity videoEntity, List<VideoEntity> videoEntities) {
         //The key in the cache
-        final String key = type.toString() + "_" + videoEntity.getKey().getId();
+        String key = type.toString() + "_" + videoEntity.getKey().getId();
 
         try {
             List<Long> videoEntityIDList = new ArrayList<>(videoEntities.size());
@@ -116,7 +116,8 @@ public class CacheService {
      */
     public static List<VideoEntity> getFeaturedList(CacheType type, VideoEntity videoEntity) {
         //The key in the cache
-        final String key = type.toString() + "_" + videoEntity.getKey().getId();
+        String key = type.toString() + "_" + videoEntity.getKey().getId();
+
         try {
             //noinspection unchecked
             List<Long> videoEntityIDList = (List<Long>) cache.get(key);
@@ -163,7 +164,7 @@ public class CacheService {
      * @return the videoEntity
      */
     public static VideoEntity getVideoEntity(long id) {
-        final String key = VideoEntity.getKind() + "_" + id;
+        String key = VideoEntity.getKind() + "_" + id;
         try {
             return (VideoEntity) cache.get(key);
         } catch (Exception ignored) {
