@@ -37,7 +37,7 @@
     </c:if>
 
     <%--Styles--%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-3-001.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-3-002.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/jquery-impromptu.css"/>
@@ -88,8 +88,10 @@
 </head>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.impromptu.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-3-001.min.js"></script>
 
 <%--Facebook JS--%>
 <div id="fb-root"></div>
@@ -260,17 +262,29 @@
         <div class="grid_4">
             <div id="squareAdContainer">
                 <div id="squareAd">
-                    <script type="text/javascript"><!--
-                    google_ad_client = "ca-pub-6335041482514787";
-                    /* Vine4YouLargeRectangle1 */
-                    google_ad_slot = "4315068874";
-                    google_ad_width = 336;
-                    google_ad_height = 280;
-                    //-->
-                    </script>
-                    <script type="text/javascript"
-                            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-                    </script>
+                    <c:choose>
+                        <c:when test="${country eq 'HU'}">
+                            <a id="benedekBanner" href="http://www.vargabenedek.hu/?origin=vine4you"
+                               title="Vargabenedek.hu">
+                                <img src="${pageContext.request.contextPath}/static/benedek_banner.png" width="336"
+                                     height="280"
+                                     alt="Vargabenedek.hu">
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <script type="text/javascript"><!--
+                            google_ad_client = "ca-pub-6335041482514787";
+                            /* Vine4YouLargeRectangle1 */
+                            google_ad_slot = "4315068874";
+                            google_ad_width = 336;
+                            google_ad_height = 280;
+                            //-->
+                            </script>
+                            <script type="text/javascript"
+                                    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+                            </script>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
             <div id="searchContainer">
@@ -343,8 +357,5 @@
 
 </script>
 
-<%--Async loading stuff--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-impromptu.js"></script>
 </body>
 </html>

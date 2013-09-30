@@ -118,6 +118,23 @@
                     <version>${version}</version>
                 </configuration>
             </plugin>
+
+            <!--HTML Compressor-->
+            <plugin>
+                <groupId>com.tunyk.mvn.plugins.htmlcompressor</groupId>
+                <artifactId>htmlcompressor-maven-plugin</artifactId>
+                <version>1.3</version>
+                <configuration>
+                    <compressCss>true</compressCss>
+                    <compressJavaScript>false</compressJavaScript>
+                    <srcFolder>${basedir}/web</srcFolder>
+                    <targetFolder>${project.build.directory}/${project.build.finalName}</targetFolder>
+                    <fileExt>
+                        <fileExt>jsp</fileExt>
+                        <fileExt>html</fileExt>
+                    </fileExt>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

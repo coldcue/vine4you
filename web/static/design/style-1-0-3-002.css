@@ -271,5 +271,17 @@ body {
     height: 44px;
 }
 
+#benedekBanner {
+    text-decoration: none;
+}
+
+#benedekBanner img {
+    border: none;
+}
+
+#benedekBanner:hover img {
+    opacity: 0.8;
+}
+
 
 
