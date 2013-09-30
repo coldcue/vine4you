@@ -31,11 +31,17 @@ import java.util.List;
 public class VideoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String[] split = request.getPathInfo().split("/", 2);
+        long id;
+        try {
+            String[] split = request.getPathInfo().split("/", 2);
+            id = Long.parseLong(split[1]);
+        } catch (Exception ignored) {
+            response.sendRedirect("/");
+            return;
+        }
 
         VideoEntity video = null;
         try {
-            final long id = Long.parseLong(split[1]);
             //Check cache
             video = CacheService.getVideoEntity(id);
 

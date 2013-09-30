@@ -37,10 +37,10 @@ public class VideoEntity implements EntityInterface, Serializable {
     private transient String vineURL;
     private String videoURL;
     private String imageURL;
-    private transient Date publishedDate;
+    private Date publishedDate;
     private transient boolean published;
     private transient long likes;
-    private transient long likeOrder;
+    private long likeOrder;
 
     public VideoEntity(Entity entity) {
         key = entity.getKey();
