@@ -126,8 +126,6 @@
                     <targetFolder>${project.build.directory}/${project.build.finalName}</targetFolder>
                     <fileExt>
                         <fileExt>jsp</fileExt>
-                        <fileExt>css</fileExt>
-                        <fileExt>js</fileExt>
                         <fileExt>html</fileExt>
                     </fileExt>
                 </configuration>
