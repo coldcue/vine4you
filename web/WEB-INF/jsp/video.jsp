@@ -88,8 +88,10 @@
 </head>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-2-002.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.impromptu.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-3-001.min.js"></script>
 
 <%--Facebook JS--%>
 <div id="fb-root"></div>
@@ -355,8 +357,5 @@
 
 </script>
 
-<%--Async loading stuff--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-impromptu.js"></script>
 </body>
 </html>
