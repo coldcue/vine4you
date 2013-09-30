@@ -65,6 +65,9 @@ public class VideoServlet extends HttpServlet {
                 break;
         }
 
+        //Set country code
+        request.setAttribute("country", request.getHeader("X-AppEngine-Country"));
+
         request.setAttribute("showVideoTitleInTitle", true);
         request.setAttribute("video", video);
         request.setAttribute("prevVideo", previousVideo);
