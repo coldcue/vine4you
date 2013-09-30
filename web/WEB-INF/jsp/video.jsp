@@ -37,10 +37,7 @@
     </c:if>
 
     <%--Styles--%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/style-1-0-3-002.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/960.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/video-js.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/jquery-impromptu.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/design.min.css"/>
 
     <meta name="msvalidate.01" content="C585C5610CF6C5DE6ECCA7E20B528C21"/>
 
@@ -87,12 +84,6 @@
     </script>
 </head>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.cookie.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.impromptu.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/video.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/application-1-0-3-001.min.js"></script>
-
 <%--Facebook JS--%>
 <div id="fb-root"></div>
 <script>
@@ -356,6 +347,9 @@
     ga('send', 'pageview');
 
 </script>
+
+<%--Javascript--%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/script_1-0-5-001.min.js"></script>
 
 </body>
 </html>

@@ -15,7 +15,7 @@
 
     <groupId>com.vine4you</groupId>
     <artifactId>vine4you</artifactId>
-    <version>1-0-4</version>
+    <version>1-0-5</version>
 
     <pluginRepositories>
         <pluginRepository>
