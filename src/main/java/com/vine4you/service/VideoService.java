@@ -213,7 +213,7 @@ public class VideoService {
      */
     public static List<VideoEntity> getMostLikedVideos(VideoEntity from) {
         //Check cache
-        List<VideoEntity> videoEntities = CacheService.getFeaturedList(CacheType.FEATURED_LIST, from);
+        List<VideoEntity> videoEntities = CacheService.getFeaturedList(CacheType.MOSTLIKED_FEATURED_LIST, from);
         if (videoEntities != null) return videoEntities;
 
         Query query = new Query(VideoEntity.kind);

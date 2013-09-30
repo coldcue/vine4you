@@ -15,7 +15,10 @@ import com.google.appengine.api.datastore.Key;
 import java.io.Serializable;
 import java.util.Date;
 
-
+/**
+ * The transient values for cache storage optimization
+ */
+@SuppressWarnings("UnusedDeclaration")
 public class VideoEntity implements EntityInterface, Serializable {
 
     public final static String kind = "Video";
@@ -31,13 +34,13 @@ public class VideoEntity implements EntityInterface, Serializable {
     private Key key;
     private String title;
     private String author;
-    private String vineURL;
+    private transient String vineURL;
     private String videoURL;
     private String imageURL;
-    private Date publishedDate;
-    private boolean published;
-    private long likes;
-    private long likeOrder;
+    private transient Date publishedDate;
+    private transient boolean published;
+    private transient long likes;
+    private transient long likeOrder;
 
     public VideoEntity(Entity entity) {
         key = entity.getKey();

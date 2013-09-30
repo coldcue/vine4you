@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.vine4you.enums.CacheType.VIDEO;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Andrew
@@ -45,8 +47,8 @@ public class CacheService {
     public static void clearCache() {
         try {
             cache.clear();
-        } catch (Exception ignored) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -58,9 +60,15 @@ public class CacheService {
      */
     public static void addVideoEntity(CacheType type, VideoEntity video) {
         try {
-            cache.put(type.toString(), video);
-        } catch (Exception ignored) {
+            String key = generateKey(type);
 
+            //Remove if exists
+            if (cache.containsKey(key))
+                cache.remove(key);
+
+            cache.put(key, video);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -70,10 +78,15 @@ public class CacheService {
      * @param type the CacheType
      */
     public static VideoEntity getVideoEntity(CacheType type) {
+        String key = generateKey(type);
         try {
-            return (VideoEntity) cache.get(type.toString());
+            //Check if exists
+            if (cache.containsKey(key)) {
+                return (VideoEntity) cache.get(key);
+            }
+            return null;
         } catch (Exception ignored) {
-            cache.remove(type.toString());
+            cache.remove(key);
             return null;
         }
     }
@@ -87,7 +100,7 @@ public class CacheService {
      */
     public static void addFeaturedList(CacheType type, VideoEntity videoEntity, List<VideoEntity> videoEntities) {
         //The key in the cache
-        String key = type.toString() + "_" + videoEntity.getKey().getId();
+        String key = generateKey(type, videoEntity);
 
         try {
             List<Long> videoEntityIDList = new ArrayList<>(videoEntities.size());
@@ -104,12 +117,19 @@ public class CacheService {
             }
             cache.put(key, videoEntityIDList);
 
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Returns true if the cache contains it and false if not
+     *
+     * @param id the id of the video
+     * @return true, false
+     */
     private static boolean isVideoEntityCached(long id) {
-        return cache.containsKey(VideoEntity.getKind() + "_" + id);
+        return cache.containsKey(generateKey(VIDEO, id));
     }
 
     /**
@@ -120,13 +140,16 @@ public class CacheService {
      */
     public static List<VideoEntity> getFeaturedList(CacheType type, VideoEntity videoEntity) {
         //The key in the cache
-        String key = type.toString() + "_" + videoEntity.getKey().getId();
+        String key = generateKey(type, videoEntity);
 
         try {
+            //if its not cached
+            if (!cache.containsKey(key))
+                return null;
+
             //noinspection unchecked
             List<Long> videoEntityIDList = (List<Long>) cache.get(key);
-            //if its not cached
-            if (videoEntityIDList == null) return null;
+
             List<VideoEntity> videoEntities = new ArrayList<>(videoEntityIDList.size());
 
             for (Long id : videoEntityIDList) {
@@ -150,9 +173,16 @@ public class CacheService {
      */
     public static void addVideoEntity(VideoEntity entity) {
         try {
-            cache.put(VideoEntity.getKind() + "_" + entity.getKey().getId(), entity);
-        } catch (Exception ignored) {
+            String key = generateKey(VIDEO, entity);
 
+            //check if exists
+            if (cache.containsKey(key)) {
+                cache.remove(key);
+            }
+            cache.put(key, entity);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -163,13 +193,48 @@ public class CacheService {
      * @return the videoEntity
      */
     public static VideoEntity getVideoEntity(long id) {
-        String key = VideoEntity.getKind() + "_" + id;
+        String key = generateKey(VIDEO, id);
         try {
-            return (VideoEntity) cache.get(key);
+            if (cache.containsKey(key)) {
+                return (VideoEntity) cache.get(key);
+            }
+            return null;
         } catch (Exception ignored) {
             cache.remove(key);
             return null;
         }
+    }
+
+    /**
+     * Generate cache key to save storage
+     *
+     * @param cacheType cache type
+     * @param id        the ID of the video or list
+     * @return the key
+     */
+    private static String generateKey(CacheType cacheType, long id) {
+        return cacheType.ordinal() + "_" + Long.toHexString(id);
+    }
+
+    /**
+     * Generate cache key to save storage
+     *
+     * @param cacheType cache type
+     * @return the key
+     */
+    private static String generateKey(CacheType cacheType) {
+        return Integer.toString(cacheType.ordinal());
+    }
+
+    /**
+     * Generate cache key to save storage
+     *
+     * @param cacheType   cache type
+     * @param videoEntity the videoentity
+     * @return the key
+     */
+    private static String generateKey(CacheType cacheType, VideoEntity videoEntity) {
+        return generateKey(cacheType, videoEntity.getKey().getId());
     }
 
 }
