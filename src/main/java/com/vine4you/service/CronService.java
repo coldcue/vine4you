@@ -120,6 +120,9 @@ public class CronService {
                     log.severe("Can't remove property: " + e.getMessage());
                 }
             }
+
+            //Clear cache
+            CacheService.clearCache();
         } catch (Exception e) {
             e.printStackTrace();
         }
