@@ -125,14 +125,14 @@
                 <a href="${pageContext.request.contextPath}/" id="logoText">Vine<span>4</span>You</a>
             </div>
         </div>
-        <div class="grid_5">
+        <div class="grid_6">
             <div id="sloganTextContainer">
                 <h1 id="sloganText">The best vines every <span
                         class="four">4</span> hours</h1>
             </div>
 
         </div>
-        <div class="grid_3">
+        <div class="grid_2">
             <div id="mostLikedContainer"><a href="/?sortby=likes">
                 <div id="mostLikedButton"
                      <c:if test="${sortby eq 'likes'}">class="active"</c:if> >TOP 100
