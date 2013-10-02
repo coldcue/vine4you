@@ -12,6 +12,8 @@ package com.vine4you.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,12 +23,19 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class DosProtectionService {
+    private static Logger logger = Logger.getLogger(DosProtectionService.class.getSimpleName());
+
     public static boolean isAttacker(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         //Search for Siege
-        if (request.getHeader("User-Agent").matches(".*Siege.*")) {
-            response.sendError(403);
-            return true;
+        Enumeration headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String header = (String) headerNames.nextElement();
+            if (request.getHeader(header).matches(".*Siege.*")) {
+                logger.severe("DDOS ATTACK CATCHED");
+                response.sendError(403);
+                return true;
+            }
         }
 
         return false;
