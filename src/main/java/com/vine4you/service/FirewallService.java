@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 public class FirewallService {
     private final String REQUESTS_NAMESPACE = "requests";
     private final String BLACKLIST_NAMESPACE = "blacklist";
-    private final Long MAX_REQUESTS = (long) 60; // 1/sec for 1 minute
+    private final Long MAX_REQUESTS = (long) 2 * 60; // 0.5/sec for 1 minute
     private final int BLACKLIST_EXPIRATION = 60 * 60; // 1 Hour
     private final Logger logger = Logger.getLogger(FirewallService.class.getSimpleName());
     private AsyncMemcacheService requestsCache;
