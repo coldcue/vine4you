@@ -40,7 +40,7 @@ public class FirewallService {
      */
     private SortedSet<Integer> blacklistFirstLevelCache = Collections.synchronizedSortedSet(new TreeSet<Integer>());
     private long nextFirstLevelCacheReset;
-    private long FIRST_LEVEL_CACHE_RESET_INTERVAL = 60 * 1000;
+    private long FIRST_LEVEL_CACHE_RESET_INTERVAL = 60 * 1000; //60 sec
 
     public FirewallService() {
         nextFirstLevelCacheReset = System.currentTimeMillis();
