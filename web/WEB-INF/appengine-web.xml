@@ -27,6 +27,11 @@
         <include expiration="365d" path="/static/**"/>
     </static-files>
 
+    <!--Static error handlers-->
+    <static-error-handlers>
+        <handler file="/static/errorpages/dos.html" error-code="dos_api_denial"/>
+    </static-error-handlers>
+
     <inbound-services>
         <service>warmup</service>
     </inbound-services>
