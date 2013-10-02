@@ -10,6 +10,7 @@
 package com.vine4you.servlet;
 
 import com.vine4you.cron.CronTasks;
+import com.vine4you.factories.FirewallServiceFactory;
 import com.vine4you.service.CronService;
 
 import javax.servlet.http.HttpServlet;
@@ -37,6 +38,10 @@ public class CronServlet extends HttpServlet {
 
             case REFRESHLIKES:
                 CronService.refreshLikes();
+                break;
+
+            case CLEARREQUESTCACHE:
+                FirewallServiceFactory.getInstance().clearRequestCache();
                 break;
         }
 

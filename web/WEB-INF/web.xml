@@ -5,9 +5,20 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
+
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+
+    <!--FirewallFilter-->
+    <filter>
+        <filter-name>firewallFilter</filter-name>
+        <filter-class>com.vine4you.filter.FirewallFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>firewallFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!--IndexServlet-->
     <servlet>
