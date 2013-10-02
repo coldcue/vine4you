@@ -9,46 +9,5 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <blacklistentries>
-    <blacklist>
-        <subnet>67.160.236.141</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>23.80.226.4</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>91.213.8.84</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>212.63.218.1</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>23.80.226.4</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>91.213.8.84</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>212.63.218.1</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>193.138.216.101</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>77.247.181.165</subnet>
-        <description>ddos 2013/10/2</description>
-    </blacklist>
-    <blacklist>
-        <subnet>176.77.134.88</subnet>
-        <description>me</description>
-    </blacklist>
-
 
 </blacklistentries>

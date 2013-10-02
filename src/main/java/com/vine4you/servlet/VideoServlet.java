@@ -12,6 +12,7 @@ package com.vine4you.servlet;
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.VideoServletSorting;
 import com.vine4you.service.CacheService;
+import com.vine4you.service.DosProtectionService;
 import com.vine4you.service.VideoService;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,9 @@ import java.util.List;
  */
 public class VideoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //DOS Protection
+        if (DosProtectionService.isAttacker(request, response)) return;
 
         long id;
         try {
