@@ -13,7 +13,6 @@ import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.CacheType;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
-import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
 
 import java.util.ArrayList;
@@ -29,13 +28,18 @@ import static com.vine4you.enums.CacheType.VIDEO;
  * Time: 10:25 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CacheService {
+public class VideoCacheService {
+    private static final String CACHE_NAME = "videos";
     private static Cache cache;
 
     static {
         try {
-            CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
-            cache = cacheFactory.createCache(Collections.emptyMap());
+            CacheManager cacheManager = CacheManager.getInstance();
+            cache = cacheManager.getCache(CACHE_NAME);
+            if (cache == null) {
+                cache = cacheManager.getCacheFactory().createCache(Collections.emptyMap());
+                cacheManager.registerCache(CACHE_NAME, cache);
+            }
         } catch (CacheException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }

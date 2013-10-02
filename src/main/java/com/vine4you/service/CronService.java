@@ -54,7 +54,7 @@ public class CronService {
             }
 
             //Clear cache
-            CacheService.clearCache();
+            VideoCacheService.clearCache();
 
             log.info("A new video is published! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
         }
@@ -122,7 +122,7 @@ public class CronService {
             }
 
             //Clear cache
-            CacheService.clearCache();
+            VideoCacheService.clearCache();
         } catch (Exception e) {
             e.printStackTrace();
         }
