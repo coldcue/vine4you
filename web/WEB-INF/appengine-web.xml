@@ -22,15 +22,9 @@
 
     <!-- Static files -->
     <static-files>
-        <include expiration="365d" path="/*.ico"/>
+        <include expiration="365d" path="/favicon.ico"/>
         <include expiration="365d" path="/robots.txt"/>
-        <include expiration="365d" path="/static/**"/>
     </static-files>
-
-    <!--Static error handlers-->
-    <static-error-handlers>
-        <handler file="/static/errorpages/dos.html" error-code="dos_api_denial"/>
-    </static-error-handlers>
 
     <inbound-services>
         <service>warmup</service>

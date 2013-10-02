@@ -44,7 +44,7 @@ public class FirewallFilter implements Filter {
 
             firewallService.processRequest(servletRequest.getRemoteAddr());
         } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         filterChain.doFilter(servletRequest, servletResponse);

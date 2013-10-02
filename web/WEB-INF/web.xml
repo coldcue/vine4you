@@ -20,6 +20,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--StaticServlet-->
+    <servlet>
+        <servlet-name>staticServlet</servlet-name>
+        <servlet-class>com.vine4you.servlet.StaticServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>staticServlet</servlet-name>
+        <url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
+
     <!--IndexServlet-->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
@@ -81,6 +91,7 @@
         <servlet-name>CronServlet</servlet-name>
         <url-pattern>/cron/*</url-pattern>
     </servlet-mapping>
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>cron</web-resource-name>

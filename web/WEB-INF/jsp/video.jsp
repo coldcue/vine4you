@@ -37,7 +37,7 @@
     </c:if>
 
     <%--Styles--%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/design.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/design-1-0-6-001.min.css"/>
 
     <meta name="msvalidate.01" content="C585C5610CF6C5DE6ECCA7E20B528C21"/>
 
@@ -349,7 +349,7 @@
 </script>
 
 <%--Javascript--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/script_1-0-5-001.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/script-1-0-6-001.min.js"></script>
 
 </body>
 </html>
