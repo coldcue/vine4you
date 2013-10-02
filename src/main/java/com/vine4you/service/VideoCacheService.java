@@ -9,15 +9,14 @@
 
 package com.vine4you.service;
 
+import com.google.appengine.api.memcache.AsyncMemcacheService;
+import com.google.appengine.api.memcache.MemcacheServiceFactory;
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.CacheType;
-import net.sf.jsr107cache.Cache;
-import net.sf.jsr107cache.CacheException;
-import net.sf.jsr107cache.CacheManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static com.vine4you.enums.CacheType.VIDEO;
 
@@ -29,20 +28,11 @@ import static com.vine4you.enums.CacheType.VIDEO;
  * To change this template use File | Settings | File Templates.
  */
 public class VideoCacheService {
-    private static final String CACHE_NAME = "videos";
-    private static Cache cache;
+    private static final String CACHE_NAMESPACE = "videos";
+    private static AsyncMemcacheService cache;
 
     static {
-        try {
-            CacheManager cacheManager = CacheManager.getInstance();
-            cache = cacheManager.getCache(CACHE_NAME);
-            if (cache == null) {
-                cache = cacheManager.getCacheFactory().createCache(Collections.emptyMap());
-                cacheManager.registerCache(CACHE_NAME, cache);
-            }
-        } catch (CacheException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        cache = MemcacheServiceFactory.getAsyncMemcacheService(CACHE_NAMESPACE);
     }
 
     /**
@@ -50,7 +40,7 @@ public class VideoCacheService {
      */
     public static void clearCache() {
         try {
-            cache.clear();
+            cache.clearAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,8 +57,8 @@ public class VideoCacheService {
             String key = generateKey(type);
 
             //Remove if exists
-            if (cache.containsKey(key))
-                cache.remove(key);
+            if (cache.contains(key).get())
+                cache.delete(key).get();
 
             cache.put(key, video);
         } catch (Exception e) {
@@ -84,13 +74,9 @@ public class VideoCacheService {
     public static VideoEntity getVideoEntity(CacheType type) {
         String key = generateKey(type);
         try {
-            //Check if exists
-            if (cache.containsKey(key)) {
-                return (VideoEntity) cache.get(key);
-            }
-            return null;
+            return (VideoEntity) cache.get(key).get();
         } catch (Exception ignored) {
-            cache.remove(key);
+            cache.delete(key);
             return null;
         }
     }
@@ -132,8 +118,8 @@ public class VideoCacheService {
      * @param id the id of the video
      * @return true, false
      */
-    private static boolean isVideoEntityCached(long id) {
-        return cache.containsKey(generateKey(VIDEO, id));
+    private static boolean isVideoEntityCached(long id) throws ExecutionException, InterruptedException {
+        return cache.contains(generateKey(VIDEO, id)).get();
     }
 
     /**
@@ -148,11 +134,11 @@ public class VideoCacheService {
 
         try {
             //if its not cached
-            if (!cache.containsKey(key))
+            if (!cache.contains(key).get())
                 return null;
 
             //noinspection unchecked
-            List<Long> videoEntityIDList = (List<Long>) cache.get(key);
+            List<Long> videoEntityIDList = (List<Long>) cache.get(key).get();
 
             List<VideoEntity> videoEntities = new ArrayList<>(videoEntityIDList.size());
 
@@ -165,7 +151,7 @@ public class VideoCacheService {
 
             return videoEntities;
         } catch (Exception ignored) {
-            cache.remove(key);
+            cache.delete(key);
             return null;
         }
     }
@@ -179,10 +165,8 @@ public class VideoCacheService {
         try {
             String key = generateKey(VIDEO, entity);
 
-            //check if exists
-            if (cache.containsKey(key)) {
-                cache.remove(key);
-            }
+            //delete first
+            cache.delete(key).get();
             cache.put(key, entity);
 
         } catch (Exception e) {
@@ -199,12 +183,9 @@ public class VideoCacheService {
     public static VideoEntity getVideoEntity(long id) {
         String key = generateKey(VIDEO, id);
         try {
-            if (cache.containsKey(key)) {
-                return (VideoEntity) cache.get(key);
-            }
-            return null;
+            return (VideoEntity) cache.get(key).get();
         } catch (Exception ignored) {
-            cache.remove(key);
+            cache.delete(key);
             return null;
         }
     }
