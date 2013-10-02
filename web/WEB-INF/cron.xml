@@ -19,4 +19,11 @@
         <description>Refreshes likes every hour</description>
         <schedule>every 6 hours synchronized</schedule>
     </cron>
+    <cron>
+        <url>/cron/CLEARREQUESTCACHE</url>
+        <description>Clears request cache</description>
+        <schedule>every 1 minutes synchronized</schedule>
+    </cron>
+
+
 </cronentries>
