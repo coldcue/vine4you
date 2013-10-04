@@ -11,6 +11,7 @@ package com.vine4you.service;
 
 import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
+import com.vine4you.factories.VideoCacheServiceFactory;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -27,6 +28,7 @@ import java.util.logging.Logger;
 public class CronService {
     private static final Logger log = Logger.getLogger(CronService.class.getName());
     private static DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
+    private static VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
 
     public static void publishVideo() {
         Query query = new Query(VideoEntity.kind);
@@ -54,7 +56,7 @@ public class CronService {
             }
 
             //Clear cache
-            VideoCacheService.clearCache();
+            videoCacheService.clearCache();
 
             log.info("A new video is published! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
         }
@@ -122,7 +124,7 @@ public class CronService {
             }
 
             //Clear cache
-            VideoCacheService.clearCache();
+            videoCacheService.clearCache();
         } catch (Exception e) {
             e.printStackTrace();
         }

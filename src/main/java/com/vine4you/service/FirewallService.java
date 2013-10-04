@@ -28,19 +28,19 @@ import java.util.logging.Logger;
  */
 @SuppressWarnings("FieldCanBeLocal")
 public class FirewallService {
-    private final String REQUESTS_NAMESPACE = "requests";
-    private final String BLACKLIST_NAMESPACE = "blacklist";
-    private final Long MAX_REQUESTS = (long) 2 * 60; // 0.5/sec for 1 minute
-    private final int BLACKLIST_EXPIRATION = 60 * 60; // 1 Hour
+    protected final String REQUESTS_NAMESPACE = "requests";
+    protected final String BLACKLIST_NAMESPACE = "blacklist";
+    protected final int BLACKLIST_EXPIRATION = 60 * 60; // 1 Hour
     private final Logger logger = Logger.getLogger(FirewallService.class.getSimpleName());
+    protected Long MAX_REQUESTS = (long) 2 * 60; // 0.5/sec for 1 minute
+    protected long FIRST_LEVEL_CACHE_RESET_INTERVAL = 60 * 1000; //60 sec
     private AsyncMemcacheService requestsCache;
     private AsyncMemcacheService blacklistSecondLevelCache;
     /**
      * The first level local memory cache for faster processing
      */
-    private SortedSet<Integer> blacklistFirstLevelCache = Collections.synchronizedSortedSet(new TreeSet<Integer>());
+    protected SortedSet<Integer> blacklistFirstLevelCache = Collections.synchronizedSortedSet(new TreeSet<Integer>());
     private long nextFirstLevelCacheReset;
-    private long FIRST_LEVEL_CACHE_RESET_INTERVAL = 60 * 1000; //60 sec
 
     public FirewallService() {
         nextFirstLevelCacheReset = System.currentTimeMillis();
@@ -54,7 +54,7 @@ public class FirewallService {
      * @param ip the remote ip address
      */
     public void processRequest(String ip) throws ExecutionException, InterruptedException {
-        if (requestsCache.increment(ip, 1, (long) 0).get() >= MAX_REQUESTS) {
+        if (requestsCache.increment(ip, 1, (long) 0).get() > MAX_REQUESTS) {
             logger.warning("New IP banned: " + ip);
             blacklistSecondLevelCache.put(ip, null, Expiration.byDeltaSeconds(BLACKLIST_EXPIRATION));
         }

@@ -12,6 +12,7 @@ package com.vine4you.service;
 import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.CacheType;
+import com.vine4you.factories.VideoCacheServiceFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +29,8 @@ public class VideoService {
 
     public static final int FeaturedListSize = 12;
     public static final int MostLikedListSize = 100;
-    private static final Logger log = Logger.getLogger(VideoService.class.getName());
+    private final Logger log = Logger.getLogger(VideoService.class.getName());
+    private VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
 
     /**
      * Gets a single videoElement entity from the database
@@ -37,7 +39,7 @@ public class VideoService {
      * @return the videoElement
      * @throws EntityNotFoundException
      */
-    public static VideoEntity getVideoEntity(long id) throws EntityNotFoundException {
+    public VideoEntity getVideoEntity(long id) throws EntityNotFoundException {
         Entity video = DatastoreServiceFactory.getDatastoreService().get(KeyFactory.createKey(VideoEntity.kind, id));
         return new VideoEntity(video);
     }
@@ -49,7 +51,7 @@ public class VideoService {
      * @return the videoElement
      * @throws EntityNotFoundException
      */
-    public static VideoEntity getVideoEntityCached(long id) throws EntityNotFoundException {
+    public VideoEntity getVideoEntityCached(long id) throws EntityNotFoundException {
         //Check cache
         VideoEntity videoEntity = VideoCacheService.getVideoEntity(id);
         if (videoEntity != null) return videoEntity;
@@ -60,7 +62,7 @@ public class VideoService {
         return videoEntity;
     }
 
-    public static Collection<VideoEntity> getAllPublishedVideoEntityForSitemap() {
+    public Collection<VideoEntity> getAllPublishedVideoEntityForSitemap() {
         Query query = new Query(VideoEntity.kind);
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.DESCENDING);
@@ -86,7 +88,7 @@ public class VideoService {
      * @return the key
      * @throws Exception
      */
-    public static Key addVideoEntity(VideoEntity videoEntity, boolean asNew) throws Exception {
+    public Key addVideoEntity(VideoEntity videoEntity, boolean asNew) throws Exception {
 
         //Vine URL check
         Query query = new Query(VideoEntity.kind);
@@ -141,7 +143,7 @@ public class VideoService {
      *
      * @return the videoElement
      */
-    public static VideoEntity getFirstVideo() {
+    public VideoEntity getFirstVideo() {
 
         //Check cache
         VideoEntity videoEntity = VideoCacheService.getVideoEntity(CacheType.FIRST_VIDEO);
@@ -163,7 +165,7 @@ public class VideoService {
      *
      * @return the videoElement
      */
-    public static VideoEntity getFirstMostLikedVideo() {
+    public VideoEntity getFirstMostLikedVideo() {
 
         //Check cache
         VideoEntity videoEntity = VideoCacheService.getVideoEntity(CacheType.FIRST_MOSTLIKED_VIDEO);
@@ -185,7 +187,7 @@ public class VideoService {
      * @param from the videoElement
      * @return the list
      */
-    public static List<VideoEntity> getFeaturedVideos(VideoEntity from) {
+    public List<VideoEntity> getFeaturedVideos(VideoEntity from) {
         //Check cache
         List<VideoEntity> videoEntities = VideoCacheService.getFeaturedList(CacheType.FEATURED_LIST, from);
         if (videoEntities != null) return videoEntities;
@@ -211,7 +213,7 @@ public class VideoService {
      * @param from the videoElement
      * @return the list
      */
-    public static List<VideoEntity> getMostLikedVideos(VideoEntity from) {
+    public List<VideoEntity> getMostLikedVideos(VideoEntity from) {
         //Check cache
         List<VideoEntity> videoEntities = VideoCacheService.getFeaturedList(CacheType.MOSTLIKED_FEATURED_LIST, from);
         if (videoEntities != null) return videoEntities;
@@ -232,7 +234,7 @@ public class VideoService {
     /**
      * Prepares the VideoEntities from a query
      */
-    private static List<VideoEntity> getFeaturedVideoEntitiesFromQuery(VideoEntity from, Query query) {
+    private List<VideoEntity> getFeaturedVideoEntitiesFromQuery(VideoEntity from, Query query) {
 
         //TODO Add projections
         /*query.addProjection(new PropertyProjection(VideoEntity.TITLE, null));
@@ -252,7 +254,7 @@ public class VideoService {
         return videoEntities;
     }
 
-    public static VideoEntity getPreviousVideo(VideoEntity from) {
+    public VideoEntity getPreviousVideo(VideoEntity from) {
         Query query = new Query(VideoEntity.kind);
 
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
@@ -264,7 +266,7 @@ public class VideoService {
         return getVideoEntityFromQuery(query);
     }
 
-    public static VideoEntity getPreviousMostLikedVideo(VideoEntity from) {
+    public VideoEntity getPreviousMostLikedVideo(VideoEntity from) {
         Query query = new Query(VideoEntity.kind);
 
         query.addSort(VideoEntity.LIKEORDER, Query.SortDirection.DESCENDING);
@@ -274,7 +276,7 @@ public class VideoService {
         return getVideoEntityFromQuery(query);
     }
 
-    private static VideoEntity getVideoEntityFromQuery(Query query) {
+    private VideoEntity getVideoEntityFromQuery(Query query) {
         //TODO projection
         /*query.addProjection(new PropertyProjection(VideoEntity.AUTHOR, String.class));
         query.addProjection(new PropertyProjection(VideoEntity.TITLE, String.class));

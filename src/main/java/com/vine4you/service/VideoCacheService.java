@@ -28,17 +28,13 @@ import static com.vine4you.enums.CacheType.VIDEO;
  * To change this template use File | Settings | File Templates.
  */
 public class VideoCacheService {
-    private static final String CACHE_NAMESPACE = "videos";
-    private static AsyncMemcacheService cache;
-
-    static {
-        cache = MemcacheServiceFactory.getAsyncMemcacheService(CACHE_NAMESPACE);
-    }
+    protected static final String CACHE_NAMESPACE = "videos";
+    private AsyncMemcacheService cache = MemcacheServiceFactory.getAsyncMemcacheService(CACHE_NAMESPACE);
 
     /**
      * Clear cache
      */
-    public static void clearCache() {
+    public void clearCache() {
         try {
             cache.clearAll();
         } catch (Exception e) {
@@ -52,7 +48,7 @@ public class VideoCacheService {
      * @param type  the CacheType
      * @param video the VideoEntity
      */
-    public static void addVideoEntity(CacheType type, VideoEntity video) {
+    public void addVideoEntity(CacheType type, VideoEntity video) {
         try {
             String key = generateKey(type);
 
@@ -71,7 +67,7 @@ public class VideoCacheService {
      *
      * @param type the CacheType
      */
-    public static VideoEntity getVideoEntity(CacheType type) {
+    public VideoEntity getVideoEntity(CacheType type) {
         String key = generateKey(type);
         try {
             return (VideoEntity) cache.get(key).get();
@@ -88,7 +84,7 @@ public class VideoCacheService {
      * @param videoEntity   the video
      * @param videoEntities the list
      */
-    public static void addFeaturedList(CacheType type, VideoEntity videoEntity, List<VideoEntity> videoEntities) {
+    public void addFeaturedList(CacheType type, VideoEntity videoEntity, List<VideoEntity> videoEntities) {
         //The key in the cache
         String key = generateKey(type, videoEntity);
 
@@ -118,7 +114,7 @@ public class VideoCacheService {
      * @param id the id of the video
      * @return true, false
      */
-    private static boolean isVideoEntityCached(long id) throws ExecutionException, InterruptedException {
+    private boolean isVideoEntityCached(long id) throws ExecutionException, InterruptedException {
         return cache.contains(generateKey(VIDEO, id)).get();
     }
 
@@ -128,7 +124,7 @@ public class VideoCacheService {
      * @param type        type
      * @param videoEntity the video
      */
-    public static List<VideoEntity> getFeaturedList(CacheType type, VideoEntity videoEntity) {
+    public List<VideoEntity> getFeaturedList(CacheType type, VideoEntity videoEntity) {
         //The key in the cache
         String key = generateKey(type, videoEntity);
 
@@ -161,7 +157,7 @@ public class VideoCacheService {
      *
      * @param entity the VideoEntity
      */
-    public static void addVideoEntity(VideoEntity entity) {
+    public void addVideoEntity(VideoEntity entity) {
         try {
             String key = generateKey(VIDEO, entity);
 
@@ -180,7 +176,7 @@ public class VideoCacheService {
      * @param id the id of the VideoEntity
      * @return the videoEntity
      */
-    public static VideoEntity getVideoEntity(long id) {
+    public VideoEntity getVideoEntity(long id) {
         String key = generateKey(VIDEO, id);
         try {
             return (VideoEntity) cache.get(key).get();
@@ -197,7 +193,7 @@ public class VideoCacheService {
      * @param id        the ID of the video or list
      * @return the key
      */
-    private static String generateKey(CacheType cacheType, long id) {
+    private String generateKey(CacheType cacheType, long id) {
         return cacheType.ordinal() + "_" + Long.toHexString(id);
     }
 
@@ -207,7 +203,7 @@ public class VideoCacheService {
      * @param cacheType cache type
      * @return the key
      */
-    private static String generateKey(CacheType cacheType) {
+    private String generateKey(CacheType cacheType) {
         return Integer.toString(cacheType.ordinal());
     }
 
@@ -218,7 +214,7 @@ public class VideoCacheService {
      * @param videoEntity the videoentity
      * @return the key
      */
-    private static String generateKey(CacheType cacheType, VideoEntity videoEntity) {
+    private String generateKey(CacheType cacheType, VideoEntity videoEntity) {
         return generateKey(cacheType, videoEntity.getKey().getId());
     }
 
