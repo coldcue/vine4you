@@ -10,6 +10,17 @@
         <welcome-file>home</welcome-file>
     </welcome-file-list>
 
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>static</web-resource-name>
+            <url-pattern>/static/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
     <!--FirewallFilter-->
     <filter>
         <filter-name>firewallFilter</filter-name>
@@ -27,7 +38,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>staticServlet</servlet-name>
-        <url-pattern>/static/*</url-pattern>
+        <url-pattern>/s/*</url-pattern>
     </servlet-mapping>
 
     <!--IndexServlet-->
@@ -71,6 +82,7 @@
         <servlet-name>ImportServlet</servlet-name>
         <url-pattern>/import/*</url-pattern>
     </servlet-mapping>
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>import</web-resource-name>

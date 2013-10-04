@@ -24,6 +24,7 @@
     <static-files>
         <include expiration="365d" path="/favicon.ico"/>
         <include expiration="365d" path="/robots.txt"/>
+        <exclude path="/static/*"/>
     </static-files>
 
     <inbound-services>
