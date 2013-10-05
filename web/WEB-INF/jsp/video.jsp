@@ -22,10 +22,10 @@
 <head>
     <c:choose>
         <c:when test="${showVideoTitleInTitle}">
-            <title>${video.title} by ${video.author} - Vine4You</title>
+            <title>${video.title} by ${video.author} - Vine 4 You</title>
         </c:when>
         <c:otherwise>
-            <title>Vine4You - Best Vines</title>
+            <title>Vine 4 You - Best and Funniest Vine videos</title>
         </c:otherwise>
     </c:choose>
     <meta name="description"
@@ -53,17 +53,17 @@
     <meta property="fb:app_id" content="593953400627542"/>
     <meta property="og:type" content="video"/>
     <meta property="og:url" content="http://www.vine4you.com/v/${video.key.id}"/>
-    <meta property="og:title" content="${video.title}"/>
+    <meta property="og:title" content="${video.title} - Vine4You.com"/>
     <meta property="og:description"
-          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
-    <meta property="og:site_name" content="Vine4You.com"/>
+          content="Best and Funniest Vine videos at www.Vine4You.com"/>
+    <meta property="og:site_name" content="Vine 4 You"/>
     <meta property="og:image"
           content="${video.imageURL}"/>
 
     <%--Microdata--%>
     <meta name="title" content="${video.title} by ${video.author}"/>
     <meta name="description"
-          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
+          content="Best and Funniest Vine videos at www.Vine4You.com"/>
     <link rel="image_src" href="${video.imageURL}"/>
 
     <%--Google Webmaster verification--%>
