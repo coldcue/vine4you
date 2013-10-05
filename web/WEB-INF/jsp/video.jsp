@@ -29,7 +29,7 @@
         </c:otherwise>
     </c:choose>
     <meta name="description"
-          content="Vine4You.com is a collection of the best Vine videos you can find on the internet.">
+          content="Best and Funniest Vine videos">
     <meta name="keywords"
           content="7 second videos,austin miles geter,awesome,best fails,best fails this month,best june,best of vine,best of vines,best vine,best vine clips,best vine ever,best vine june,best vine videos,best vines,best vines compilation,best vines this week today this month all time most viewed sex porn boobs tits ass sexy vines porn vines,best weekly,brendon urie,brittany furlan,clever,collection,creative,daily,david avila,day,drunk,dustin poynter,elton castee,epic,epic fail,eric dunn,every,faceplant,failing,fails of the week,frank thatguy preston,fun,funniest vine,funniest vines,funny,funny videos,funny vine,funny vine videos,funny vines,funny vines compilation,gareon conley,girls vines,girls vines compilation,greg baskwell,haha,hilarious,humor,idiot,interesting,jerome jarre,joey bitch,jokes,jordan burt,josh briggs,june,kc james,landon moss,latest,latest vines,laugh,laughing,living lavish,lol,marcus johns,matthew espinosa,michael lopriore,miikeyv,month,monthly,monthly fail compilation,monthly fails,new vines,newest fails,pranks,sexy vine,sexy vine compilation,sexy vine videos,stupid,the best vines of 2013,today,top vine ideas,twerking vine,twerking vine compilation,video,vids,vincent marcus,vine,vine compilation,vine compilation august 2013,vine june,vine twerk,vine video,vine videos,vine4you,vines,vines compilation,wipeout">
     <c:if test="${showVideoTitleInTitle}">
@@ -184,7 +184,7 @@
                 <div id="videoInnerContainer">
                     <%--Required properties--%>
                     <meta itemprop="description"
-                          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
+                          content="Best and Funniest Vine videos at www.Vine4You.com"/>
                     <meta itemprop="thumbnailUrl" content="${video.imageURL}"/>
 
                     <%--Recommended properties--%>
