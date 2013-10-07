@@ -22,14 +22,14 @@
 <head>
     <c:choose>
         <c:when test="${showVideoTitleInTitle}">
-            <title>${video.title} by ${video.author} - Vine4You</title>
+            <title>${video.title} by ${video.author} - Vine 4 You</title>
         </c:when>
         <c:otherwise>
-            <title>Vine4You - Best Vines</title>
+            <title>Vine 4 You - Best and Funniest Vine videos</title>
         </c:otherwise>
     </c:choose>
     <meta name="description"
-          content="Vine4You.com is a collection of the best Vine videos you can find on the internet.">
+          content="Best and Funniest Vine videos">
     <meta name="keywords"
           content="7 second videos,austin miles geter,awesome,best fails,best fails this month,best june,best of vine,best of vines,best vine,best vine clips,best vine ever,best vine june,best vine videos,best vines,best vines compilation,best vines this week today this month all time most viewed sex porn boobs tits ass sexy vines porn vines,best weekly,brendon urie,brittany furlan,clever,collection,creative,daily,david avila,day,drunk,dustin poynter,elton castee,epic,epic fail,eric dunn,every,faceplant,failing,fails of the week,frank thatguy preston,fun,funniest vine,funniest vines,funny,funny videos,funny vine,funny vine videos,funny vines,funny vines compilation,gareon conley,girls vines,girls vines compilation,greg baskwell,haha,hilarious,humor,idiot,interesting,jerome jarre,joey bitch,jokes,jordan burt,josh briggs,june,kc james,landon moss,latest,latest vines,laugh,laughing,living lavish,lol,marcus johns,matthew espinosa,michael lopriore,miikeyv,month,monthly,monthly fail compilation,monthly fails,new vines,newest fails,pranks,sexy vine,sexy vine compilation,sexy vine videos,stupid,the best vines of 2013,today,top vine ideas,twerking vine,twerking vine compilation,video,vids,vincent marcus,vine,vine compilation,vine compilation august 2013,vine june,vine twerk,vine video,vine videos,vine4you,vines,vines compilation,wipeout">
     <c:if test="${showVideoTitleInTitle}">
@@ -53,17 +53,17 @@
     <meta property="fb:app_id" content="593953400627542"/>
     <meta property="og:type" content="video"/>
     <meta property="og:url" content="http://www.vine4you.com/v/${video.key.id}"/>
-    <meta property="og:title" content="${video.title}"/>
+    <meta property="og:title" content="${video.title} - Vine4You.com"/>
     <meta property="og:description"
-          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
-    <meta property="og:site_name" content="Vine4You.com"/>
+          content="Best and Funniest Vine videos at www.Vine4You.com"/>
+    <meta property="og:site_name" content="Vine 4 You"/>
     <meta property="og:image"
           content="${video.imageURL}"/>
 
     <%--Microdata--%>
     <meta name="title" content="${video.title} by ${video.author}"/>
     <meta name="description"
-          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
+          content="Best and Funniest Vine videos at www.Vine4You.com"/>
     <link rel="image_src" href="${video.imageURL}"/>
 
     <%--Google Webmaster verification--%>
@@ -184,7 +184,7 @@
                 <div id="videoInnerContainer">
                     <%--Required properties--%>
                     <meta itemprop="description"
-                          content="Vine4You.com is a collection of the best Vine videos you can find on the internet."/>
+                          content="Best and Funniest Vine videos at www.Vine4You.com"/>
                     <meta itemprop="thumbnailUrl" content="${video.imageURL}"/>
 
                     <%--Recommended properties--%>
