@@ -27,6 +27,7 @@ import java.util.logging.Logger;
  * To change this template use File | Settings | File Templates.
  */
 public class CronService {
+    protected static boolean isUnitTesting = false;
     private final Logger log = Logger.getLogger(CronService.class.getName());
     private DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
     private VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
@@ -52,7 +53,9 @@ public class CronService {
 
             /*Publish on facebook*/
             try {
-                facebookService.publishVideo(key.getId());
+                //If Unit testing, then don't post it to facebook
+                if (!isUnitTesting)
+                    facebookService.publishVideo(key.getId());
             } catch (IOException e) {
                 e.printStackTrace();
             }

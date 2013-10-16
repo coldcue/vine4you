@@ -10,6 +10,7 @@
 package com.vine4you.servlet;
 
 import com.vine4you.cron.CronTasks;
+import com.vine4you.factories.CronServiceFactory;
 import com.vine4you.factories.FirewallServiceFactory;
 import com.vine4you.service.CronService;
 
@@ -25,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
  * To change this template use File | Settings | File Templates.
  */
 public class CronServlet extends HttpServlet {
+    private CronService cronService = CronServiceFactory.getCronService();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
         String[] split = request.getPathInfo().split("/", 2);
@@ -33,11 +36,11 @@ public class CronServlet extends HttpServlet {
         switch (task) {
 
             case PUBLISHVIDEO:
-                CronService.publishVideo();
+                cronService.publishVideo();
                 break;
 
             case REFRESHLIKES:
-                CronService.refreshLikes();
+                cronService.refreshLikes();
                 break;
 
             case CLEARREQUESTCACHE:

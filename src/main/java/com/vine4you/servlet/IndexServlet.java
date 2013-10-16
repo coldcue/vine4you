@@ -11,6 +11,7 @@ package com.vine4you.servlet;
 
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.VideoServletSorting;
+import com.vine4you.factories.VideoServiceFactory;
 import com.vine4you.service.VideoService;
 
 import javax.servlet.ServletException;
@@ -26,6 +27,8 @@ import java.util.List;
  * Time: 3:01 PM
  */
 public class IndexServlet extends HttpServlet {
+
+    private VideoService videoService = VideoServiceFactory.getVideoService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -51,21 +54,21 @@ public class IndexServlet extends HttpServlet {
     }
 
     private void dateSorted(HttpServletRequest request) {
-        VideoEntity video = VideoService.getFirstVideo();
-        List<VideoEntity> featuredVideos = VideoService.getFeaturedVideos(video);
+        VideoEntity video = videoService.getFirstVideo();
+        List<VideoEntity> featuredVideos = videoService.getFeaturedVideos(video);
         request.setAttribute("showVideoTitleInTitle", false);
         request.setAttribute("video", video);
-        request.setAttribute("prevVideo", VideoService.getPreviousVideo(video));
+        request.setAttribute("prevVideo", videoService.getPreviousVideo(video));
         request.setAttribute("nextVideo", featuredVideos.get(0));
         request.setAttribute("featured", featuredVideos);
     }
 
     private void likeSorted(HttpServletRequest request) {
-        VideoEntity video = VideoService.getFirstMostLikedVideo();
-        List<VideoEntity> featuredVideos = VideoService.getMostLikedVideos(video);
+        VideoEntity video = videoService.getFirstMostLikedVideo();
+        List<VideoEntity> featuredVideos = videoService.getMostLikedVideos(video);
         request.setAttribute("showVideoTitleInTitle", false);
         request.setAttribute("video", video);
-        request.setAttribute("prevVideo", VideoService.getPreviousMostLikedVideo(video));
+        request.setAttribute("prevVideo", videoService.getPreviousMostLikedVideo(video));
         request.setAttribute("nextVideo", featuredVideos.get(0));
         request.setAttribute("featured", featuredVideos);
         request.setAttribute("sortby", "likes");
