@@ -30,7 +30,7 @@ public class VideoService {
     public static final int FeaturedListSize = 12;
     public static final int MostLikedListSize = 100;
     private final Logger log = Logger.getLogger(VideoService.class.getName());
-    private VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
+    private VideoCacheService videoCacheService = VideoCacheServiceFactory.getInstance();
 
     /**
      * Gets a single videoElement entity from the database
@@ -53,12 +53,12 @@ public class VideoService {
      */
     public VideoEntity getVideoEntityCached(long id) throws EntityNotFoundException {
         //Check cache
-        VideoEntity videoEntity = VideoCacheService.getVideoEntity(id);
+        VideoEntity videoEntity = videoCacheService.getVideoEntity(id);
         if (videoEntity != null) return videoEntity;
 
         //Add to cache
         videoEntity = getVideoEntity(id);
-        VideoCacheService.addVideoEntity(videoEntity);
+        videoCacheService.addVideoEntity(videoEntity);
         return videoEntity;
     }
 
@@ -146,7 +146,7 @@ public class VideoService {
     public VideoEntity getFirstVideo() {
 
         //Check cache
-        VideoEntity videoEntity = VideoCacheService.getVideoEntity(CacheType.FIRST_VIDEO);
+        VideoEntity videoEntity = videoCacheService.getVideoEntity(CacheType.FIRST_VIDEO);
         if (videoEntity != null) return videoEntity;
 
         Query query = new Query(VideoEntity.kind);
@@ -156,7 +156,7 @@ public class VideoService {
 
         //Add to cache
         videoEntity = new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
-        VideoCacheService.addVideoEntity(CacheType.FIRST_VIDEO, videoEntity);
+        videoCacheService.addVideoEntity(CacheType.FIRST_VIDEO, videoEntity);
         return videoEntity;
     }
 
@@ -168,7 +168,7 @@ public class VideoService {
     public VideoEntity getFirstMostLikedVideo() {
 
         //Check cache
-        VideoEntity videoEntity = VideoCacheService.getVideoEntity(CacheType.FIRST_MOSTLIKED_VIDEO);
+        VideoEntity videoEntity = videoCacheService.getVideoEntity(CacheType.FIRST_MOSTLIKED_VIDEO);
         if (videoEntity != null) return videoEntity;
 
         Query query = new Query(VideoEntity.kind);
@@ -177,7 +177,7 @@ public class VideoService {
 
         //Add to cache
         videoEntity = new VideoEntity(DatastoreServiceFactory.getDatastoreService().prepare(query).asList(fetchOptions).get(0));
-        VideoCacheService.addVideoEntity(CacheType.FIRST_MOSTLIKED_VIDEO, videoEntity);
+        videoCacheService.addVideoEntity(CacheType.FIRST_MOSTLIKED_VIDEO, videoEntity);
         return videoEntity;
     }
 
@@ -189,7 +189,7 @@ public class VideoService {
      */
     public List<VideoEntity> getFeaturedVideos(VideoEntity from) {
         //Check cache
-        List<VideoEntity> videoEntities = VideoCacheService.getFeaturedList(CacheType.FEATURED_LIST, from);
+        List<VideoEntity> videoEntities = videoCacheService.getFeaturedList(CacheType.FEATURED_LIST, from);
         if (videoEntities != null) return videoEntities;
 
         Query query = new Query(VideoEntity.kind);
@@ -203,7 +203,7 @@ public class VideoService {
 
         videoEntities = getFeaturedVideoEntitiesFromQuery(from, query);
         //Add to cache
-        VideoCacheService.addFeaturedList(CacheType.FEATURED_LIST, from, videoEntities);
+        videoCacheService.addFeaturedList(CacheType.FEATURED_LIST, from, videoEntities);
         return videoEntities;
     }
 
@@ -215,7 +215,7 @@ public class VideoService {
      */
     public List<VideoEntity> getMostLikedVideos(VideoEntity from) {
         //Check cache
-        List<VideoEntity> videoEntities = VideoCacheService.getFeaturedList(CacheType.MOSTLIKED_FEATURED_LIST, from);
+        List<VideoEntity> videoEntities = videoCacheService.getFeaturedList(CacheType.MOSTLIKED_FEATURED_LIST, from);
         if (videoEntities != null) return videoEntities;
 
         Query query = new Query(VideoEntity.kind);
@@ -227,7 +227,7 @@ public class VideoService {
 
         videoEntities = getFeaturedVideoEntitiesFromQuery(from, query);
         //Add to cache
-        VideoCacheService.addFeaturedList(CacheType.MOSTLIKED_FEATURED_LIST, from, videoEntities);
+        videoCacheService.addFeaturedList(CacheType.MOSTLIKED_FEATURED_LIST, from, videoEntities);
         return videoEntities;
     }
 

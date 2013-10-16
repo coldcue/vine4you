@@ -34,12 +34,12 @@ public class FirewallService {
     private final Logger logger = Logger.getLogger(FirewallService.class.getSimpleName());
     protected Long MAX_REQUESTS = (long) 2 * 60; // 0.5/sec for 1 minute
     protected long FIRST_LEVEL_CACHE_RESET_INTERVAL = 60 * 1000; //60 sec
-    private AsyncMemcacheService requestsCache;
-    private AsyncMemcacheService blacklistSecondLevelCache;
     /**
      * The first level local memory cache for faster processing
      */
     protected SortedSet<Integer> blacklistFirstLevelCache = Collections.synchronizedSortedSet(new TreeSet<Integer>());
+    private AsyncMemcacheService requestsCache;
+    private AsyncMemcacheService blacklistSecondLevelCache;
     private long nextFirstLevelCacheReset;
 
     public FirewallService() {

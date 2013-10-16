@@ -11,6 +11,8 @@ package com.vine4you.servlet;
 
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.VideoServletSorting;
+import com.vine4you.factories.VideoCacheServiceFactory;
+import com.vine4you.factories.VideoServiceFactory;
 import com.vine4you.service.VideoCacheService;
 import com.vine4you.service.VideoService;
 
@@ -29,6 +31,10 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class VideoServlet extends HttpServlet {
+
+    VideoCacheService videoCacheService = VideoCacheServiceFactory.getInstance();
+    VideoService videoService = VideoServiceFactory.getInstance();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         long id;
@@ -43,11 +49,11 @@ public class VideoServlet extends HttpServlet {
         VideoEntity video = null;
         try {
             //Check cache
-            video = VideoCacheService.getVideoEntity(id);
+            video = videoCacheService.getVideoEntity(id);
 
             //If not in cache
             if (video == null)
-                video = VideoService.getVideoEntity(id);
+                video = videoService.getVideoEntity(id);
         } catch (Exception ignored) {
         }
 
@@ -64,23 +70,23 @@ public class VideoServlet extends HttpServlet {
         switch (sorting) {
             case LIKES:
                 if (video == null)
-                    video = VideoService.getFirstMostLikedVideo();
-                featuredVideos = VideoService.getMostLikedVideos(video);
-                previousVideo = VideoService.getPreviousMostLikedVideo(video);
+                    video = videoService.getFirstMostLikedVideo();
+                featuredVideos = videoService.getMostLikedVideos(video);
+                previousVideo = videoService.getPreviousMostLikedVideo(video);
                 request.setAttribute("sortby", "likes");
                 break;
 
             case DEFAULT:
             default:
                 if (video == null)
-                    video = VideoService.getFirstVideo();
-                featuredVideos = VideoService.getFeaturedVideos(video);
-                previousVideo = VideoService.getPreviousVideo(video);
+                    video = videoService.getFirstVideo();
+                featuredVideos = videoService.getFeaturedVideos(video);
+                previousVideo = videoService.getPreviousVideo(video);
                 break;
         }
 
         //Set country code
-        request.setAttribute("country", request.getHeader("X-AppEngine-Country"));
+        //request.setAttribute("country", request.getHeader("X-AppEngine-Country"));
 
         request.setAttribute("showVideoTitleInTitle", true);
         request.setAttribute("video", video);

@@ -9,19 +9,19 @@
 
 package com.vine4you.factories;
 
-import com.vine4you.service.VideoCacheService;
+import com.vine4you.service.VideoService;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Andrew
- * Date: 10/4/13
- * Time: 12:11 PM
+ * Date: 10/16/13
+ * Time: 10:21 PM
  * To change this template use File | Settings | File Templates.
  */
-public class VideoCacheServiceFactory {
-    private static final VideoCacheService videoCacheService = new VideoCacheService();
+public class VideoServiceFactory {
+    private static final VideoService videoService = new VideoService();
 
-    public static VideoCacheService getInstance() {
-        return videoCacheService;
+    public static VideoService getInstance() {
+        return videoService;
     }
 }

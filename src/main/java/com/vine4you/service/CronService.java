@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 public class CronService {
     private static final Logger log = Logger.getLogger(CronService.class.getName());
     private static DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
-    private static VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
+    private static VideoCacheService videoCacheService = VideoCacheServiceFactory.getInstance();
 
     public static void publishVideo() {
         Query query = new Query(VideoEntity.kind);
