@@ -9,19 +9,19 @@
 
 package com.vine4you.factories;
 
-import com.vine4you.service.FirewallService;
+import com.vine4you.service.CronService;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Andrew
- * Date: 10/2/13
- * Time: 3:42 PM
+ * Date: 10/16/13
+ * Time: 10:26 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FirewallServiceFactory {
-    private static FirewallService firewallService = new FirewallService();
+public class CronServiceFactory {
+    private static CronService cronService = new CronService();
 
-    public static FirewallService getFirewallService() {
-        return firewallService;
+    public static CronService getCronService() {
+        return cronService;
     }
 }

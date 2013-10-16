@@ -11,6 +11,7 @@ package com.vine4you.service;
 
 import au.com.bytecode.opencsv.CSVReader;
 import com.vine4you.entity.VideoEntity;
+import com.vine4you.factories.VideoServiceFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class ImportService {
                 VideoEntity videoEntity = new VideoEntity(line[0], line[1], line[2], videoURL, imageURL, Calendar.getInstance().getTime(), true);
 
                 try {
-                    VideoService.addVideoEntity(videoEntity, asNew);
+                    VideoServiceFactory.getVideoService().addVideoEntity(videoEntity, asNew);
                     count++;
                 } catch (Exception e) {
                     log.severe("Can`t import video: " + line[0] + " " + line[1] + " " + line[2]);

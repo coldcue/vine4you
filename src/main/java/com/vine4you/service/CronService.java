@@ -11,6 +11,7 @@ package com.vine4you.service;
 
 import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
+import com.vine4you.factories.FacebookServiceFactory;
 import com.vine4you.factories.VideoCacheServiceFactory;
 
 import java.io.IOException;
@@ -26,11 +27,12 @@ import java.util.logging.Logger;
  * To change this template use File | Settings | File Templates.
  */
 public class CronService {
-    private static final Logger log = Logger.getLogger(CronService.class.getName());
-    private static DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
-    private static VideoCacheService videoCacheService = VideoCacheServiceFactory.getInstance();
+    private final Logger log = Logger.getLogger(CronService.class.getName());
+    private DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
+    private VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
+    private FacebookService facebookService = FacebookServiceFactory.getFacebookService();
 
-    public static void publishVideo() {
+    public void publishVideo() {
         Query query = new Query(VideoEntity.kind);
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, false));
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
@@ -50,7 +52,7 @@ public class CronService {
 
             /*Publish on facebook*/
             try {
-                FacebookService.publishVideo(key.getId());
+                facebookService.publishVideo(key.getId());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -62,14 +64,14 @@ public class CronService {
         }
     }
 
-    public static void refreshLikes() {
+    public void refreshLikes() {
         Query query = new Query(VideoEntity.kind);
 
         Iterable<Entity> entities = datastoreService.prepare(query).asIterable();
 
         for (Entity entity : entities) {
             try {
-                long likes = FacebookService.getLikes(entity.getKey().getId());
+                long likes = facebookService.getLikes(entity.getKey().getId());
 
                 if (likes != entity.getProperty(VideoEntity.LIKES)) {
                     entity.setProperty(VideoEntity.LIKES, likes);
@@ -84,7 +86,7 @@ public class CronService {
         refreshLikeOrder();
     }
 
-    public static void refreshLikeOrder() {
+    public void refreshLikeOrder() {
         //Get all likeOrdered videos
         List<Entity> toRemove = getLikeOrderedEntities();
         //Get the most liked videos
@@ -131,7 +133,7 @@ public class CronService {
 
     }
 
-    private static List<Entity> getMostLikedEntities() {
+    private List<Entity> getMostLikedEntities() {
         Query query = new Query(VideoEntity.kind);
         query.addSort(VideoEntity.LIKES, Query.SortDirection.DESCENDING);
         Query.FilterPredicate publishedFilter = new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true);
@@ -141,7 +143,7 @@ public class CronService {
         return datastoreService.prepare(query).asList(fetchOptions);
     }
 
-    private static List<Entity> getLikeOrderedEntities() {
+    private List<Entity> getLikeOrderedEntities() {
         Query query = new Query(VideoEntity.kind);
         query.addSort(VideoEntity.LIKEORDER);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(500);

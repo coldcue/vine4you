@@ -41,7 +41,7 @@ public class CronServlet extends HttpServlet {
                 break;
 
             case CLEARREQUESTCACHE:
-                FirewallServiceFactory.getInstance().clearRequestCache();
+                FirewallServiceFactory.getFirewallService().clearRequestCache();
                 break;
         }
 

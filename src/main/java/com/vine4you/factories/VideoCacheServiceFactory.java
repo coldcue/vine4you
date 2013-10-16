@@ -19,9 +19,9 @@ import com.vine4you.service.VideoCacheService;
  * To change this template use File | Settings | File Templates.
  */
 public class VideoCacheServiceFactory {
-    private static final VideoCacheService videoCacheService = new VideoCacheService();
+    private static VideoCacheService videoCacheService = new VideoCacheService();
 
-    public static VideoCacheService getInstance() {
+    public static VideoCacheService getVideoCacheService() {
         return videoCacheService;
     }
 }

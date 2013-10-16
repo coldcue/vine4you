@@ -13,6 +13,7 @@ import com.google.appengine.api.memcache.AsyncMemcacheService;
 import com.google.appengine.api.memcache.MemcacheServiceFactory;
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.enums.CacheType;
+import com.vine4you.factories.VideoServiceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ import static com.vine4you.enums.CacheType.VIDEO;
 public class VideoCacheService {
     protected static final String CACHE_NAMESPACE = "videos";
     private AsyncMemcacheService cache = MemcacheServiceFactory.getAsyncMemcacheService(CACHE_NAMESPACE);
+    private VideoService videoService = VideoServiceFactory.getVideoService();
 
     /**
      * Clear cache
@@ -140,7 +142,7 @@ public class VideoCacheService {
 
             for (Long id : videoEntityIDList) {
                 //Check cache
-                VideoEntity entity = VideoService.getVideoEntityCached(id);
+                VideoEntity entity = videoService.getVideoEntityCached(id);
                 //Add to list
                 videoEntities.add(entity);
             }

@@ -30,7 +30,7 @@ public class VideoService {
     public static final int FeaturedListSize = 12;
     public static final int MostLikedListSize = 100;
     private final Logger log = Logger.getLogger(VideoService.class.getName());
-    private VideoCacheService videoCacheService = VideoCacheServiceFactory.getInstance();
+    private VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
 
     /**
      * Gets a single videoElement entity from the database

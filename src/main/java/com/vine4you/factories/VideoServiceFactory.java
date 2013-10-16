@@ -19,9 +19,9 @@ import com.vine4you.service.VideoService;
  * To change this template use File | Settings | File Templates.
  */
 public class VideoServiceFactory {
-    private static final VideoService videoService = new VideoService();
+    private static VideoService videoService = new VideoService();
 
-    public static VideoService getInstance() {
+    public static VideoService getVideoService() {
         return videoService;
     }
 }

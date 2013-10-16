@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutionException;
  */
 public class FirewallFilter implements Filter {
 
-    private FirewallService firewallService = FirewallServiceFactory.getInstance();
+    private FirewallService firewallService = FirewallServiceFactory.getFirewallService();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

@@ -32,8 +32,8 @@ import java.util.List;
  */
 public class VideoServlet extends HttpServlet {
 
-    VideoCacheService videoCacheService = VideoCacheServiceFactory.getInstance();
-    VideoService videoService = VideoServiceFactory.getInstance();
+    VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
+    VideoService videoService = VideoServiceFactory.getVideoService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

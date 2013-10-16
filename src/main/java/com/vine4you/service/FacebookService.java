@@ -29,12 +29,13 @@ import java.util.logging.Logger;
  * Time: 6:12 PM
  * To change this template use File | Settings | File Templates.
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class FacebookService {
-    private static final Logger log = Logger.getLogger(FacebookService.class.getName());
-    private static final String graphURL = "https://graph.facebook.com/me/feed";
-    private static final String accessToken = "CAAIcMo11IVYBAK4RQSugq4Hfl2WiKZAZCqMTm7hXYon8w0cNeEVuAXDoy7430k1d1lGCLrIKB8A68SMPmGOHdjuiIEqFkJLvVPTbqREhG7ef0ZB0H5bvZBTN5n8WYiLe5PjAPONk2BY5huZCfOoT0yDKZBBz5J2BoZAmzDSIV3k8cO1zrTPx6dFCh0d3TZBzfMoZD";
+    private final Logger log = Logger.getLogger(FacebookService.class.getName());
+    private final String graphURL = "https://graph.facebook.com/me/feed";
+    private final String accessToken = "CAAIcMo11IVYBAK4RQSugq4Hfl2WiKZAZCqMTm7hXYon8w0cNeEVuAXDoy7430k1d1lGCLrIKB8A68SMPmGOHdjuiIEqFkJLvVPTbqREhG7ef0ZB0H5bvZBTN5n8WYiLe5PjAPONk2BY5huZCfOoT0yDKZBBz5J2BoZAmzDSIV3k8cO1zrTPx6dFCh0d3TZBzfMoZD";
 
-    public static void publishVideo(long id) throws IOException {
+    public void publishVideo(long id) throws IOException {
         URL url = new URL(graphURL);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
@@ -52,7 +53,7 @@ public class FacebookService {
         }
     }
 
-    public static long getLikes(long videoId) throws IOException, JSONException {
+    public long getLikes(long videoId) throws IOException, JSONException {
         URL url = new URL("https://graph.facebook.com/?ids=" + URLEncoder.encode("http://www.vine4you.com/v/" + videoId, "UTF-8"));
 
         Reader reader = new InputStreamReader(url.openStream());
