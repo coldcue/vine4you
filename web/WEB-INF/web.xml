@@ -72,7 +72,7 @@
         <url-pattern>/sitemap.xml</url-pattern>
     </servlet-mapping>
 
-    <!--ImportServlet-->
+    <!--AdminServlet-->
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>com.vine4you.servlet.AdminServlet</servlet-class>

@@ -68,16 +68,20 @@ public class AdminService {
     }
 
     public static int deleteVideos() throws IOException {
-        URL url = new URL("http://import.vine4you.com/delete.csv");
+        URL url = new URL("http://import.vine4you.com/delete.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8")));
 
         VideoManagerService videoManagerService = VideoManagerServiceFactory.getVideoManagerService();
 
         int count = 0;
         for (String line; (line = reader.readLine()) != null; count++) {
-            Long videoId = Long.parseLong(line);
-            videoManagerService.deleteVideo(videoId);
-            log.warning("Video ID: " + videoId + " deleted!");
+            try {
+                Long videoId = Long.parseLong(line);
+                videoManagerService.deleteVideo(videoId);
+                log.warning("Video ID: " + videoId + " deleted!");
+            } catch (Exception ignored) {
+
+            }
         }
         return count;
     }
