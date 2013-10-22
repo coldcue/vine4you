@@ -10,8 +10,8 @@
 
 package com.vine4you.servlet;
 
-import com.vine4you.enums.ImportTasks;
-import com.vine4you.service.ImportService;
+import com.vine4you.enums.AdminTasks;
+import com.vine4you.service.AdminService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,20 +26,25 @@ import java.io.IOException;
  * Time: 11:21 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ImportServlet extends HttpServlet {
+public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] split = request.getPathInfo().split("/", 2);
-        ImportTasks task = ImportTasks.valueOf(split[1].toUpperCase());
+        AdminTasks task = AdminTasks.valueOf(split[1].toUpperCase());
 
         switch (task) {
 
             case REFRESH:
-                int count = ImportService.letsdoit(false);
+                int count = AdminService.importVideos(false);
                 response.getWriter().println(count + " videos refreshed!");
                 break;
             case NEW:
-                int count2 = ImportService.letsdoit(true);
+                int count2 = AdminService.importVideos(true);
                 response.getWriter().println(count2 + " videos refreshed!");
+                break;
+
+            case DELETE:
+                int deletecount = AdminService.deleteVideos();
+                response.getWriter().println(deletecount + " videos deleted!");
                 break;
         }
     }

@@ -26,17 +26,17 @@
     </c:if>
 
     <%--Styles--%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/s/design/design-1-0-6-001.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/design/design-1-0-6-001.min.css"/>
 
     <meta name="msvalidate.01" content="C585C5610CF6C5DE6ECCA7E20B528C21"/>
 
-    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/s/icons/touch-icon-iphone.png"/>
+    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/static/icons/touch-icon-iphone.png"/>
     <link rel="apple-touch-icon" sizes="72x72"
-          href="${pageContext.request.contextPath}/s/icons/touch-icon-ipad.png"/>
+          href="${pageContext.request.contextPath}/static/icons/touch-icon-ipad.png"/>
     <link rel="apple-touch-icon" sizes="114x114"
-          href="${pageContext.request.contextPath}/s/icons/touch-icon-iphone-retina.png"/>
+          href="${pageContext.request.contextPath}/static/icons/touch-icon-iphone-retina.png"/>
     <link rel="apple-touch-icon" sizes="144x144"
-          href="${pageContext.request.contextPath}/s/icons/touch-icon-ipad-retina.png"/>
+          href="${pageContext.request.contextPath}/static/icons/touch-icon-ipad-retina.png"/>
 
     <%--Facebook OpenGraph--%>
     <meta property="fb:app_id" content="593953400627542"/>
@@ -79,7 +79,7 @@
     window.fbAsyncInit = function () {
         FB.init({
             appId: '593953400627542',
-            channelUrl: 'http://www.vine4you.com/s/channel.html',
+            channelUrl: 'http://www.vine4you.com/static/channel.html',
             status: true,
             xfbml: true
         });
@@ -246,7 +246,7 @@
                         <c:when test="${country eq 'HU'}">
                             <a id="benedekBanner" href="http://www.vargabenedek.hu/?origin=vine4you"
                                title="Vargabenedek.hu">
-                                <img src="${pageContext.request.contextPath}/s/benedek_banner.png" width="336"
+                                <img src="${pageContext.request.contextPath}/static/benedek_banner.png" width="336"
                                      height="280"
                                      alt="Vargabenedek.hu">
                             </a>
@@ -338,7 +338,7 @@
 </script>
 
 <%--Javascript--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/s/js/script-1-0-6-001.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/script-1-0-6-001.min.js"></script>
 
 </body>
 </html>

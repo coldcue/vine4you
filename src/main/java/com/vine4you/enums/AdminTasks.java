@@ -16,6 +16,6 @@ package com.vine4you.enums;
  * Date: 8/17/13
  * Time: 3:22 PM
  */
-public enum ImportTasks {
-    REFRESH, NEW
+public enum AdminTasks {
+    REFRESH, NEW, DELETE
 }

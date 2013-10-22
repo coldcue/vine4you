@@ -75,4 +75,13 @@ public class VideoManagerService {
         entity.setProperty(VideoEntity.PUBLISHED_DATE, Calendar.getInstance().getTime());
         datastoreService.put(entity);
     }
+
+    /**
+     * <b>Permanently</b> deletes a video from the database
+     *
+     * @param id the <b>ID</b> of the video
+     */
+    public void deleteVideo(long id) {
+        datastoreService.delete(KeyFactory.createKey(VideoEntity.kind, id));
+    }
 }

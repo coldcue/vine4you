@@ -42,7 +42,7 @@ public class CronService {
 
         Entity entity = videoManagerService.publishNewVideo();
         if (entity == null) {
-            log.severe("There are no more unpublished video!!!!");
+            log.warning("There are no more unpublished video!!!!");
 
             //Publish the last video again
             entity = videoManagerService.getLastPublishedVideo();

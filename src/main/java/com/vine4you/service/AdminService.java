@@ -12,6 +12,7 @@ package com.vine4you.service;
 
 import au.com.bytecode.opencsv.CSVReader;
 import com.vine4you.entity.VideoEntity;
+import com.vine4you.factories.VideoManagerServiceFactory;
 import com.vine4you.factories.VideoServiceFactory;
 
 import java.io.BufferedReader;
@@ -27,10 +28,10 @@ import java.util.logging.Logger;
  * Date: 8/16/13
  * Time: 11:24 AM
  */
-public class ImportService {
-    private static final Logger log = Logger.getLogger(ImportService.class.getName());
+public class AdminService {
+    private static final Logger log = Logger.getLogger(AdminService.class.getName());
 
-    public static int letsdoit(boolean asNew) {
+    public static int importVideos(boolean asNew) {
         int count = 0;
 
         try {
@@ -65,4 +66,20 @@ public class ImportService {
 
         return count;
     }
+
+    public static int deleteVideos() throws IOException {
+        URL url = new URL("http://import.vine4you.com/delete.csv");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8")));
+
+        VideoManagerService videoManagerService = VideoManagerServiceFactory.getVideoManagerService();
+
+        int count = 0;
+        for (String line; (line = reader.readLine()) != null; count++) {
+            Long videoId = Long.parseLong(line);
+            videoManagerService.deleteVideo(videoId);
+            log.warning("Video ID: " + videoId + " deleted!");
+        }
+        return count;
+    }
+
 }

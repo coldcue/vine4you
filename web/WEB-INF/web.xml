@@ -86,7 +86,7 @@
     <!--ImportServlet-->
     <servlet>
         <servlet-name>ImportServlet</servlet-name>
-        <servlet-class>com.vine4you.servlet.ImportServlet</servlet-class>
+        <servlet-class>com.vine4you.servlet.AdminServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ImportServlet</servlet-name>
