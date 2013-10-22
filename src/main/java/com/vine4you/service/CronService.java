@@ -13,9 +13,9 @@ import com.google.appengine.api.datastore.*;
 import com.vine4you.entity.VideoEntity;
 import com.vine4you.factories.FacebookServiceFactory;
 import com.vine4you.factories.VideoCacheServiceFactory;
+import com.vine4you.factories.VideoManagerServiceFactory;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,40 +31,43 @@ public class CronService {
     private final Logger log = Logger.getLogger(CronService.class.getName());
     private DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
     private VideoCacheService videoCacheService = VideoCacheServiceFactory.getVideoCacheService();
+    private VideoManagerService videoManagerService = VideoManagerServiceFactory.getVideoManagerService();
     private FacebookService facebookService = FacebookServiceFactory.getFacebookService();
 
     public void publishVideo() {
-        Query query = new Query(VideoEntity.kind);
-        query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, false));
-        query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
-        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
 
-        List<Entity> entities = datastoreService.prepare(query).asList(fetchOptions);
-
-        if (entities.size() != 1) {
+        Entity entity = videoManagerService.publishNewVideo();
+        if (entity == null) {
             log.severe("There are no more unpublished video!!!!");
+
+            //Publish the last video again
+            entity = videoManagerService.getLastVideo();
+            videoManagerService.publishVideo(entity);
+
+            try {
+                //If Unit testing, then don't post it to facebook
+                if (!isUnitTesting)
+                    facebookService.publishVideoToPage(entity.getKey().getId());
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+
+            log.info("An OLD video is published AGAIN! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
         } else {
-            Entity entity = entities.get(0);
-
-            entity.setProperty(VideoEntity.PUBLISHED, true);
-            entity.setProperty(VideoEntity.PUBLISHED_DATE, Calendar.getInstance().getTime());
-
-            Key key = datastoreService.put(entity);
-
             /*Publish on facebook*/
             try {
                 //If Unit testing, then don't post it to facebook
                 if (!isUnitTesting)
-                    facebookService.publishVideo(key.getId());
+                    facebookService.publishVideoToPage(entity.getKey().getId());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            //Clear cache
-            videoCacheService.clearCache();
-
             log.info("A new video is published! ID: " + entity.getKey().getId() + " TITLE:" + entity.getProperty(VideoEntity.TITLE));
         }
+
+        //Clear cache
+        videoCacheService.clearCache();
     }
 
     public void refreshLikes() {

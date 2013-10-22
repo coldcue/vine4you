@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -55,7 +56,7 @@ public class CronServiceTest extends CronService {
     public void testPublishVideo() throws Exception {
         Calendar calendar = Calendar.getInstance();
 
-        //Create two entities with different dates
+        //Create three entities with different dates
         Entity firstEntity = new Entity(VideoEntity.kind);
         firstEntity.setProperty(VideoEntity.PUBLISHED, false);
         firstEntity.setProperty(VideoEntity.PUBLISHED_DATE, calendar.getTime());
@@ -70,15 +71,39 @@ public class CronServiceTest extends CronService {
         secondEntity.setProperty(VideoEntity.TITLE, "SECOND");
         Key secondKey = datastoreService.put(secondEntity);
 
+        //Add 2 hour
+        calendar.add(Calendar.HOUR, 2);
+        Entity thirdEntity = new Entity(VideoEntity.kind);
+        thirdEntity.setProperty(VideoEntity.PUBLISHED, true);
+        thirdEntity.setProperty(VideoEntity.PUBLISHED_DATE, calendar.getTime());
+        thirdEntity.setProperty(VideoEntity.TITLE, "THIRD");
+        Key thirdKey = datastoreService.put(secondEntity);
+
+        //Test the publish of the first video
         cronService.publishVideo();
 
         assertTrue((Boolean) datastoreService.get(firstKey).getProperty(VideoEntity.PUBLISHED));
         assertFalse((Boolean) datastoreService.get(secondKey).getProperty(VideoEntity.PUBLISHED));
+        assertTrue((Boolean) datastoreService.get(thirdKey).getProperty(VideoEntity.PUBLISHED));
 
+        //Test the publish of the second video
         cronService.publishVideo();
 
         assertTrue((Boolean) datastoreService.get(firstKey).getProperty(VideoEntity.PUBLISHED));
         assertTrue((Boolean) datastoreService.get(secondKey).getProperty(VideoEntity.PUBLISHED));
+        assertTrue((Boolean) datastoreService.get(thirdKey).getProperty(VideoEntity.PUBLISHED));
+
+        //Test the re-publish of the third video
+        cronService.publishVideo();
+
+        assertTrue((Boolean) datastoreService.get(firstKey).getProperty(VideoEntity.PUBLISHED));
+        Entity second = datastoreService.get(secondKey);
+        assertTrue((Boolean) second.getProperty(VideoEntity.PUBLISHED));
+        Entity third = datastoreService.get(thirdKey);
+        assertTrue((Boolean) third.getProperty(VideoEntity.PUBLISHED));
+
+        //Make sure that the third video is re-published
+        assertTrue(((Date) third.getProperty(VideoEntity.PUBLISHED_DATE)).after((Date) second.getProperty(VideoEntity.PUBLISHED_DATE)));
 
         datastoreService.delete(firstKey);
         datastoreService.delete(secondKey);

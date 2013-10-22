@@ -27,7 +27,8 @@ import java.util.logging.Logger;
  * User: Andrew
  * Date: 9/1/13
  * Time: 6:12 PM
- * To change this template use File | Settings | File Templates.
+ * <p/>
+ * This class is used to communicate with facebook
  */
 @SuppressWarnings("FieldCanBeLocal")
 public class FacebookService {
@@ -35,7 +36,13 @@ public class FacebookService {
     private final String graphURL = "https://graph.facebook.com/me/feed";
     private final String accessToken = "CAAIcMo11IVYBAK4RQSugq4Hfl2WiKZAZCqMTm7hXYon8w0cNeEVuAXDoy7430k1d1lGCLrIKB8A68SMPmGOHdjuiIEqFkJLvVPTbqREhG7ef0ZB0H5bvZBTN5n8WYiLe5PjAPONk2BY5huZCfOoT0yDKZBBz5J2BoZAmzDSIV3k8cO1zrTPx6dFCh0d3TZBzfMoZD";
 
-    public void publishVideo(long id) throws IOException {
+    /**
+     * Publishes a video on the Facebook page
+     *
+     * @param id the ID of the video
+     * @throws IOException
+     */
+    public void publishVideoToPage(long id) throws IOException {
         URL url = new URL(graphURL);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
@@ -53,6 +60,14 @@ public class FacebookService {
         }
     }
 
+    /**
+     * Fetches the like count on a video
+     *
+     * @param videoId the ID of the video
+     * @return the number of likes
+     * @throws IOException
+     * @throws JSONException
+     */
     public long getLikes(long videoId) throws IOException, JSONException {
         URL url = new URL("https://graph.facebook.com/?ids=" + URLEncoder.encode("http://www.vine4you.com/v/" + videoId, "UTF-8"));
 
