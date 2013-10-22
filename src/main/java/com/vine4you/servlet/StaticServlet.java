@@ -26,6 +26,7 @@ import java.util.TimeZone;
  * Date: 10/2/13
  * Time: 10:34 PM
  * To change this template use File | Settings | File Templates.
+ * @deprecated
  */
 public class StaticServlet extends HttpServlet {
     @Override
