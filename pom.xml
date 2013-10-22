@@ -16,7 +16,7 @@
 
     <groupId>com.vine4you</groupId>
     <artifactId>vine4you</artifactId>
-    <version>1-0-8</version>
+    <version>1-1-0</version>
 
     <pluginRepositories>
         <pluginRepository>
@@ -152,6 +152,16 @@
                         <fileExt>jsp</fileExt>
                         <fileExt>html</fileExt>
                     </fileExt>
+                </configuration>
+            </plugin>
+
+            <!--Turn off testing-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>
