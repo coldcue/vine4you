@@ -15,7 +15,9 @@ package com.vine4you.cron;
  * User: Andrew
  * Date: 8/17/13
  * Time: 2:55 PM
- * To change this template use File | Settings | File Templates.
+ * <p>
+ *     These are the <b>cron</b> task types which can be executed
+ * </p>
  */
 public enum CronTasks {
     PUBLISHVIDEO, REFRESHLIKES, CLEARREQUESTCACHE

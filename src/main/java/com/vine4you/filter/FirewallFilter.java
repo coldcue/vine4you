@@ -22,7 +22,9 @@ import java.util.concurrent.ExecutionException;
  * User: Andrew
  * Date: 10/2/13
  * Time: 4:53 PM
- * To change this template use File | Settings | File Templates.
+ * <p>
+ * This is a filter against the DDoS attacks
+ * </p>
  */
 public class FirewallFilter implements Filter {
 

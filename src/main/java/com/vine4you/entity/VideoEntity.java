@@ -17,7 +17,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * The transient values for cache storage optimization
+ * <p>
+ * A proxy for the video {@link Entity} to make it simple to use
+ * </p>
  */
 @SuppressWarnings("UnusedDeclaration")
 public class VideoEntity implements EntityInterface, Serializable {
@@ -31,7 +33,7 @@ public class VideoEntity implements EntityInterface, Serializable {
     public static final String PUBLISHED_DATE = "publishedDate";
     public static final String PUBLISHED = "published";
     public static final String LIKES = "likes";
-    public static final String LIKEORDER = "likeOrder";
+    public static final String LIKE_ORDER = "likeOrder";
     private Key key;
     private String title;
     private String author;
@@ -61,8 +63,8 @@ public class VideoEntity implements EntityInterface, Serializable {
             published = (boolean) entity.getProperty(PUBLISHED);
         if (entity.hasProperty(LIKES))
             likes = (long) entity.getProperty(LIKES);
-        if (entity.hasProperty(LIKEORDER))
-            likeOrder = (long) entity.getProperty(LIKEORDER);
+        if (entity.hasProperty(LIKE_ORDER))
+            likeOrder = (long) entity.getProperty(LIKE_ORDER);
     }
 
     public VideoEntity(String title, String author, String vineURL, String videoURL, String imageURL, Date publishedDate, boolean published) {
@@ -162,9 +164,9 @@ public class VideoEntity implements EntityInterface, Serializable {
     }
 
     /**
-     * Only use it with fully loaded entity!!!
+     * <b>Only use it with fully loaded entity!!! </b>
      *
-     * @return the Entity
+     * @return the {@link Entity}
      */
     @Override
     public Entity generateEntity() {
@@ -178,7 +180,7 @@ public class VideoEntity implements EntityInterface, Serializable {
         entity.setProperty(PUBLISHED_DATE, publishedDate);
         entity.setProperty(PUBLISHED, published);
         entity.setProperty(LIKES, likes);
-        entity.setProperty(LIKEORDER, likeOrder);
+        entity.setProperty(LIKE_ORDER, likeOrder);
 
         return entity;
     }

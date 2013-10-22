@@ -35,6 +35,9 @@ public class CronService {
     private VideoManagerService videoManagerService = VideoManagerServiceFactory.getVideoManagerService();
     private FacebookService facebookService = FacebookServiceFactory.getFacebookService();
 
+    /**
+     * Publishes a video, a new or an old, but publishes one
+     */
     public void publishVideo() {
 
         Entity entity = videoManagerService.publishNewVideo();
@@ -71,6 +74,9 @@ public class CronService {
         videoCacheService.clearCache();
     }
 
+    /**
+     * @see VideoManagerService#publishVideo(com.google.appengine.api.datastore.Entity)
+     */
     public void refreshLikes() {
         Query query = new Query(VideoEntity.kind);
 
@@ -107,11 +113,11 @@ public class CronService {
             for (Entity entity : mostLiked) {
                 try {
                     //Update entity if its likeOrder is changed
-                    if (!entity.hasProperty(VideoEntity.LIKEORDER)) {
-                        entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
+                    if (!entity.hasProperty(VideoEntity.LIKE_ORDER)) {
+                        entity.setProperty(VideoEntity.LIKE_ORDER, likeOrder);
                         datastoreService.put(entity);
-                    } else if (entity.getProperty(VideoEntity.LIKEORDER) != likeOrder) {
-                        entity.setProperty(VideoEntity.LIKEORDER, likeOrder);
+                    } else if (entity.getProperty(VideoEntity.LIKE_ORDER) != likeOrder) {
+                        entity.setProperty(VideoEntity.LIKE_ORDER, likeOrder);
                         datastoreService.put(entity);
                     }
                 } catch (Exception e) {
@@ -124,7 +130,7 @@ public class CronService {
             //Set likeOrder to max for every entity in toRemove
             for (Entity entity : toRemove) {
                 try {
-                    entity.removeProperty(VideoEntity.LIKEORDER);
+                    entity.removeProperty(VideoEntity.LIKE_ORDER);
                     datastoreService.put(entity);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -152,7 +158,7 @@ public class CronService {
 
     private List<Entity> getLikeOrderedEntities() {
         Query query = new Query(VideoEntity.kind);
-        query.addSort(VideoEntity.LIKEORDER);
+        query.addSort(VideoEntity.LIKE_ORDER);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(500);
 
         return datastoreService.prepare(query).asList(fetchOptions);

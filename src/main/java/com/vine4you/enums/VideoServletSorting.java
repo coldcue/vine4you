@@ -15,7 +15,6 @@ package com.vine4you.enums;
  * User: Andrew
  * Date: 9/20/13
  * Time: 2:16 PM
- * To change this template use File | Settings | File Templates.
  */
 public enum VideoServletSorting {
     DEFAULT, LIKES

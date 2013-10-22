@@ -15,7 +15,9 @@ package com.vine4you.enums;
  * User: Andrew
  * Date: 9/22/13
  * Time: 10:34 PM
- * To change this template use File | Settings | File Templates.
+ * <p>
+ * These are the cache types
+ * </p>
  */
 public enum CacheType {
     FIRST_VIDEO, FIRST_MOSTLIKED_VIDEO, FEATURED_LIST, MOSTLIKED_FEATURED_LIST, VIDEO;

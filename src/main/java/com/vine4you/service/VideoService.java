@@ -173,7 +173,7 @@ public class VideoService {
         if (videoEntity != null) return videoEntity;
 
         Query query = new Query(VideoEntity.kind);
-        query.addSort(VideoEntity.LIKEORDER);
+        query.addSort(VideoEntity.LIKE_ORDER);
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(1);
 
         //Add to cache
@@ -221,9 +221,9 @@ public class VideoService {
 
         Query query = new Query(VideoEntity.kind);
 
-        query.addSort(VideoEntity.LIKEORDER);
-        Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKEORDER, Query.FilterOperator.GREATER_THAN, from.getLikeOrder());
-        Query.FilterPredicate sizeFilter = new Query.FilterPredicate(VideoEntity.LIKEORDER, Query.FilterOperator.LESS_THAN, MostLikedListSize);
+        query.addSort(VideoEntity.LIKE_ORDER);
+        Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKE_ORDER, Query.FilterOperator.GREATER_THAN, from.getLikeOrder());
+        Query.FilterPredicate sizeFilter = new Query.FilterPredicate(VideoEntity.LIKE_ORDER, Query.FilterOperator.LESS_THAN, MostLikedListSize);
         query.setFilter(Query.CompositeFilterOperator.and(likesFilter, sizeFilter));
 
         videoEntities = getFeaturedVideoEntitiesFromQuery(from, query);
@@ -270,8 +270,8 @@ public class VideoService {
     public VideoEntity getPreviousMostLikedVideo(VideoEntity from) {
         Query query = new Query(VideoEntity.kind);
 
-        query.addSort(VideoEntity.LIKEORDER, Query.SortDirection.DESCENDING);
-        Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKEORDER, Query.FilterOperator.LESS_THAN, from.getLikeOrder());
+        query.addSort(VideoEntity.LIKE_ORDER, Query.SortDirection.DESCENDING);
+        Query.FilterPredicate likesFilter = new Query.FilterPredicate(VideoEntity.LIKE_ORDER, Query.FilterOperator.LESS_THAN, from.getLikeOrder());
         query.setFilter(likesFilter);
 
         return getVideoEntityFromQuery(query);

@@ -15,7 +15,6 @@ package com.vine4you.enums;
  * User: Andrew
  * Date: 8/17/13
  * Time: 3:22 PM
- * To change this template use File | Settings | File Templates.
  */
 public enum ImportTasks {
     REFRESH, NEW
