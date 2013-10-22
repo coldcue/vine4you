@@ -1,5 +1,6 @@
 /******************************************************************************
- * Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                     *
+ * Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com) and                 *
+ * Adrian Szell (szelladrian@gmail.com)                                       *
  *                                                                            *
  * All rights reserved. No part of this code may be reproduced, distributed,  *
  * or transmitted in any form or by any means, including photocopying,        *
@@ -41,7 +42,7 @@ public class CronService {
             log.severe("There are no more unpublished video!!!!");
 
             //Publish the last video again
-            entity = videoManagerService.getLastVideo();
+            entity = videoManagerService.getLastPublishedVideo();
             videoManagerService.publishVideo(entity);
 
             try {

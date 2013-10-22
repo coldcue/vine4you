@@ -1,10 +1,12 @@
-/*!
- * jQuery Cookie Plugin v1.3.1
- * https://github.com/carhartl/jquery-cookie
- *
- * Copyright 2013 Klaus Hartl
- * Released under the MIT license
- */
+/******************************************************************************
+ * Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com) and                 *
+ * Adrian Szell (szelladrian@gmail.com)                                       *
+ *                                                                            *
+ * All rights reserved. No part of this code may be reproduced, distributed,  *
+ * or transmitted in any form or by any means, including photocopying,        *
+ * recording, or other electronic or mechanical methods, without the prior    *
+ * written permission of the owner.                                           *
+ ******************************************************************************/
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as anonymous module.

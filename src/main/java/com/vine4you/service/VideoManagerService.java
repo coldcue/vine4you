@@ -1,5 +1,6 @@
 /******************************************************************************
- * Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com)                     *
+ * Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com) and                 *
+ * Adrian Szell (szelladrian@gmail.com)                                       *
  *                                                                            *
  * All rights reserved. No part of this code may be reproduced, distributed,  *
  * or transmitted in any form or by any means, including photocopying,        *
@@ -34,7 +35,7 @@ public class VideoManagerService {
      *
      * @return the video {@link Entity}
      */
-    public Entity getLastVideo() {
+    public Entity getLastPublishedVideo() {
         Query query = new Query(VideoEntity.kind);
         query.setFilter(new Query.FilterPredicate(VideoEntity.PUBLISHED, Query.FilterOperator.EQUAL, true));
         query.addSort(VideoEntity.PUBLISHED_DATE, Query.SortDirection.ASCENDING);
