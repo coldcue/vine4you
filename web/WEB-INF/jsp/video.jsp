@@ -1,24 +1,12 @@
-<%--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~ Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com) and               ~
-  ~ Adrian Szell (szelladrian@gmail.com)                                     ~
-  ~                                                                          ~
-  ~ All rights reserved. No part of this code may be reproduced, distributed,~
-  ~ or transmitted in any form or by any means, including photocopying,      ~
-  ~ recording, or other electronic or mechanical methods, without the prior  ~
-  ~ written permission of the owner.                                         ~
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--%>
-
 <!DOCTYPE HTML>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--@elvariable id="video" type="com.vine4you.entity.VideoEntity"--%>
-<%--
-  Created by IntelliJ IDEA.
-  User: Andrew
-  Date: 8/11/13
-  Time: 2:41 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%--@elvariable id="prevVideo" type="com.vine4you.entity.VideoEntity"--%>
+<%--@elvariable id="nextVideo" type="com.vine4you.entity.VideoEntity"--%>
+<%--@elvariable id="featured" type="java.util.Collection<com.vine4you.entity.VideoEntity>"--%>
+<%--@elvariable id="showVideoTitleInTitle" type="java.lang.Boolean"--%>
+<%--@elvariable id="sortby" type="java.lang.String"--%>
 <html>
 <head>
     <c:choose>
