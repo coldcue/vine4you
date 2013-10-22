@@ -77,7 +77,7 @@ public class CronServiceTest extends CronService {
         thirdEntity.setProperty(VideoEntity.PUBLISHED, true);
         thirdEntity.setProperty(VideoEntity.PUBLISHED_DATE, calendar.getTime());
         thirdEntity.setProperty(VideoEntity.TITLE, "THIRD");
-        Key thirdKey = datastoreService.put(secondEntity);
+        Key thirdKey = datastoreService.put(thirdEntity);
 
         //Test the publish of the first video
         cronService.publishVideo();
