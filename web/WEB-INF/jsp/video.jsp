@@ -242,29 +242,15 @@
         <div class="grid_4">
             <div id="squareAdContainer">
                 <div id="squareAd">
-                    <c:choose>
-                        <c:when test="${country eq 'HU'}">
-                            <a id="benedekBanner" href="http://www.vargabenedek.hu/?origin=vine4you"
-                               title="Vargabenedek.hu">
-                                <img src="${pageContext.request.contextPath}/static/benedek_banner.png" width="336"
-                                     height="280"
-                                     alt="Vargabenedek.hu">
-                            </a>
-                        </c:when>
-                        <c:otherwise>
-                            <script type="text/javascript"><!--
-                            google_ad_client = "ca-pub-6335041482514787";
-                            /* Vine4YouLargeRectangle1 */
-                            google_ad_slot = "4315068874";
-                            google_ad_width = 336;
-                            google_ad_height = 280;
-                            //-->
-                            </script>
-                            <script type="text/javascript"
-                                    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-                            </script>
-                        </c:otherwise>
-                    </c:choose>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Vine4YouRectangle1 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-6335041482514787"
+                         data-ad-slot="9775638872"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             </div>
             <div id="searchContainer">

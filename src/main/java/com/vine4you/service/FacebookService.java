@@ -35,7 +35,7 @@ import java.util.logging.Logger;
 public class FacebookService {
     private final Logger log = Logger.getLogger(FacebookService.class.getName());
     private final String graphURL = "https://graph.facebook.com/me/feed";
-    private final String accessToken = "CAAIcMo11IVYBAK4RQSugq4Hfl2WiKZAZCqMTm7hXYon8w0cNeEVuAXDoy7430k1d1lGCLrIKB8A68SMPmGOHdjuiIEqFkJLvVPTbqREhG7ef0ZB0H5bvZBTN5n8WYiLe5PjAPONk2BY5huZCfOoT0yDKZBBz5J2BoZAmzDSIV3k8cO1zrTPx6dFCh0d3TZBzfMoZD";
+    private final String accessToken = "CAAIcMo11IVYBAGAowZAVIzSQW1jl91UY621WZBFwnvACpU6YCdXJGZAgQrl4ojkj1FYErZAQgFfy4GNFznJSQb44TUs7AOqLKr4Ci2xOpYACoMLNeDA6xBRQwZAnZACwDg3Iop94NzsZAt4JRIXGvntfg2ZBYTyj7vSUGBXHgYvEfvqPJxexKKhFFOnBFeZCZAaoUZD";
 
     /**
      * Publishes a video on the Facebook page
