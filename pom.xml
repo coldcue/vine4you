@@ -42,7 +42,7 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-jsr107cache</artifactId>
-            <version>1.8.2</version>
+            <version>1.8.5</version>
         </dependency>
 
         <!--Javax-->

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright (c) 2013 by Andrew Szell (coldcue@gmail.com) and                ~
+  ~ Adrian Szell (szelladrian@gmail.com)                                      ~
+  ~                                                                           ~
+  ~ All rights reserved. No part of this code may be reproduced, distributed, ~
+  ~ or transmitted in any form or by any means, including photocopying,       ~
+  ~ recording, or other electronic or mechanical methods, without the prior   ~
+  ~ written permission of the owner.                                          ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<profilesXml xmlns="http://maven.apache.org/PROFILES/1.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://maven.apache.org/PROFILES/1.0.0 http://maven.apache.org/xsd/profiles-1.0.0.xsd">
+    <profiles>
+        <profile>
+            <id>debug</id>
+        </profile>
+        <profile>
+            <id>production</id>
+        </profile>
+    </profiles>
+</profilesXml>
