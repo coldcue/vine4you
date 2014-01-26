@@ -139,7 +139,7 @@ public class CronService {
             }
 
             //Clear cache
-            videoCacheService.clearCache();
+            //videoCacheService.clearCache();
         } catch (Exception e) {
             e.printStackTrace();
         }
