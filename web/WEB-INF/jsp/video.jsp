@@ -253,6 +253,19 @@
                     </script>
                 </div>
             </div>
+            <div id="squareAdContainer">
+                <div id="squareAd">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Vine4YouRectangle2 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-6335041482514787"
+                         data-ad-slot="7718432074"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
             <div id="searchContainer">
                 <gcse:searchbox-only></gcse:searchbox-only>
             </div>
@@ -272,24 +285,6 @@
             </ul>
         </div>
 
-    </div>
-</div>
-
-<div class="container_16">
-    <div class="grid_16">
-        <div id="footerAdContainer">
-            <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-6335041482514787";
-            /* Vine4YouLeaderboard1 */
-            google_ad_slot = "5791802071";
-            google_ad_width = 728;
-            google_ad_height = 90;
-            //-->
-            </script>
-            <script type="text/javascript"
-                    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-            </script>
-        </div>
     </div>
 </div>
 
