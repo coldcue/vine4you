@@ -221,16 +221,14 @@
 
                 </div>
                 <div id="horizontalAdContainer">
-                    <script type="text/javascript"><!--
-                    google_ad_client = "ca-pub-6335041482514787";
-                    /* HorizontalAd */
-                    google_ad_slot = "2078553275";
-                    google_ad_width = 468;
-                    google_ad_height = 60;
-                    //-->
-                    </script>
-                    <script type="text/javascript"
-                            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Vine4YouHorizontalAd -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:468px;height:60px"
+                         data-ad-client="ca-pub-6335041482514787"
+                         data-ad-slot="2078553275"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
                 <div id="commentsContainer">
