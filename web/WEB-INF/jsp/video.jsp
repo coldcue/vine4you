@@ -240,27 +240,31 @@
         <div class="grid_4">
             <div id="squareAdContainer">
                 <div id="squareAd">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Vine4YouRectangle1 -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:300px;height:250px"
-                         data-ad-client="ca-pub-6335041482514787"
-                         data-ad-slot="9775638872"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-6335041482514787";
+                    /* Vine4YouRectangle1 */
+                    google_ad_slot = "9775638872";
+                    google_ad_width = 300;
+                    google_ad_height = 250;
+                    //-->
+                    </script>
+                    <script type="text/javascript"
+                            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
                     </script>
                 </div>
             </div>
             <div id="squareAdContainer">
                 <div id="squareAd">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Vine4YouRectangle2 -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:300px;height:250px"
-                         data-ad-client="ca-pub-6335041482514787"
-                         data-ad-slot="7718432074"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-6335041482514787";
+                    /* Vine4YouRectangle2 */
+                    google_ad_slot = "7718432074";
+                    google_ad_width = 300;
+                    google_ad_height = 250;
+                    //-->
+                    </script>
+                    <script type="text/javascript"
+                            src="//pagead2.googlesyndication.com/pagead/show_ads.js">
                     </script>
                 </div>
             </div>
