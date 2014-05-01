@@ -14,7 +14,6 @@
           <element id="library" level="project" name="Maven: net.sf.opencsv:opencsv:2.3" />
           <element id="library" level="project" name="Maven: org.json:json:20090211" />
           <element id="library" level="application" name="appengine-api-labs" />
-          <element id="library" level="application" name="appengine-api-stubs" />
           <element id="library" level="project" name="Maven: junit:junit:4.11" />
         </element>
       </element>
