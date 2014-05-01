@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="vine4you:war exploded">
+    <output-path>$PROJECT_DIR$/target/vine4you-1-1-4</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="vine4you/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="vine4you" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.9.3" />
+          <element id="library" level="project" name="Maven: com.google.appengine:appengine-jsr107cache:1.9.3" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: net.sf.jsr107cache:jsr107cache:1.1" />
+          <element id="library" level="project" name="Maven: net.sf.opencsv:opencsv:2.3" />
+          <element id="library" level="project" name="Maven: org.json:json:20140107" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

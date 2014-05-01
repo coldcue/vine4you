@@ -17,6 +17,7 @@
     <groupId>com.vine4you</groupId>
     <artifactId>vine4you</artifactId>
     <version>1-1-4</version>
+    <packaging>war</packaging>
 
     <properties>
         <appengine.version>1.9.3</appengine.version>
@@ -95,7 +96,7 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-testing</artifactId>
-            <version>${appengine.version}</version>librar
+            <version>${appengine.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -142,6 +143,16 @@
                         </resource>
                     </webResources>
                 </configuration>
+
+                <!-- Create exploded war -->
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exploded</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!--AppEngine-->
@@ -152,6 +163,16 @@
                 <configuration>
                     <version>${version}</version>
                 </configuration>
+
+                <!-- Deploy -->
+                <executions>
+                    <execution>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!--HTML Compressor-->
@@ -169,6 +190,15 @@
                         <fileExt>html</fileExt>
                     </fileExt>
                 </configuration>
+
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>html</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

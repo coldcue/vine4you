@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="vine4you:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="vine4you-1-1-4.war">
+      <element id="artifact" artifact-name="vine4you:war exploded" />
+    </root>
+  </artifact>
+</component>
