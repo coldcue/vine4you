@@ -27,12 +27,13 @@
         <pluginRepository>
             <id>google-snapshots</id>
             <name>Google Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
+            <url>https://oss.sonatype.org/content/repositories/google-releases/</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
             <releases>
                 <enabled>true</enabled>
+                <checksumPolicy>fail</checksumPolicy>
             </releases>
         </pluginRepository>
     </pluginRepositories>
@@ -162,6 +163,7 @@
                 <version>1.9.3-maven3.0</version>
                 <configuration>
                     <version>${version}</version>
+
                 </configuration>
 
                 <!-- Deploy -->

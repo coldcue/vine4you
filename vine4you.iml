@@ -8,7 +8,6 @@
         </descriptors>
         <webroots>
           <root url="file://$MODULE_DIR$/web" relative="/" />
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
@@ -19,6 +18,10 @@
     <facet type="google-app-engine" name="Google App Engine">
       <configuration>
         <sdk-home-path>$MAVEN_REPOSITORY$/com/google/appengine/appengine-java-sdk/1.9.3/appengine-java-sdk/appengine-java-sdk-1.9.3</sdk-home-path>
+        <files-to-enhance>
+          <file path="$MODULE_DIR$/src/main/java" />
+          <file path="$MODULE_DIR$/src/main/resources" />
+        </files-to-enhance>
       </configuration>
     </facet>
   </component>
