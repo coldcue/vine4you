@@ -35,7 +35,7 @@ public class AdminService {
         int count = 0;
 
         try {
-            URL url = new URL("http://import.vine4you.com/import.csv");
+            URL url = new URL("http://coldcue.dlinkddns.com/vine4you/import.csv");
             InputStreamReader inputStreamReader = new InputStreamReader(url.openStream(), Charset.forName("UTF-8"));
             CSVReader reader = new CSVReader(new BufferedReader(inputStreamReader));
             String[] line;
@@ -68,7 +68,7 @@ public class AdminService {
     }
 
     public static int deleteVideos() throws IOException {
-        URL url = new URL("http://import.vine4you.com/delete.txt");
+        URL url = new URL("http://coldcue.dlinkddns.com/vine4you/delete.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8")));
 
         VideoManagerService videoManagerService = VideoManagerServiceFactory.getVideoManagerService();
